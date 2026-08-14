@@ -130,7 +130,7 @@ final class TimerEngine {
         session.endDate = now.addingTimeInterval(remaining)
 
         if let endDate = session.endDate {
-            notifications.scheduleSessionEnd(
+            scheduleSessionEndIfEnabled(
                 id: session.id,
                 kind: session.kind,
                 at: endDate
@@ -188,7 +188,7 @@ final class TimerEngine {
             if remainingTime(at: dateProvider.now) <= 0 {
                 try finishCurrentSession(at: dateProvider.now, autoStart: false)
             } else if let endDate = session.endDate {
-                notifications.scheduleSessionEnd(
+                scheduleSessionEndIfEnabled(
                     id: session.id,
                     kind: session.kind,
                     at: endDate
@@ -240,7 +240,7 @@ final class TimerEngine {
 
         currentSession = session
         store.insert(session)
-        notifications.scheduleSessionEnd(
+        scheduleSessionEndIfEnabled(
             id: session.id,
             kind: kind,
             at: session.endDate!
@@ -303,6 +303,15 @@ final class TimerEngine {
         session.pausedAt = nil
         session.pausedRemainingTime = nil
         notifications.cancelSessionEnd(id: session.id)
+    }
+
+    private func scheduleSessionEndIfEnabled(
+        id: UUID,
+        kind: SessionKind,
+        at date: Date
+    ) {
+        guard settings.notificationsEnabled else { return }
+        notifications.scheduleSessionEnd(id: id, kind: kind, at: date)
     }
 
     private func closePause(on session: FocusSession, at date: Date) {

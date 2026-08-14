@@ -4,6 +4,7 @@ import SwiftData
 struct AppDependencies {
     let modelContainer: ModelContainer
     let timerEngine: TimerEngine
+    let notificationPermissionService: NotificationPermissionService
 
     static func live() throws -> AppDependencies {
         let container = try AppModelContainer.make()
@@ -14,16 +15,25 @@ struct AppDependencies {
         let cycleState = try fetchOrInsert(PomodoroCycleState.self, in: context) {
             PomodoroCycleState()
         }
+        let notificationCenter = SystemUserNotificationCenterClient()
+        let permissionService = NotificationPermissionService(
+            center: notificationCenter
+        )
         let engine = TimerEngine(
             store: SwiftDataTimerSessionStore(context: context),
             settings: settings,
-            cycleState: cycleState
+            cycleState: cycleState,
+            dateProvider: SystemDateProvider(),
+            notifications: LocalTimerNotificationScheduler(
+                center: notificationCenter
+            )
         )
         try engine.restore()
 
         return AppDependencies(
             modelContainer: container,
-            timerEngine: engine
+            timerEngine: engine,
+            notificationPermissionService: permissionService
         )
     }
 

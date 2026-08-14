@@ -34,6 +34,16 @@ struct TimerEngineLifecycleTests {
         #expect(harness.engine.remainingTime == 1_400)
     }
 
+    @Test("Disabled notifications do not schedule session alerts")
+    func respectsDisabledNotifications() throws {
+        let settings = PomodoroSettings(notificationsEnabled: false)
+        let harness = TimerEngineHarness(settings: settings)
+
+        try harness.engine.startFocus()
+
+        #expect(harness.notifications.schedules.isEmpty)
+    }
+
     @Test("A second session cannot start while one is active")
     func rejectsConcurrentSession() throws {
         let harness = TimerEngineHarness()

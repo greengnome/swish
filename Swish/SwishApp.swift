@@ -13,12 +13,16 @@ import SwiftUI
 struct SwishApp: App {
     private let modelContainer: ModelContainer
     @State private var timerEngine: TimerEngine
+    @State private var notificationPermissionService: NotificationPermissionService
 
     init() {
         do {
             let dependencies = try AppDependencies.live()
             modelContainer = dependencies.modelContainer
             _timerEngine = State(initialValue: dependencies.timerEngine)
+            _notificationPermissionService = State(
+                initialValue: dependencies.notificationPermissionService
+            )
         } catch {
             fatalError("Could not create app dependencies: \(error)")
         }
@@ -28,6 +32,7 @@ struct SwishApp: App {
         WindowGroup {
             ContentView()
                 .environment(timerEngine)
+                .environment(notificationPermissionService)
         }
         .modelContainer(modelContainer)
     }
