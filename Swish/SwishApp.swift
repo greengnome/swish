@@ -9,18 +9,25 @@ import SwiftData
 import SwiftUI
 
 @main
+@MainActor
 struct SwishApp: App {
-    private let modelContainer: ModelContainer = {
+    private let modelContainer: ModelContainer
+    @State private var timerEngine: TimerEngine
+
+    init() {
         do {
-            return try AppModelContainer.make()
+            let dependencies = try AppDependencies.live()
+            modelContainer = dependencies.modelContainer
+            _timerEngine = State(initialValue: dependencies.timerEngine)
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            fatalError("Could not create app dependencies: \(error)")
         }
-    }()
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(timerEngine)
         }
         .modelContainer(modelContainer)
     }

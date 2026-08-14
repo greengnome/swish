@@ -35,6 +35,7 @@ final class FocusSession {
     var actualActiveDuration: TimeInterval
     var totalPausedDuration: TimeInterval
     var endDate: Date?
+    var pausedAt: Date?
     var pausedRemainingTime: TimeInterval?
     var task: FocusTask?
     var category: FocusCategory?
@@ -62,6 +63,7 @@ final class FocusSession {
         actualActiveDuration: TimeInterval = 0,
         totalPausedDuration: TimeInterval = 0,
         endDate: Date? = nil,
+        pausedAt: Date? = nil,
         pausedRemainingTime: TimeInterval? = nil,
         task: FocusTask? = nil,
         category: FocusCategory? = nil,
@@ -78,6 +80,7 @@ final class FocusSession {
         self.actualActiveDuration = max(0, actualActiveDuration)
         self.totalPausedDuration = max(0, totalPausedDuration)
         self.endDate = endDate
+        self.pausedAt = pausedAt
         self.pausedRemainingTime = pausedRemainingTime
         self.task = task
         self.category = resolvedCategory
