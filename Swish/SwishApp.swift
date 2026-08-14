@@ -17,7 +17,11 @@ struct SwishApp: App {
 
     init() {
         do {
-            let dependencies = try AppDependencies.live()
+            let isUITesting = ProcessInfo.processInfo.arguments.contains("--ui-testing")
+            let dependencies = try AppDependencies.live(
+                inMemory: isUITesting,
+                notificationsEnabled: !isUITesting
+            )
             modelContainer = dependencies.modelContainer
             _timerEngine = State(initialValue: dependencies.timerEngine)
             _notificationPermissionService = State(

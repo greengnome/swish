@@ -15,18 +15,34 @@ final class SwishUITests: XCTestCase {
 
     @MainActor
     func testFoundationLaunches() throws {
-        let app = XCUIApplication()
+        let app = makeApp()
         app.launch()
 
         XCTAssertTrue(app.staticTexts["Swish"].waitForExistence(timeout: 2))
-        XCTAssertTrue(app.staticTexts["Foundation ready"].exists)
+        XCTAssertTrue(app.staticTexts["home.timer.countdown"].exists)
     }
 
     @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    func testTimerStartsPausesAndResumes() throws {
+        let app = makeApp()
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Start focus"].waitForExistence(timeout: 3))
+        app.buttons["Start focus"].tap()
+
+        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 2))
+        app.buttons["Pause"].tap()
+
+        XCTAssertTrue(app.buttons["Resume"].waitForExistence(timeout: 2))
+        app.buttons["Resume"].tap()
+
+        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.buttons["Cancel timer"].exists)
+    }
+
+    private func makeApp() -> XCUIApplication {
+        let app = XCUIApplication()
+        app.launchArguments = ["--ui-testing"]
+        return app
     }
 }

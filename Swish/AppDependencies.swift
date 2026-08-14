@@ -6,11 +6,14 @@ struct AppDependencies {
     let timerEngine: TimerEngine
     let notificationPermissionService: NotificationPermissionService
 
-    static func live() throws -> AppDependencies {
-        let container = try AppModelContainer.make()
+    static func live(
+        inMemory: Bool = false,
+        notificationsEnabled: Bool = true
+    ) throws -> AppDependencies {
+        let container = try AppModelContainer.make(inMemory: inMemory)
         let context = container.mainContext
         let settings = try fetchOrInsert(PomodoroSettings.self, in: context) {
-            PomodoroSettings()
+            PomodoroSettings(notificationsEnabled: notificationsEnabled)
         }
         let cycleState = try fetchOrInsert(PomodoroCycleState.self, in: context) {
             PomodoroCycleState()

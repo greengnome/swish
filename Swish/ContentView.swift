@@ -1,33 +1,28 @@
-//
-//  ContentView.swift
-//  Swish
-//
-//  Created by Kirill Gladkov on 14/08/2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 12) {
-                Image(systemName: "timer")
-                    .font(.system(size: 40))
-                    .foregroundStyle(.tint)
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
 
-                Text("Swish")
-                    .font(.largeTitle.bold())
+            AppPlaceholderView(title: "Stats", systemImage: "chart.bar.fill")
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar.fill")
+                }
 
-                Text("Foundation ready")
-                    .foregroundStyle(.secondary)
-            }
-            .accessibilityElement(children: .contain)
-            .accessibilityIdentifier("foundation.root")
-            .navigationTitle("Swish")
+            AppPlaceholderView(title: "Tasks", systemImage: "checklist")
+                .tabItem {
+                    Label("Tasks", systemImage: "checklist")
+                }
+
+            AppPlaceholderView(title: "Settings", systemImage: "gearshape.fill")
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
         }
+        .tint(SwishTheme.accent)
     }
-}
-
-#Preview {
-    ContentView()
 }
