@@ -24,6 +24,62 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testCompletesOnboardingOnlyOnce() throws {
+        let app = XCUIApplication()
+        app.launchArguments = [
+            "--ui-testing",
+            "--ui-testing-reset-onboarding"
+        ]
+        app.launch()
+
+        let focusTitle = app.staticTexts["onboarding.focus.title"]
+        XCTAssertTrue(focusTitle.waitForExistence(timeout: 2))
+        XCTAssertEqual(
+            app.buttons["onboarding.page.1"].value as? String,
+            "Selected"
+        )
+
+        app.buttons["onboarding.continue"].tap()
+        XCTAssertTrue(
+            app.staticTexts["onboarding.tasks.title"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertEqual(
+            app.buttons["onboarding.page.2"].value as? String,
+            "Selected"
+        )
+
+        app.buttons["onboarding.continue"].tap()
+        XCTAssertTrue(
+            app.staticTexts["onboarding.insights.title"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertEqual(
+            app.buttons["onboarding.page.3"].value as? String,
+            "Selected"
+        )
+        XCTAssertEqual(app.buttons["onboarding.continue"].label, "Let's focus")
+
+        app.buttons["onboarding.continue"].tap()
+
+        XCTAssertTrue(
+            app.staticTexts["home.timer.countdown"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertFalse(focusTitle.exists)
+
+        app.terminate()
+        app.launchArguments = ["--ui-testing"]
+        app.launch()
+
+        XCTAssertTrue(
+            app.staticTexts["home.timer.countdown"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertFalse(focusTitle.exists)
+    }
+
+    @MainActor
     func testTimerStartsPausesAndResumes() throws {
         let app = makeApp()
         app.launch()
@@ -310,7 +366,10 @@ final class SwishUITests: XCTestCase {
         showSettings: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["--ui-testing"]
+        app.launchArguments = [
+            "--ui-testing",
+            "--ui-testing-skip-onboarding"
+        ]
         if showTasks {
             app.launchArguments.append("--ui-testing-show-tasks")
         }

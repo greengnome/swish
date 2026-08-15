@@ -14,6 +14,7 @@ struct SwishApp: App {
     private let modelContainer: ModelContainer
     @State private var timerEngine: TimerEngine
     @State private var notificationPermissionService: NotificationPermissionService
+    @State private var onboardingStore: OnboardingStore
 
     init() {
         do {
@@ -27,6 +28,7 @@ struct SwishApp: App {
             _notificationPermissionService = State(
                 initialValue: dependencies.notificationPermissionService
             )
+            _onboardingStore = State(initialValue: OnboardingStore())
         } catch {
             fatalError("Could not create app dependencies: \(error)")
         }
@@ -34,9 +36,18 @@ struct SwishApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Group {
+                if onboardingStore.hasCompletedOnboarding {
+                    ContentView()
+                } else {
+                    WelcomeView(onContinue: onboardingStore.complete)
+                }
+            }
                 .environment(timerEngine)
                 .environment(notificationPermissionService)
+                .preferredColorScheme(
+                    timerEngine.settings.appearance.preferredColorScheme
+                )
         }
         .modelContainer(modelContainer)
     }
