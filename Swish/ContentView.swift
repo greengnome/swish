@@ -55,6 +55,7 @@ struct ContentView: View {
                 .tag(AppTab.settings)
         }
         .tint(SwishTheme.accent)
+        .preferredColorScheme(timerEngine.settings.appearance.preferredColorScheme)
         .alert("Focus could not start", isPresented: startFocusErrorIsPresented) {
             Button("OK", role: .cancel) {}
         } message: {

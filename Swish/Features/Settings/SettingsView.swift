@@ -18,6 +18,7 @@ struct SettingsView: View {
                 timerSection
                 cycleSection
                 feedbackSection
+                appearanceSection
                 aboutSection
             }
             .scrollContentBackground(.hidden)
@@ -111,6 +112,17 @@ struct SettingsView: View {
         }
     }
 
+    private var appearanceSection: some View {
+        Section("Appearance") {
+            Picker("Theme", selection: appearanceBinding) {
+                ForEach(AppAppearance.allCases) { appearance in
+                    Text(appearance.title).tag(appearance)
+                }
+            }
+            .accessibilityIdentifier("settings.appearance")
+        }
+    }
+
     private func durationPicker(
         title: String,
         selection: Binding<Int>,
@@ -194,6 +206,16 @@ struct SettingsView: View {
                 if isEnabled {
                     requestNotificationPermission()
                 }
+            }
+        )
+    }
+
+    private var appearanceBinding: Binding<AppAppearance> {
+        Binding(
+            get: { settings.appearance },
+            set: { appearance in
+                settings.appearance = appearance
+                persistSettings()
             }
         )
     }

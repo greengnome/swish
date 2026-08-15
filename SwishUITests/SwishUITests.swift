@@ -168,7 +168,6 @@ final class SwishUITests: XCTestCase {
         XCTAssertTrue(
             app.descendants(matching: .any)["settings.focusDuration"].exists
         )
-
         let autoStartBreaks = app.switches["settings.autoStartBreaks"]
         XCTAssertTrue(autoStartBreaks.exists)
         XCTAssertEqual(autoStartBreaks.value as? String, "Off")
@@ -180,6 +179,12 @@ final class SwishUITests: XCTestCase {
         XCTAssertEqual(sounds.value as? String, "On")
         tapSwitch(sounds)
         XCTAssertTrue(waitForValue("Off", of: sounds))
+
+        app.swipeUp()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.appearance"]
+                .waitForExistence(timeout: 2)
+        )
     }
 
     private func createTask(named title: String, in app: XCUIApplication) {

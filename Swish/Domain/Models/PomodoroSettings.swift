@@ -14,6 +14,7 @@ final class PomodoroSettings {
     var hapticsEnabled: Bool
     var notificationsEnabled: Bool
     var dailyGoal: Int?
+    var appearanceRawValue: String = AppAppearance.system.rawValue
 
     init(
         id: UUID = UUID(),
@@ -26,7 +27,8 @@ final class PomodoroSettings {
         soundEnabled: Bool = true,
         hapticsEnabled: Bool = true,
         notificationsEnabled: Bool = true,
-        dailyGoal: Int? = nil
+        dailyGoal: Int? = nil,
+        appearance: AppAppearance = .system
     ) {
         self.id = id
         self.focusDuration = max(1, focusDuration)
@@ -39,6 +41,12 @@ final class PomodoroSettings {
         self.hapticsEnabled = hapticsEnabled
         self.notificationsEnabled = notificationsEnabled
         self.dailyGoal = dailyGoal.map { max(1, $0) }
+        self.appearanceRawValue = appearance.rawValue
+    }
+
+    var appearance: AppAppearance {
+        get { AppAppearance(rawValue: appearanceRawValue) ?? .system }
+        set { appearanceRawValue = newValue.rawValue }
     }
 
     func duration(for kind: SessionKind) -> TimeInterval {
