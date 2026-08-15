@@ -11,6 +11,7 @@ struct HomeView: View {
     @State private var selectedKind = SessionKind.focus
     @State private var selectedTaskID: UUID?
     @State private var isTaskPickerPresented = false
+    @State private var isHistoryPresented = false
     @State private var errorMessage: String?
 
     let onOpenSettings: () -> Void
@@ -46,7 +47,8 @@ struct HomeView: View {
                     }
 
                     TodaySummaryView(
-                        summary: TodaySummary(sessions: sessions, tasks: tasks)
+                        summary: TodaySummary(sessions: sessions, tasks: tasks),
+                        onViewAll: { isHistoryPresented = true }
                     )
                 }
                 .padding(.horizontal, SwishTheme.screenPadding)
@@ -54,6 +56,9 @@ struct HomeView: View {
             }
             .background(SwishTheme.background)
             .navigationTitle("Swish")
+            .navigationDestination(isPresented: $isHistoryPresented) {
+                FocusHistoryView()
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(

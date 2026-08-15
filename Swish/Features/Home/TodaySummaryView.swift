@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TodaySummaryView: View {
     let summary: TodaySummary
+    let onViewAll: () -> Void
 
     var body: some View {
         VStack(spacing: 18) {
@@ -9,9 +10,10 @@ struct TodaySummaryView: View {
                 Text("Today")
                     .font(.headline)
                 Spacer()
-                Button("View all") {}
+                Button("View all", action: onViewAll)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("home.summary.viewAll")
             }
 
             HStack {

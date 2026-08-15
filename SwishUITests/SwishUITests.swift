@@ -58,6 +58,23 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testOpensFocusHistoryFromHomeSummary() throws {
+        let app = makeApp()
+        app.launch()
+
+        let viewAllButton = app.buttons["home.summary.viewAll"]
+        XCTAssertTrue(viewAllButton.waitForExistence(timeout: 2))
+        app.swipeUp()
+        viewAllButton.tap()
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["history.screen"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(app.tabBars.buttons["Home"].isSelected)
+    }
+
+    @MainActor
     func testCreatesAndCompletesTask() throws {
         let app = makeApp(showTasks: true)
         app.launch()
