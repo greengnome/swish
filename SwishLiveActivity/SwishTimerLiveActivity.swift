@@ -17,6 +17,7 @@ struct SwishTimerLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     TimerCountdownView(state: context.state)
                         .font(.title3.weight(.semibold))
+                        .frame(width: 64, alignment: .trailing)
                 }
 
                 DynamicIslandExpandedRegion(.bottom) {
@@ -69,11 +70,12 @@ private struct TimerLockScreenView: View {
                         state: context.state
                     )
                 }
-
-                Spacer(minLength: 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 TimerCountdownView(state: context.state)
                     .font(.system(.title2, design: .rounded, weight: .semibold))
+                    .frame(width: 76, alignment: .trailing)
+                    .layoutPriority(1)
             }
 
             TimerProgressView(context: context)
