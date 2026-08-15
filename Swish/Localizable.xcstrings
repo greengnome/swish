@@ -118,13 +118,334 @@
         }
       }
     },
+    "onboarding.accessibility.page" : {
+      "comment" : "VoiceOver label for an onboarding page indicator. The value is the one-based page number.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onboarding page %lld"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сторінка знайомства %lld"
+          }
+        }
+      }
+    },
+    "onboarding.action.continue" : {
+      "comment" : "Button that advances to the next onboarding page.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продовжити"
+          }
+        }
+      }
+    },
+    "onboarding.action.finish" : {
+      "comment" : "Button that completes onboarding and opens the focus timer.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почати фокусування"
+          }
+        }
+      }
+    },
+    "onboarding.focus.message" : {
+      "comment" : "Description of Swish's background-safe focus and break timers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accurate focus and break timers keep going when Swish is in the background."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Точні таймери фокусу й перерв продовжують працювати, навіть коли Swish у фоновому режимі."
+          }
+        }
+      }
+    },
+    "onboarding.focus.title" : {
+      "comment" : "Title of the onboarding page about focus timers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus deeply"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зосереджуйтеся глибше"
+          }
+        }
+      }
+    },
+    "onboarding.insights.focus.label" : {
+      "comment" : "Label for the focus-time example in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фокус"
+          }
+        }
+      }
+    },
+    "onboarding.insights.focus.value" : {
+      "comment" : "Example focus duration shown in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2h 15m"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 год 15 хв"
+          }
+        }
+      }
+    },
+    "onboarding.insights.message" : {
+      "comment" : "Description of Swish's statistics and history features.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review focus time, completed sessions, categories, and your day-by-day history."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переглядайте час фокусування, завершені сесії, категорії та історію за днями."
+          }
+        }
+      }
+    },
+    "onboarding.insights.sessions.label" : {
+      "comment" : "Label for the session-count example in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сесії"
+          }
+        }
+      }
+    },
+    "onboarding.insights.title" : {
+      "comment" : "Title of the onboarding page about statistics and history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Understand your momentum"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відстежуйте свій прогрес"
+          }
+        }
+      }
+    },
+    "onboarding.page.not_selected" : {
+      "comment" : "VoiceOver value for an onboarding page indicator that is not active.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not selected"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вибрано"
+          }
+        }
+      }
+    },
+    "onboarding.page.selected" : {
+      "comment" : "VoiceOver value for the active onboarding page indicator.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selected"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрано"
+          }
+        }
+      }
+    },
+    "onboarding.tasks.done" : {
+      "comment" : "Completed state shown in the onboarding task artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        }
+      }
+    },
+    "onboarding.tasks.learn_spanish" : {
+      "comment" : "Example task title shown in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn Spanish"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вивчати іспанську"
+          }
+        }
+      }
+    },
+    "onboarding.tasks.message" : {
+      "comment" : "Description of linking focus sessions to tasks and estimates.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attach sessions to tasks, set Pomodoro estimates, and make every focus block count."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прив’язуйте сесії до завдань, оцінюйте їх у помодоро й перетворюйте кожен блок фокусу на результат."
+          }
+        }
+      }
+    },
+    "onboarding.tasks.project_roadmap" : {
+      "comment" : "Example task title shown in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Project roadmap"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План проєкту"
+          }
+        }
+      }
+    },
+    "onboarding.tasks.read_pages" : {
+      "comment" : "Example reading task title shown in onboarding artwork.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read 20 pages"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прочитати 20 сторінок"
+          }
+        }
+      }
+    },
+    "onboarding.tasks.title" : {
+      "comment" : "Title of the onboarding page about task-linked focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn plans into progress"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перетворюйте плани на прогрес"
+          }
+        }
+      }
+    },
     "Completed and cancelled focus sessions appear here." : {
 
     },
     "Completed sessions chart" : {
-
-    },
-    "Continue" : {
 
     },
     "Create a task" : {
@@ -209,9 +530,6 @@
     "Important" : {
 
     },
-    "Let's focus" : {
-
-    },
     "Long break" : {
 
     },
@@ -245,9 +563,6 @@
     "Normal" : {
 
     },
-    "Not selected" : {
-
-    },
     "Notes" : {
 
     },
@@ -261,9 +576,6 @@
 
     },
     "On" : {
-
-    },
-    "Onboarding page %lld" : {
 
     },
     "Optional details" : {
@@ -287,9 +599,6 @@
     "Reopen %@" : {
 
     },
-    "S" : {
-
-    },
     "Save" : {
 
     },
@@ -300,9 +609,6 @@
 
     },
     "Select no task" : {
-
-    },
-    "Selected" : {
 
     },
     "Selects an optional task for the next focus session" : {

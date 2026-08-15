@@ -28,7 +28,11 @@ final class SwishUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = [
             "--ui-testing",
-            "--ui-testing-reset-onboarding"
+            "--ui-testing-reset-onboarding",
+            "-AppleLanguages",
+            "(en)",
+            "-AppleLocale",
+            "en_US"
         ]
         app.launch()
 
@@ -69,7 +73,13 @@ final class SwishUITests: XCTestCase {
         XCTAssertFalse(focusTitle.exists)
 
         app.terminate()
-        app.launchArguments = ["--ui-testing"]
+        app.launchArguments = [
+            "--ui-testing",
+            "-AppleLanguages",
+            "(en)",
+            "-AppleLocale",
+            "en_US"
+        ]
         app.launch()
 
         XCTAssertTrue(
@@ -77,6 +87,43 @@ final class SwishUITests: XCTestCase {
                 .waitForExistence(timeout: 2)
         )
         XCTAssertFalse(focusTitle.exists)
+    }
+
+    @MainActor
+    func testDisplaysOnboardingInUkrainian() throws {
+        let app = XCUIApplication()
+        app.launchArguments = [
+            "--ui-testing",
+            "--ui-testing-reset-onboarding",
+            "-AppleLanguages",
+            "(uk)",
+            "-AppleLocale",
+            "uk_UA"
+        ]
+        app.launch()
+
+        let focusTitle = app.staticTexts["onboarding.focus.title"]
+        XCTAssertTrue(focusTitle.waitForExistence(timeout: 2))
+        XCTAssertEqual(focusTitle.label, "Зосереджуйтеся глибше")
+        XCTAssertEqual(app.buttons["onboarding.continue"].label, "Продовжити")
+        XCTAssertEqual(
+            app.buttons["onboarding.page.1"].value as? String,
+            "Вибрано"
+        )
+
+        app.buttons["onboarding.continue"].tap()
+        let tasksTitle = app.staticTexts["onboarding.tasks.title"]
+        XCTAssertTrue(tasksTitle.waitForExistence(timeout: 2))
+        XCTAssertEqual(tasksTitle.label, "Перетворюйте плани на прогрес")
+
+        app.buttons["onboarding.continue"].tap()
+        let insightsTitle = app.staticTexts["onboarding.insights.title"]
+        XCTAssertTrue(insightsTitle.waitForExistence(timeout: 2))
+        XCTAssertEqual(insightsTitle.label, "Відстежуйте свій прогрес")
+        XCTAssertEqual(
+            app.buttons["onboarding.continue"].label,
+            "Почати фокусування"
+        )
     }
 
     @MainActor

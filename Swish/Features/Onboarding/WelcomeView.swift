@@ -20,8 +20,12 @@ struct WelcomeView: View {
             pageIndicator
                 .padding(.top, 8)
 
-            Button(selectedPage == pages.indices.last ? "Let's focus" : "Continue") {
-                advance()
+            Button(action: advance) {
+                Text(
+                    selectedPage == pages.indices.last
+                        ? .onboardingActionFinish
+                        : .onboardingActionContinue
+                )
             }
             .font(.headline)
             .foregroundStyle(.white)
@@ -63,8 +67,22 @@ struct WelcomeView: View {
                         )
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Onboarding page \(index + 1)")
-                .accessibilityValue(index == selectedPage ? "Selected" : "Not selected")
+                .accessibilityLabel(
+                    Text(
+                        LocalizedStringResource(
+                            "onboarding.accessibility.page",
+                            defaultValue: "Onboarding page \(index + 1)",
+                            comment: "VoiceOver label for an onboarding page indicator."
+                        )
+                    )
+                )
+                .accessibilityValue(
+                    Text(
+                        index == selectedPage
+                            ? .onboardingPageSelected
+                            : .onboardingPageNotSelected
+                    )
+                )
                 .accessibilityIdentifier("onboarding.page.\(index + 1)")
             }
         }
@@ -87,25 +105,25 @@ private enum OnboardingPage: String, CaseIterable {
     case tasks
     case insights
 
-    var title: String {
+    var title: LocalizedStringResource {
         switch self {
         case .focus:
-            "Focus deeply"
+            .onboardingFocusTitle
         case .tasks:
-            "Turn plans into progress"
+            .onboardingTasksTitle
         case .insights:
-            "Understand your momentum"
+            .onboardingInsightsTitle
         }
     }
 
-    var message: String {
+    var message: LocalizedStringResource {
         switch self {
         case .focus:
-            "Accurate focus and break timers keep going when Swish is in the background."
+            .onboardingFocusMessage
         case .tasks:
-            "Attach sessions to tasks, set Pomodoro estimates, and make every focus block count."
+            .onboardingTasksMessage
         case .insights:
-            "Review focus time, completed sessions, categories, and your day-by-day history."
+            .onboardingInsightsMessage
         }
     }
 }
@@ -180,7 +198,7 @@ private struct OnboardingArtwork: View {
                 .frame(width: 132, height: 132)
                 .shadow(color: SwishTheme.accent.opacity(0.2), radius: 20, y: 12)
                 .overlay {
-                    Text("S")
+                    Text(verbatim: "S")
                         .font(.system(size: 66, weight: .semibold, design: .rounded))
                         .foregroundStyle(.white)
                 }
@@ -192,22 +210,22 @@ private struct OnboardingArtwork: View {
     private var tasksArtwork: some View {
         VStack(spacing: 14) {
             taskCard(
-                title: "Project roadmap",
-                progress: "2 / 4",
+                title: .onboardingTasksProjectRoadmap,
+                progress: Text(verbatim: "2 / 4"),
                 color: SwishTheme.accent
             )
             .offset(x: -8)
 
             taskCard(
-                title: "Read 20 pages",
-                progress: "Done",
+                title: .onboardingTasksReadPages,
+                progress: Text(.onboardingTasksDone),
                 color: SwishTheme.success
             )
             .offset(x: 10)
 
             taskCard(
-                title: "Learn Spanish",
-                progress: "1 / 3",
+                title: .onboardingTasksLearnSpanish,
+                progress: Text(verbatim: "1 / 3"),
                 color: .purple
             )
             .offset(x: -4)
@@ -227,8 +245,14 @@ private struct OnboardingArtwork: View {
             .frame(height: 112, alignment: .bottom)
 
             HStack(spacing: 16) {
-                insightMetric(value: "2h 15m", label: "Focus")
-                insightMetric(value: "5", label: "Sessions")
+                insightMetric(
+                    value: Text(.onboardingInsightsFocusValue),
+                    label: .onboardingInsightsFocusLabel
+                )
+                insightMetric(
+                    value: Text(verbatim: "5"),
+                    label: .onboardingInsightsSessionsLabel
+                )
             }
         }
         .padding(24)
@@ -256,7 +280,11 @@ private struct OnboardingArtwork: View {
         }
     }
 
-    private func taskCard(title: String, progress: String, color: Color) -> some View {
+    private func taskCard(
+        title: LocalizedStringResource,
+        progress: Text,
+        color: Color
+    ) -> some View {
         HStack(spacing: 13) {
             Circle()
                 .stroke(color, lineWidth: 3)
@@ -267,7 +295,7 @@ private struct OnboardingArtwork: View {
 
             Spacer()
 
-            Text(progress)
+            progress
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(color)
         }
@@ -287,9 +315,12 @@ private struct OnboardingArtwork: View {
             .frame(width: 25, height: height)
     }
 
-    private func insightMetric(value: String, label: String) -> some View {
+    private func insightMetric(
+        value: Text,
+        label: LocalizedStringResource
+    ) -> some View {
         VStack(spacing: 4) {
-            Text(value)
+            value
                 .font(.title3.weight(.bold))
                 .monospacedDigit()
             Text(label)
