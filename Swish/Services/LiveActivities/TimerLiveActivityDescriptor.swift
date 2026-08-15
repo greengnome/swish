@@ -1,0 +1,46 @@
+import Foundation
+
+struct TimerLiveActivityDescriptor: Equatable, Sendable {
+    let attributes: TimerLiveActivityAttributes
+    let contentState: TimerLiveActivityAttributes.ContentState
+
+    init?(session: FocusSession) {
+        let contentState: TimerLiveActivityAttributes.ContentState
+
+        switch session.state {
+        case .running:
+            guard let endDate = session.endDate else { return nil }
+            contentState = .init(phase: .running(endDate: endDate))
+        case .paused:
+            contentState = .init(
+                phase: .paused(
+                    remainingTime: max(0, session.pausedRemainingTime ?? 0)
+                )
+            )
+        case .completed, .cancelled, .skipped:
+            return nil
+        }
+
+        attributes = .init(
+            sessionID: session.id,
+            kind: .init(sessionKind: session.kind),
+            startedAt: session.startedAt,
+            plannedDuration: session.plannedDuration,
+            taskTitle: session.task?.title
+        )
+        self.contentState = contentState
+    }
+}
+
+private extension TimerLiveActivityAttributes.Kind {
+    init(sessionKind: SessionKind) {
+        switch sessionKind {
+        case .focus:
+            self = .focus
+        case .shortBreak:
+            self = .shortBreak
+        case .longBreak:
+            self = .longBreak
+        }
+    }
+}
