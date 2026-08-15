@@ -12,6 +12,25 @@ struct TimerLiveActivityPresentationTests {
         #expect(TimerLiveActivityPresentation.pausedCountdown(interval) == expected)
     }
 
+    @Test("Only a running Live Activity has an expiration date")
+    func mapsExpirationDate() {
+        let endDate = Date(timeIntervalSince1970: 10_000)
+        let running = TimerLiveActivityAttributes.ContentState(
+            phase: .running(endDate: endDate)
+        )
+        let paused = TimerLiveActivityAttributes.ContentState(
+            phase: .paused(remainingTime: 100)
+        )
+
+        #expect(
+            TimerLiveActivityPresentation.expirationDate(for: running)
+                == endDate
+        )
+        #expect(
+            TimerLiveActivityPresentation.expirationDate(for: paused) == nil
+        )
+    }
+
     @Test("Progress is normalized to the complete unit interval", arguments: [
         (TimeInterval(1_500), TimeInterval(1_500), 0.0),
         (TimeInterval(750), TimeInterval(1_500), 0.5),

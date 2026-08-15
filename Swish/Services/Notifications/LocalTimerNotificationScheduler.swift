@@ -29,14 +29,19 @@ final class LocalTimerNotificationScheduler: TimerNotificationScheduling {
         )
     }
 
-    func scheduleSessionEnd(id: UUID, kind: SessionKind, at date: Date) {
+    func scheduleSessionEnd(
+        id: UUID,
+        kind: SessionKind,
+        at date: Date,
+        soundEnabled: Bool
+    ) {
         let interval = date.timeIntervalSince(dateProvider.now)
         guard interval > 0 else { return }
 
         let content = UNMutableNotificationContent()
         content.title = notificationTitle(for: kind)
         content.body = notificationBody(for: kind)
-        content.sound = .default
+        content.sound = soundEnabled ? .default : nil
         content.threadIdentifier = "swish.timer"
         content.userInfo = ["sessionID": id.uuidString]
 

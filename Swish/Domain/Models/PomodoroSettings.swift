@@ -13,6 +13,7 @@ final class PomodoroSettings {
     var soundEnabled: Bool
     var hapticsEnabled: Bool
     var notificationsEnabled: Bool
+    var showTaskTitlesOnLockScreen: Bool = false
     var dailyGoal: Int?
     var appearanceRawValue: String = AppAppearance.system.rawValue
 
@@ -27,6 +28,7 @@ final class PomodoroSettings {
         soundEnabled: Bool = true,
         hapticsEnabled: Bool = true,
         notificationsEnabled: Bool = true,
+        showTaskTitlesOnLockScreen: Bool = false,
         dailyGoal: Int? = nil,
         appearance: AppAppearance = .system
     ) {
@@ -40,6 +42,7 @@ final class PomodoroSettings {
         self.soundEnabled = soundEnabled
         self.hapticsEnabled = hapticsEnabled
         self.notificationsEnabled = notificationsEnabled
+        self.showTaskTitlesOnLockScreen = showTaskTitlesOnLockScreen
         self.dailyGoal = dailyGoal.map { max(1, $0) }
         self.appearanceRawValue = appearance.rawValue
     }

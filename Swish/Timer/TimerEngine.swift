@@ -19,6 +19,7 @@ final class TimerEngine {
     private let dateProvider: any DateProviding
     private let notifications: any TimerNotificationScheduling
     private let liveActivities: any TimerLiveActivityCoordinating
+    private let feedback: any TimerFeedbackPlaying
 
     var remainingTime: TimeInterval {
         remainingTime(at: dateProvider.now)
@@ -53,7 +54,8 @@ final class TimerEngine {
         cycleState: PomodoroCycleState,
         dateProvider: any DateProviding,
         notifications: any TimerNotificationScheduling,
-        liveActivities: any TimerLiveActivityCoordinating
+        liveActivities: any TimerLiveActivityCoordinating,
+        feedback: any TimerFeedbackPlaying
     ) {
         self.store = store
         self.settings = settings
@@ -61,6 +63,7 @@ final class TimerEngine {
         self.dateProvider = dateProvider
         self.notifications = notifications
         self.liveActivities = liveActivities
+        self.feedback = feedback
     }
 
     convenience init(
@@ -74,7 +77,8 @@ final class TimerEngine {
             cycleState: cycleState,
             dateProvider: SystemDateProvider(),
             notifications: NoOpTimerNotificationScheduler(),
-            liveActivities: NoOpTimerLiveActivityCoordinator()
+            liveActivities: NoOpTimerLiveActivityCoordinator(),
+            feedback: NoOpTimerFeedbackPlayer()
         )
     }
 
@@ -117,6 +121,7 @@ final class TimerEngine {
         notifications.cancelSessionEnd(id: session.id)
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.paused)
     }
 
     func resume() throws {
@@ -143,6 +148,7 @@ final class TimerEngine {
         }
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.resumed)
     }
 
     func cancel() throws {
@@ -160,6 +166,7 @@ final class TimerEngine {
         makeTerminal(session, state: .cancelled, at: now)
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.cancelled)
     }
 
     func skipBreak() throws {
@@ -181,11 +188,24 @@ final class TimerEngine {
         advanceCycle(after: session)
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.skipped)
     }
 
     func resetCycle() throws {
         cycleState.reset()
         try store.save()
+    }
+
+    func setNotificationsEnabled(_ isEnabled: Bool) throws {
+        let previousValue = settings.notificationsEnabled
+        settings.notificationsEnabled = isEnabled
+
+        do {
+            try store.save()
+        } catch {
+            settings.notificationsEnabled = previousValue
+            throw error
+        }
     }
 
     func restore() throws {
@@ -261,6 +281,7 @@ final class TimerEngine {
         )
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.started)
         return session
     }
 
@@ -293,6 +314,7 @@ final class TimerEngine {
         advanceCycle(after: session)
         try store.save()
         synchronizeLiveActivity()
+        playFeedback(.completed)
 
         guard autoStart else { return }
 
@@ -327,13 +349,28 @@ final class TimerEngine {
         at date: Date
     ) {
         guard settings.notificationsEnabled else { return }
-        notifications.scheduleSessionEnd(id: id, kind: kind, at: date)
+        notifications.scheduleSessionEnd(
+            id: id,
+            kind: kind,
+            at: date,
+            soundEnabled: settings.soundEnabled
+        )
     }
 
     private func synchronizeLiveActivity() {
         liveActivities.synchronize(
-            with: currentSession.flatMap(TimerLiveActivityDescriptor.init)
+            with: currentSession.flatMap {
+                TimerLiveActivityDescriptor(
+                    session: $0,
+                    showTaskTitle: settings.showTaskTitlesOnLockScreen
+                )
+            }
         )
+    }
+
+    private func playFeedback(_ event: TimerFeedbackEvent) {
+        guard settings.hapticsEnabled else { return }
+        feedback.play(event)
     }
 
     private func closePause(on session: FocusSession, at date: Date) {

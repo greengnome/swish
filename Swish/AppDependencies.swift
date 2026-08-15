@@ -31,7 +31,8 @@ struct AppDependencies {
             notifications: LocalTimerNotificationScheduler(
                 center: notificationCenter
             ),
-            liveActivities: ActivityKitTimerLiveActivityCoordinator()
+            liveActivities: ActivityKitTimerLiveActivityCoordinator(),
+            feedback: SystemTimerFeedbackPlayer()
         )
         try engine.restore()
 

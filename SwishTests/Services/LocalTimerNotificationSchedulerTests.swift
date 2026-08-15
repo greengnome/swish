@@ -18,7 +18,8 @@ struct LocalTimerNotificationSchedulerTests {
         scheduler.scheduleSessionEnd(
             id: id,
             kind: .focus,
-            at: now.addingTimeInterval(90)
+            at: now.addingTimeInterval(90),
+            soundEnabled: true
         )
 
         let request = try #require(center.addedRequests.first)
@@ -50,7 +51,8 @@ struct LocalTimerNotificationSchedulerTests {
         scheduler.scheduleSessionEnd(
             id: UUID(),
             kind: kind,
-            at: now.addingTimeInterval(30)
+            at: now.addingTimeInterval(30),
+            soundEnabled: true
         )
 
         let content = try #require(center.addedRequests.first?.content)
@@ -73,17 +75,20 @@ struct LocalTimerNotificationSchedulerTests {
         scheduler.scheduleSessionEnd(
             id: UUID(),
             kind: .focus,
-            at: now.addingTimeInterval(30)
+            at: now.addingTimeInterval(30),
+            soundEnabled: true
         )
         scheduler.scheduleSessionEnd(
             id: UUID(),
             kind: .shortBreak,
-            at: now.addingTimeInterval(60)
+            at: now.addingTimeInterval(60),
+            soundEnabled: true
         )
         scheduler.scheduleSessionEnd(
             id: UUID(),
             kind: .longBreak,
-            at: now.addingTimeInterval(90)
+            at: now.addingTimeInterval(90),
+            soundEnabled: true
         )
 
         #expect(center.addedRequests.map(\.content.title) == [
@@ -110,10 +115,31 @@ struct LocalTimerNotificationSchedulerTests {
         scheduler.scheduleSessionEnd(
             id: UUID(),
             kind: .focus,
-            at: now.addingTimeInterval(-1)
+            at: now.addingTimeInterval(-1),
+            soundEnabled: true
         )
 
         #expect(center.addedRequests.isEmpty)
+    }
+
+    @Test("Disabled sounds create a silent timer notification")
+    func schedulesSilentNotification() throws {
+        let now = Date(timeIntervalSince1970: 75_000)
+        let center = UserNotificationCenterClientSpy()
+        let scheduler = LocalTimerNotificationScheduler(
+            center: center,
+            dateProvider: MutableDateProvider(now: now)
+        )
+
+        scheduler.scheduleSessionEnd(
+            id: UUID(),
+            kind: .focus,
+            at: now.addingTimeInterval(30),
+            soundEnabled: false
+        )
+
+        let content = try #require(center.addedRequests.first?.content)
+        #expect(content.sound == nil)
     }
 
     @Test("Cancellation removes only the matching session notification")

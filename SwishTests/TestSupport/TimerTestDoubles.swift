@@ -42,17 +42,39 @@ final class TimerNotificationSchedulerSpy: TimerNotificationScheduling {
         let id: UUID
         let kind: SessionKind
         let date: Date
+        let soundEnabled: Bool
     }
 
     private(set) var schedules: [Schedule] = []
     private(set) var cancellations: [UUID] = []
 
-    func scheduleSessionEnd(id: UUID, kind: SessionKind, at date: Date) {
-        schedules.append(Schedule(id: id, kind: kind, date: date))
+    func scheduleSessionEnd(
+        id: UUID,
+        kind: SessionKind,
+        at date: Date,
+        soundEnabled: Bool
+    ) {
+        schedules.append(
+            Schedule(
+                id: id,
+                kind: kind,
+                date: date,
+                soundEnabled: soundEnabled
+            )
+        )
     }
 
     func cancelSessionEnd(id: UUID) {
         cancellations.append(id)
+    }
+}
+
+@MainActor
+final class TimerFeedbackPlayerSpy: TimerFeedbackPlaying {
+    private(set) var events: [TimerFeedbackEvent] = []
+
+    func play(_ event: TimerFeedbackEvent) {
+        events.append(event)
     }
 }
 
@@ -77,6 +99,7 @@ struct TimerEngineHarness {
     let store: InMemoryTimerSessionStore
     let notifications: TimerNotificationSchedulerSpy
     let liveActivities: TimerLiveActivityCoordinatorSpy
+    let feedback: TimerFeedbackPlayerSpy
     let settings: PomodoroSettings
     let cycle: PomodoroCycleState
     let engine: TimerEngine
@@ -92,6 +115,7 @@ struct TimerEngineHarness {
         self.store = InMemoryTimerSessionStore(sessions: sessions)
         self.notifications = TimerNotificationSchedulerSpy()
         self.liveActivities = TimerLiveActivityCoordinatorSpy()
+        self.feedback = TimerFeedbackPlayerSpy()
         self.settings = settings
         self.cycle = cycle
         self.engine = TimerEngine(
@@ -100,7 +124,8 @@ struct TimerEngineHarness {
             cycleState: cycle,
             dateProvider: clock,
             notifications: notifications,
-            liveActivities: liveActivities
+            liveActivities: liveActivities,
+            feedback: feedback
         )
     }
 }

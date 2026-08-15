@@ -7,6 +7,7 @@ final class ActivityKitTimerLiveActivityCoordinator: TimerLiveActivityCoordinati
 
     private var currentActivity: TimerActivity?
     private var pendingOperation: Task<Void, Never>?
+    private var expirationTask: Task<Void, Never>?
 
     func synchronize(with descriptor: TimerLiveActivityDescriptor?) {
         guard let descriptor else {
@@ -21,6 +22,10 @@ final class ActivityKitTimerLiveActivityCoordinator: TimerLiveActivityCoordinati
             currentActivity = matchingActivity
             end(activities.filter { $0.id != matchingActivity.id })
             update(matchingActivity, with: descriptor.contentState)
+            scheduleExpiration(
+                of: matchingActivity,
+                for: descriptor.contentState
+            )
             return
         }
 
@@ -34,6 +39,12 @@ final class ActivityKitTimerLiveActivityCoordinator: TimerLiveActivityCoordinati
                 attributes: descriptor.attributes,
                 content: content(for: descriptor.contentState)
             )
+            if let currentActivity {
+                scheduleExpiration(
+                    of: currentActivity,
+                    for: descriptor.contentState
+                )
+            }
         } catch {
             currentActivity = nil
         }
@@ -62,6 +73,8 @@ final class ActivityKitTimerLiveActivityCoordinator: TimerLiveActivityCoordinati
     }
 
     private func endAllActivities() {
+        expirationTask?.cancel()
+        expirationTask = nil
         let activities = knownActivities
         currentActivity = nil
         end(activities)
@@ -93,18 +106,42 @@ final class ActivityKitTimerLiveActivityCoordinator: TimerLiveActivityCoordinati
     ) -> ActivityContent<TimerLiveActivityAttributes.ContentState> {
         ActivityContent(
             state: state,
-            staleDate: staleDate(for: state)
+            staleDate: TimerLiveActivityPresentation.expirationDate(for: state)
         )
     }
 
-    private func staleDate(
+    private func scheduleExpiration(
+        of activity: TimerActivity,
         for state: TimerLiveActivityAttributes.ContentState
-    ) -> Date? {
-        switch state.phase {
-        case let .running(endDate):
-            endDate
-        case .paused:
-            nil
+    ) {
+        expirationTask?.cancel()
+        expirationTask = nil
+
+        guard let endDate = TimerLiveActivityPresentation.expirationDate(
+            for: state
+        ) else {
+            return
+        }
+
+        expirationTask = Task { @MainActor [weak self] in
+            let delay = max(0, endDate.timeIntervalSinceNow)
+            if delay > 0 {
+                try? await Task.sleep(for: .seconds(delay))
+            }
+
+            guard
+                !Task.isCancelled,
+                self?.currentActivity?.id == activity.id
+            else {
+                return
+            }
+
+            await activity.end(
+                self?.content(for: state),
+                dismissalPolicy: .immediate
+            )
+            self?.currentActivity = nil
+            self?.expirationTask = nil
         }
     }
 }
