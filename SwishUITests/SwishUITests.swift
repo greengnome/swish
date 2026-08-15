@@ -110,6 +110,28 @@ final class SwishUITests: XCTestCase {
         )
     }
 
+    @MainActor
+    func testStatsScreenSwitchesPeriodsAndShowsEmptyHistory() throws {
+        let app = makeApp(showStats: true)
+        app.launch()
+
+        XCTAssertTrue(app.descendants(matching: .any)["stats.screen"].waitForExistence(timeout: 2))
+        XCTAssertEqual(app.staticTexts["stats.focusTime.value"].label, "0m")
+        XCTAssertEqual(app.staticTexts["stats.sessions.value"].label, "0")
+        XCTAssertEqual(app.staticTexts["stats.tasks.value"].label, "0")
+
+        let periodPicker = app.segmentedControls["stats.period"]
+        XCTAssertTrue(periodPicker.waitForExistence(timeout: 2))
+        periodPicker.buttons["Month"].tap()
+        XCTAssertTrue(periodPicker.buttons["Month"].isSelected)
+
+        app.swipeUp()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["stats.categories.empty"]
+                .waitForExistence(timeout: 2)
+        )
+    }
+
     private func createTask(named title: String, in app: XCUIApplication) {
         XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
         app.buttons["tasks.add"].tap()
@@ -123,11 +145,17 @@ final class SwishUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Edit \(title)"].waitForExistence(timeout: 2))
     }
 
-    private func makeApp(showTasks: Bool = false) -> XCUIApplication {
+    private func makeApp(
+        showTasks: Bool = false,
+        showStats: Bool = false
+    ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
         if showTasks {
             app.launchArguments.append("--ui-testing-show-tasks")
+        }
+        if showStats {
+            app.launchArguments.append("--ui-testing-show-stats")
         }
         return app
     }

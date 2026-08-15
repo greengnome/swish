@@ -9,10 +9,18 @@ struct ContentView: View {
     @State private var startFocusError: String?
 
     init() {
-        let startsOnTasks = ProcessInfo.processInfo.arguments.contains(
-            "--ui-testing-show-tasks"
-        )
-        _selectedTab = State(initialValue: startsOnTasks ? .tasks : .home)
+        let arguments = ProcessInfo.processInfo.arguments
+        let initialTab: AppTab
+
+        if arguments.contains("--ui-testing-show-stats") {
+            initialTab = .stats
+        } else if arguments.contains("--ui-testing-show-tasks") {
+            initialTab = .tasks
+        } else {
+            initialTab = .home
+        }
+
+        _selectedTab = State(initialValue: initialTab)
     }
 
     var body: some View {
@@ -23,7 +31,7 @@ struct ContentView: View {
                 }
                 .tag(AppTab.home)
 
-            AppPlaceholderView(title: "Stats", systemImage: "chart.bar.fill")
+            StatsView()
                 .tabItem {
                     Label("Stats", systemImage: "chart.bar.fill")
                 }
