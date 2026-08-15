@@ -15,7 +15,8 @@ struct TimerSettingsDraftTests {
             autoStartFocus: true,
             soundEnabled: false,
             hapticsEnabled: false,
-            notificationsEnabled: false
+            notificationsEnabled: false,
+            showTaskTitlesOnLockScreen: true
         )
 
         let draft = TimerSettingsDraft(settings: settings)
@@ -29,6 +30,7 @@ struct TimerSettingsDraftTests {
         #expect(!draft.soundEnabled)
         #expect(!draft.hapticsEnabled)
         #expect(!draft.notificationsEnabled)
+        #expect(draft.showTaskTitlesOnLockScreen)
     }
 
     @Test("Applying a draft updates future sessions without changing the active one")
@@ -45,6 +47,7 @@ struct TimerSettingsDraftTests {
         draft.soundEnabled = false
         draft.hapticsEnabled = false
         draft.notificationsEnabled = false
+        draft.showTaskTitlesOnLockScreen = true
 
         draft.apply(to: harness.settings)
 
@@ -58,6 +61,7 @@ struct TimerSettingsDraftTests {
         #expect(!harness.settings.soundEnabled)
         #expect(!harness.settings.hapticsEnabled)
         #expect(!harness.settings.notificationsEnabled)
+        #expect(harness.settings.showTaskTitlesOnLockScreen)
 
         try harness.engine.cancel()
         let nextSession = try harness.engine.startFocus()
