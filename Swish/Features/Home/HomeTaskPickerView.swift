@@ -13,49 +13,61 @@ struct HomeTaskPickerView: View {
                     select(nil)
                 } label: {
                     selectionRow(
-                        title: "No task",
-                        subtitle: "Keep this focus session unassigned",
+                        title: Text(.homeTaskPickerNoTask),
+                        subtitle: Text(.homeTaskPickerNoTaskDescription),
                         iconName: "minus.circle",
                         color: .secondary,
                         isSelected: selectedTaskID == nil
                     )
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Select no task")
+                .accessibilityLabel(Text(.homeTaskPickerSelectNoTask))
 
                 if tasks.isEmpty {
                     ContentUnavailableView(
-                        "No active tasks",
+                        String(localized: .homeTaskPickerEmptyTitle),
                         systemImage: "checklist",
-                        description: Text("Create a task from the Tasks tab first.")
+                        description: Text(.homeTaskPickerEmptyDescription)
                     )
                     .listRowBackground(Color.clear)
                 } else {
-                    Section("Active tasks") {
+                    Section {
                         ForEach(tasks) { task in
                             Button {
                                 select(task.id)
                             } label: {
                                 selectionRow(
-                                    title: task.title,
-                                    subtitle: taskSubtitle(task),
+                                    title: Text(verbatim: task.title),
+                                    subtitle: Text(verbatim: taskSubtitle(task)),
                                     iconName: task.category?.iconName ?? "checkmark.circle",
                                     color: task.category?.presentationColor ?? SwishTheme.accent,
                                     isSelected: selectedTaskID == task.id
                                 )
                             }
                             .buttonStyle(.plain)
-                            .accessibilityLabel("Select \(task.title)")
+                            .accessibilityLabel(
+                                Text(
+                                    LocalizedStringResource(
+                                        "home.task_picker.select.accessibility",
+                                        defaultValue: "Select \(task.title)",
+                                        comment: "VoiceOver label for selecting a task from the Home task picker."
+                                    )
+                                )
+                            )
                         }
+                    } header: {
+                        Text(.homeTaskPickerActiveTasks)
                     }
                 }
             }
-            .navigationTitle("Choose Task")
+            .navigationTitle(Text(.homeTaskPickerTitle))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Text(.commonActionCancel)
                     }
                 }
             }
@@ -63,8 +75,8 @@ struct HomeTaskPickerView: View {
     }
 
     private func selectionRow(
-        title: String,
-        subtitle: String,
+        title: Text,
+        subtitle: Text,
         iconName: String,
         color: Color,
         isSelected: Bool
@@ -75,9 +87,9 @@ struct HomeTaskPickerView: View {
                 .frame(width: 28)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(title)
+                title
                     .foregroundStyle(.primary)
-                Text(subtitle)
+                subtitle
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -95,8 +107,12 @@ struct HomeTaskPickerView: View {
     }
 
     private func taskSubtitle(_ task: FocusTask) -> String {
-        let categoryName = task.category?.displayName ?? "No category"
-        return "\(categoryName) • \(task.completedPomodoros) / \(task.estimatedPomodoros) sessions"
+        let categoryName = task.category?.displayName
+            ?? String(localized: .commonCategoryNone)
+        let sessionCount = TimerDisplayFormatter.sessionCount(
+            task.estimatedPomodoros
+        )
+        return "\(categoryName) • \(task.completedPomodoros) / \(sessionCount)"
     }
 
     private func select(_ taskID: UUID?) {

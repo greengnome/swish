@@ -31,13 +31,21 @@ struct ContentView: View {
                 selectedTab = .settings
             }
             .tabItem {
-                Label("Home", systemImage: "house.fill")
+                Label {
+                    Text(.appTabHome)
+                } icon: {
+                    Image(systemName: "house.fill")
+                }
             }
             .tag(AppTab.home)
 
             StatsView()
                 .tabItem {
-                    Label("Stats", systemImage: "chart.bar.fill")
+                    Label {
+                        Text(.appTabStats)
+                    } icon: {
+                        Image(systemName: "chart.bar.fill")
+                    }
                 }
                 .tag(AppTab.stats)
 
@@ -46,13 +54,21 @@ struct ContentView: View {
                 onStartFocus: startFocus
             )
                 .tabItem {
-                    Label("Tasks", systemImage: "checklist")
+                    Label {
+                        Text(.appTabTasks)
+                    } icon: {
+                        Image(systemName: "checklist")
+                    }
                 }
                 .tag(AppTab.tasks)
 
             SettingsView(settings: timerEngine.settings)
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label {
+                        Text(.appTabSettings)
+                    } icon: {
+                        Image(systemName: "gearshape.fill")
+                    }
                 }
                 .tag(AppTab.settings)
         }

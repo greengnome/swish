@@ -13,22 +13,28 @@ struct CurrentTaskBanner: View {
                 .clipShape(Circle())
 
             VStack(alignment: .leading, spacing: 3) {
-                Text("Working on")
+                Text(.homeTaskWorkingOn)
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
-                Text(task.title)
+                Text(verbatim: task.title)
                     .font(.headline)
                     .lineLimit(1)
             }
 
             Spacer()
 
-            Text("\(task.completedPomodoros) / \(task.estimatedPomodoros)")
+            Text(verbatim: "\(task.completedPomodoros) / \(task.estimatedPomodoros)")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(.secondary)
                 .accessibilityLabel(
-                    "\(task.completedPomodoros) of \(task.estimatedPomodoros) estimated sessions"
+                    Text(
+                        LocalizedStringResource(
+                            "home.task.progress.accessibility",
+                            defaultValue: "Completed: \(task.completedPomodoros) of \(task.estimatedPomodoros)",
+                            comment: "VoiceOver description of completed and estimated sessions for the current task."
+                        )
+                    )
                 )
         }
         .padding(16)
@@ -36,7 +42,15 @@ struct CurrentTaskBanner: View {
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .shadow(color: .black.opacity(0.05), radius: 14, y: 6)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("Working on \(task.title)")
+        .accessibilityLabel(
+            Text(
+                LocalizedStringResource(
+                    "home.task.working_on.accessibility",
+                    defaultValue: "Working on \(task.title)",
+                    comment: "VoiceOver label for the task attached to the active focus session."
+                )
+            )
+        )
         .accessibilityIdentifier("home.currentTask")
     }
 }

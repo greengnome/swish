@@ -15,14 +15,20 @@ struct HomeTaskPickerButton: View {
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text("Working on")
+                    Text(.homeTaskWorkingOn)
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
-                    Text(task?.title ?? "Choose a task (optional)")
-                        .font(.headline)
-                        .foregroundStyle(.primary)
-                        .lineLimit(1)
+                    Group {
+                        if let task {
+                            Text(verbatim: task.title)
+                        } else {
+                            Text(.homeTaskChooseOptional)
+                        }
+                    }
+                    .font(.headline)
+                    .foregroundStyle(.primary)
+                    .lineLimit(1)
                 }
 
                 Spacer()
@@ -37,10 +43,22 @@ struct HomeTaskPickerButton: View {
             .shadow(color: .black.opacity(0.05), radius: 14, y: 6)
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(
-            task.map { "Working on \($0.title)" } ?? "Choose a task"
-        )
-        .accessibilityHint("Selects an optional task for the next focus session")
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityHint(Text(.homeTaskPickerHint))
         .accessibilityIdentifier("home.taskSelector")
+    }
+
+    private var accessibilityLabel: Text {
+        guard let task else {
+            return Text(.homeTaskChoose)
+        }
+
+        return Text(
+            LocalizedStringResource(
+                "home.task.working_on.accessibility",
+                defaultValue: "Working on \(task.title)",
+                comment: "VoiceOver label for a selected task on Home."
+            )
+        )
     }
 }

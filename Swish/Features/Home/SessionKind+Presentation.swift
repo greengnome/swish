@@ -1,21 +1,34 @@
+import Foundation
+
 extension SessionKind {
-    var title: String {
+    var title: LocalizedStringResource {
         switch self {
         case .focus:
-            "Pomodoro"
+            .homeTimerModeFocus
         case .shortBreak:
-            "Short break"
+            .homeTimerModeShortBreak
         case .longBreak:
-            "Long break"
+            .homeTimerModeLongBreak
         }
     }
 
-    var timerSubtitle: String {
+    var timerSubtitle: LocalizedStringResource {
         switch self {
         case .focus:
-            "Focus time"
+            .homeTimerSubtitleFocus
         case .shortBreak, .longBreak:
-            "Recharge"
+            .homeTimerSubtitleBreak
+        }
+    }
+
+    var timerAccessibilityLabel: LocalizedStringResource {
+        switch self {
+        case .focus:
+            .homeTimerAccessibilityFocus
+        case .shortBreak:
+            .homeTimerAccessibilityShortBreak
+        case .longBreak:
+            .homeTimerAccessibilityLongBreak
         }
     }
 }

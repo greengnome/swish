@@ -7,33 +7,35 @@ struct TodaySummaryView: View {
     var body: some View {
         VStack(spacing: 18) {
             HStack {
-                Text("Today")
+                Text(.homeSummaryToday)
                     .font(.headline)
                 Spacer()
-                Button("View all", action: onViewAll)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .accessibilityIdentifier("home.summary.viewAll")
+                Button(action: onViewAll) {
+                    Text(.homeSummaryViewAll)
+                }
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier("home.summary.viewAll")
             }
 
             HStack {
                 metric(
                     value: "\(summary.completedSessions)",
-                    title: "Sessions",
+                    title: .homeSummarySessions,
                     systemImage: "clock",
                     color: SwishTheme.accent,
                     identifier: "home.summary.sessions"
                 )
                 metric(
                     value: TimerDisplayFormatter.focusedTime(summary.focusTime),
-                    title: "Focus time",
+                    title: .homeSummaryFocusTime,
                     systemImage: "scope",
                     color: .orange,
                     identifier: "home.summary.focusTime"
                 )
                 metric(
                     value: "\(summary.completedTasks)",
-                    title: "Tasks done",
+                    title: .homeSummaryTasksDone,
                     systemImage: "checkmark.circle",
                     color: SwishTheme.success,
                     identifier: "home.summary.tasks"
@@ -44,7 +46,7 @@ struct TodaySummaryView: View {
 
     private func metric(
         value: String,
-        title: String,
+        title: LocalizedStringResource,
         systemImage: String,
         color: Color,
         identifier: String
@@ -53,7 +55,7 @@ struct TodaySummaryView: View {
             Image(systemName: systemImage)
                 .font(.title3)
                 .foregroundStyle(color)
-            Text(value)
+            Text(verbatim: value)
                 .font(.title3.weight(.semibold))
                 .monospacedDigit()
                 .accessibilityIdentifier(identifier)

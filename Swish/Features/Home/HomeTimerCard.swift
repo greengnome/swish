@@ -36,7 +36,7 @@ struct HomeTimerCard: View {
 
                 Spacer()
 
-                Text(TimerDisplayFormatter.durationLabel(duration))
+                Text(verbatim: TimerDisplayFormatter.durationLabel(duration))
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 12)
@@ -57,7 +57,7 @@ struct HomeTimerCard: View {
                     .rotationEffect(.degrees(-90))
 
                 VStack(spacing: 7) {
-                    Text(TimerDisplayFormatter.countdown(remainingTime))
+                    Text(verbatim: TimerDisplayFormatter.countdown(remainingTime))
                         .font(.system(size: 50, weight: .semibold, design: .rounded))
                         .monospacedDigit()
                         .accessibilityIdentifier("home.timer.countdown")
@@ -69,7 +69,7 @@ struct HomeTimerCard: View {
             }
             .frame(width: 255, height: 255)
             .accessibilityElement(children: .contain)
-            .accessibilityLabel("\(kind.title) timer")
+            .accessibilityLabel(Text(kind.timerAccessibilityLabel))
 
             HStack(spacing: 16) {
                 if isActive {
@@ -83,15 +83,19 @@ struct HomeTimerCard: View {
                     .buttonStyle(.plain)
                     .frame(width: 44, height: 44)
                     .contentShape(Circle())
-                    .accessibilityLabel("Cancel timer")
+                    .accessibilityLabel(Text(.homeTimerActionCancel))
                     .accessibilityIdentifier("home.timer.cancel")
                 }
 
                 Button(action: onPrimaryAction) {
-                    Label(primaryTitle, systemImage: primarySystemImage)
-                        .font(.headline)
-                        .frame(minWidth: isActive ? 120 : 180)
-                        .padding(.vertical, 8)
+                    Label {
+                        Text(primaryTitle)
+                    } icon: {
+                        Image(systemName: primarySystemImage)
+                    }
+                    .font(.headline)
+                    .frame(minWidth: isActive ? 120 : 180)
+                    .padding(.vertical, 8)
                 }
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
@@ -105,7 +109,7 @@ struct HomeTimerCard: View {
                     }
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.circle)
-                    .accessibilityLabel("Skip break")
+                    .accessibilityLabel(Text(.homeTimerActionSkipBreak))
                     .accessibilityIdentifier("home.timer.skip")
                 }
             }
@@ -122,14 +126,16 @@ struct HomeTimerCard: View {
         state == .running || state == .paused
     }
 
-    private var primaryTitle: String {
+    private var primaryTitle: LocalizedStringResource {
         switch state {
         case .running:
-            "Pause"
+            .homeTimerActionPause
         case .paused:
-            "Resume"
+            .homeTimerActionResume
         case .completed, .cancelled, .skipped, .none:
-            "Start \(kind == .focus ? "focus" : "break")"
+            kind == .focus
+                ? .homeTimerActionStartFocus
+                : .homeTimerActionStartBreak
         }
     }
 
@@ -146,10 +152,11 @@ struct HomeTimerCard: View {
         Button {
             onSelectMode(mode)
         } label: {
-            Label(
-                mode.title,
-                systemImage: mode == kind ? "checkmark" : "circle"
-            )
+            Label {
+                Text(mode.title)
+            } icon: {
+                Image(systemName: mode == kind ? "checkmark" : "circle")
+            }
         }
     }
 }

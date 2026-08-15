@@ -8,21 +8,63 @@ enum TimerDisplayFormatter {
         return String(format: "%02d:%02d", minutes, seconds)
     }
 
-    static func durationLabel(_ interval: TimeInterval) -> String {
-        "\(Int(interval / 60)) min"
+    static func durationLabel(
+        _ interval: TimeInterval,
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
+        let minutes = Int(interval / 60)
+        return String(
+            localized: "time.duration.minutes",
+            defaultValue: "\(minutes) min",
+            bundle: bundle,
+            locale: locale
+        )
     }
 
-    static func focusedTime(_ interval: TimeInterval) -> String {
+    static func focusedTime(
+        _ interval: TimeInterval,
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
         let totalMinutes = Int(interval) / 60
         let hours = totalMinutes / 60
         let minutes = totalMinutes % 60
 
         if hours == 0 {
-            return "\(minutes)m"
+            return String(
+                localized: "time.compact.minutes",
+                defaultValue: "\(minutes)m",
+                bundle: bundle,
+                locale: locale
+            )
         }
         if minutes == 0 {
-            return "\(hours)h"
+            return String(
+                localized: "time.compact.hours",
+                defaultValue: "\(hours)h",
+                bundle: bundle,
+                locale: locale
+            )
         }
-        return "\(hours)h \(minutes)m"
+        return String(
+            localized: "time.compact.hours_minutes",
+            defaultValue: "\(hours)h \(minutes)m",
+            bundle: bundle,
+            locale: locale
+        )
+    }
+
+    static func sessionCount(
+        _ count: Int,
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
+        String(
+            localized: "home.session_count",
+            defaultValue: "\(count) sessions",
+            bundle: bundle,
+            locale: locale
+        )
     }
 }

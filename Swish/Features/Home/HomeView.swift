@@ -55,17 +55,19 @@ struct HomeView: View {
                 .padding(.bottom, 24)
             }
             .background(SwishTheme.background)
-            .navigationTitle("Swish")
+            .navigationTitle(Text(verbatim: "Swish"))
             .navigationDestination(isPresented: $isHistoryPresented) {
                 FocusHistoryView()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        "Settings",
-                        systemImage: "slider.horizontal.3",
-                        action: onOpenSettings
-                    )
+                    Button(action: onOpenSettings) {
+                        Label {
+                            Text(.appTabSettings)
+                        } icon: {
+                            Image(systemName: "slider.horizontal.3")
+                        }
+                    }
                     .accessibilityIdentifier("home.settings")
                 }
             }
@@ -86,10 +88,13 @@ struct HomeView: View {
             )
             .presentationDetents([.medium, .large])
         }
-        .alert("Timer unavailable", isPresented: errorIsPresented) {
-            Button("OK", role: .cancel) {}
+        .alert(
+            String(localized: .homeAlertTimerUnavailable),
+            isPresented: errorIsPresented
+        ) {
+            Button(String(localized: .commonActionOk), role: .cancel) {}
         } message: {
-            Text(errorMessage ?? "Please try again.")
+            Text(errorMessage ?? String(localized: .commonErrorTryAgain))
         }
     }
 
