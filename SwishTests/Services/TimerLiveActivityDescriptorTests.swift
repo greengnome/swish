@@ -2,6 +2,7 @@ import Foundation
 import Testing
 @testable import Swish
 
+@MainActor
 struct TimerLiveActivityDescriptorTests {
     @Test("A running focus session maps immutable and countdown data")
     func mapsRunningFocusSession() throws {

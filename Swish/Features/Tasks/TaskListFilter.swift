@@ -24,7 +24,10 @@ enum TaskListPresentation {
             .sorted(by: comesBefore)
     }
 
-    private static func comesBefore(_ lhs: FocusTask, _ rhs: FocusTask) -> Bool {
+    nonisolated private static func comesBefore(
+        _ lhs: FocusTask,
+        _ rhs: FocusTask
+    ) -> Bool {
         if lhs.isCompleted != rhs.isCompleted {
             return !lhs.isCompleted
         }

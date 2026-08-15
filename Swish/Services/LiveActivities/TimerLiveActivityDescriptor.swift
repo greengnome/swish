@@ -1,9 +1,10 @@
 import Foundation
 
-struct TimerLiveActivityDescriptor: Equatable, Sendable {
+nonisolated struct TimerLiveActivityDescriptor: Equatable, Sendable {
     let attributes: TimerLiveActivityAttributes
     let contentState: TimerLiveActivityAttributes.ContentState
 
+    @MainActor
     init?(session: FocusSession) {
         let contentState: TimerLiveActivityAttributes.ContentState
 

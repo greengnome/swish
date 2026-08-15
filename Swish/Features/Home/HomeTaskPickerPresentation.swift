@@ -7,7 +7,10 @@ enum HomeTaskPickerPresentation {
             .sorted(by: comesBefore)
     }
 
-    private static func comesBefore(_ lhs: FocusTask, _ rhs: FocusTask) -> Bool {
+    nonisolated private static func comesBefore(
+        _ lhs: FocusTask,
+        _ rhs: FocusTask
+    ) -> Bool {
         if lhs.sortOrder != rhs.sortOrder {
             return lhs.sortOrder < rhs.sortOrder
         }
