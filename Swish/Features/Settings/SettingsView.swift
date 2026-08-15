@@ -4,8 +4,10 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(NotificationPermissionService.self) private var notificationPermissionService
+    @Query private var sessions: [FocusSession]
 
     @State private var errorMessage: String?
+    @State private var isClearHistoryConfirmationPresented = false
     @Bindable private var settings: PomodoroSettings
 
     init(settings: PomodoroSettings) {
@@ -19,6 +21,7 @@ struct SettingsView: View {
                 cycleSection
                 feedbackSection
                 appearanceSection
+                dataSection
                 aboutSection
             }
             .scrollContentBackground(.hidden)
@@ -30,6 +33,18 @@ struct SettingsView: View {
             Button("OK", role: .cancel) {}
         } message: {
             Text(errorMessage ?? "Please try again.")
+        }
+        .confirmationDialog(
+            "Clear focus history?",
+            isPresented: $isClearHistoryConfirmationPresented,
+            titleVisibility: .visible
+        ) {
+            Button("Clear History", role: .destructive) {
+                clearHistory()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Recorded sessions will be permanently deleted. Your tasks and preferences will be kept.")
         }
     }
 
@@ -123,6 +138,25 @@ struct SettingsView: View {
         }
     }
 
+    private var dataSection: some View {
+        Section {
+            LabeledContent("Recorded sessions") {
+                Text("\(recordedSessionCount)")
+                    .accessibilityIdentifier("settings.historyCount")
+            }
+
+            Button("Clear focus history", role: .destructive) {
+                isClearHistoryConfirmationPresented = true
+            }
+            .disabled(recordedSessionCount == 0)
+            .accessibilityIdentifier("settings.clearHistory")
+        } header: {
+            Text("Data")
+        } footer: {
+            Text("An active or paused timer is never removed.")
+        }
+    }
+
     private func durationPicker(
         title: String,
         selection: Binding<Int>,
@@ -153,6 +187,10 @@ struct SettingsView: View {
         default:
             "—"
         }
+    }
+
+    private var recordedSessionCount: Int {
+        sessions.count { $0.state.isTerminal }
     }
 
     private var errorIsPresented: Binding<Bool> {
@@ -236,6 +274,15 @@ struct SettingsView: View {
                 persistSettings()
                 errorMessage = error.localizedDescription
             }
+        }
+    }
+
+    private func clearHistory() {
+        do {
+            try FocusHistoryCleaner.clearRecordedSessions(in: modelContext)
+        } catch {
+            modelContext.rollback()
+            errorMessage = error.localizedDescription
         }
     }
 }

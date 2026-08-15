@@ -187,6 +187,42 @@ final class SwishUITests: XCTestCase {
         )
     }
 
+    @MainActor
+    func testClearsRecordedFocusHistory() throws {
+        let app = makeApp()
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Start focus"].waitForExistence(timeout: 3))
+        app.buttons["Start focus"].tap()
+
+        let cancelTimer = app.buttons["home.timer.cancel"]
+        XCTAssertTrue(cancelTimer.waitForExistence(timeout: 2))
+        cancelTimer.tap()
+
+        app.tabBars.buttons["Settings"].tap()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.screen"]
+                .waitForExistence(timeout: 2)
+        )
+
+        app.swipeUp()
+        app.swipeUp()
+        let clearHistory = app.buttons["settings.clearHistory"]
+        XCTAssertTrue(clearHistory.waitForExistence(timeout: 2))
+        XCTAssertTrue(clearHistory.isEnabled)
+        clearHistory.tap()
+
+        let confirmClear = app.buttons["Clear History"]
+        XCTAssertTrue(confirmClear.waitForExistence(timeout: 2))
+        confirmClear.tap()
+
+        XCTAssertTrue(waitForEnabled(false, of: clearHistory))
+        XCTAssertEqual(
+            app.staticTexts["settings.historyCount"].label,
+            "Recorded sessions, 0"
+        )
+    }
+
     private func createTask(named title: String, in app: XCUIApplication) {
         XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
         app.buttons["tasks.add"].tap()
@@ -206,6 +242,22 @@ final class SwishUITests: XCTestCase {
         timeout: TimeInterval = 2
     ) -> Bool {
         let predicate = NSPredicate(format: "value == %@", value)
+        let expectation = XCTNSPredicateExpectation(
+            predicate: predicate,
+            object: element
+        )
+        return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed
+    }
+
+    private func waitForEnabled(
+        _ isEnabled: Bool,
+        of element: XCUIElement,
+        timeout: TimeInterval = 2
+    ) -> Bool {
+        let predicate = NSPredicate(
+            format: "enabled == %@",
+            NSNumber(value: isEnabled)
+        )
         let expectation = XCTNSPredicateExpectation(
             predicate: predicate,
             object: element
