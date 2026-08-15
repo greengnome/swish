@@ -38,11 +38,17 @@ struct TasksView: View {
                 }
             }
             .background(SwishTheme.background)
-            .navigationTitle("Tasks")
+            .navigationTitle(Text(.appTabTasks))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add task", systemImage: "plus") {
+                    Button {
                         editorDestination = .create
+                    } label: {
+                        Label {
+                            Text(.tasksActionAdd)
+                        } icon: {
+                            Image(systemName: "plus")
+                        }
                     }
                     .accessibilityIdentifier("tasks.add")
                 }
@@ -54,10 +60,13 @@ struct TasksView: View {
                 categories: activeCategories
             )
         }
-        .alert("Tasks unavailable", isPresented: errorIsPresented) {
-            Button("OK", role: .cancel) {}
+        .alert(
+            String(localized: .tasksAlertUnavailable),
+            isPresented: errorIsPresented
+        ) {
+            Button(String(localized: .commonActionOk), role: .cancel) {}
         } message: {
-            Text(errorMessage ?? "Please try again.")
+            Text(errorMessage ?? String(localized: .commonErrorTryAgain))
         }
     }
 
@@ -79,11 +88,17 @@ struct TasksView: View {
     private var filterBar: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                filterButton(title: "All", filter: .all, color: SwishTheme.accent)
+                filterButton(
+                    title: String(localized: .tasksFilterAll),
+                    identifier: "tasks.filter.all",
+                    filter: .all,
+                    color: SwishTheme.accent
+                )
 
                 ForEach(activeCategories) { category in
                     filterButton(
                         title: category.displayName,
+                        identifier: "tasks.filter.category.\(category.id)",
                         filter: .category(category.id),
                         color: category.presentationColor
                     )
@@ -101,8 +116,10 @@ struct TasksView: View {
         } description: {
             Text(emptyDescription)
         } actions: {
-            Button("Create a task") {
+            Button {
                 editorDestination = .create
+            } label: {
+                Text(.tasksActionCreate)
             }
             .buttonStyle(.borderedProminent)
             .tint(SwishTheme.accent)
@@ -111,18 +128,21 @@ struct TasksView: View {
         .accessibilityIdentifier("tasks.empty")
     }
 
-    private var emptyTitle: String {
-        selectedFilter == .all ? "No tasks yet" : "No tasks in this category"
+    private var emptyTitle: LocalizedStringResource {
+        selectedFilter == .all
+            ? .tasksEmptyAllTitle
+            : .tasksEmptyCategoryTitle
     }
 
-    private var emptyDescription: String {
+    private var emptyDescription: LocalizedStringResource {
         selectedFilter == .all
-            ? "Plan work in focus sessions, then track progress here."
-            : "Choose another category or create a task for this one."
+            ? .tasksEmptyAllDescription
+            : .tasksEmptyCategoryDescription
     }
 
     private func filterButton(
         title: String,
+        identifier: String,
         filter: TaskListFilter,
         color: Color
     ) -> some View {
@@ -140,7 +160,7 @@ struct TasksView: View {
                 .clipShape(Capsule())
         }
         .buttonStyle(.plain)
-        .accessibilityIdentifier("tasks.filter.\(title.lowercased())")
+        .accessibilityIdentifier(identifier)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 

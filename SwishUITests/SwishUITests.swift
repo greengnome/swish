@@ -260,6 +260,43 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testUsesTasksInUkrainian() throws {
+        let app = makeApp(
+            showTasks: true,
+            language: "uk",
+            locale: "uk_UA"
+        )
+        app.launch()
+
+        XCTAssertTrue(app.navigationBars["Завдання"].waitForExistence(timeout: 2))
+        XCTAssertEqual(app.buttons["tasks.add"].label, "Додати завдання")
+        XCTAssertTrue(app.buttons["Усі"].exists)
+        XCTAssertTrue(app.staticTexts["Завдань поки немає"].exists)
+        XCTAssertTrue(app.buttons["Створити завдання"].exists)
+
+        app.buttons["tasks.add"].tap()
+        XCTAssertTrue(app.navigationBars["Нове завдання"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Завдання"].exists)
+        XCTAssertTrue(app.staticTexts["План"].exists)
+
+        let titleField = app.textFields["tasks.editor.title"]
+        titleField.tap()
+        titleField.typeText("План проєкту")
+        XCTAssertEqual(app.buttons["tasks.editor.save"].label, "Додати завдання")
+        app.buttons["tasks.editor.save"].tap()
+
+        let editButton = app.buttons["Редагувати: План проєкту"]
+        XCTAssertTrue(editButton.waitForExistence(timeout: 2))
+        let completeButton = app.buttons["Позначити виконаним: План проєкту"]
+        XCTAssertTrue(completeButton.exists)
+        completeButton.tap()
+        XCTAssertTrue(
+            app.buttons["Відкрити знову: План проєкту"]
+                .waitForExistence(timeout: 2)
+        )
+    }
+
+    @MainActor
     func testStartsFocusFromTaskAndOpensHome() throws {
         let app = makeApp(showTasks: true)
         app.launch()
@@ -427,7 +464,7 @@ final class SwishUITests: XCTestCase {
         titleField.typeText(title)
         app.buttons["tasks.editor.save"].tap()
 
-        XCTAssertTrue(app.buttons["Edit \(title)"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts[title].waitForExistence(timeout: 2))
     }
 
     private func waitForValue(

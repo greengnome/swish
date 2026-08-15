@@ -208,8 +208,8 @@
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер недоступний" } }
       }
     },
-    "home.session_count" : {
-      "comment" : "A compact session count shown in the Home task picker.",
+    "common.session_count" : {
+      "comment" : "A compact session count shown alongside a task.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -230,6 +230,294 @@
             }
           }
         }
+      }
+    },
+    "tasks.action.add" : {
+      "comment" : "Action that opens the new-task editor, or its VoiceOver label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Додати завдання" } }
+      }
+    },
+    "tasks.action.add_short" : {
+      "comment" : "Short confirmation action in the new-task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Додати" } }
+      }
+    },
+    "tasks.action.archive" : {
+      "comment" : "Swipe action that archives a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Archive" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Архівувати" } }
+      }
+    },
+    "tasks.action.create" : {
+      "comment" : "Action in the empty Tasks screen that creates a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Створити завдання" } }
+      }
+    },
+    "tasks.action.edit" : {
+      "comment" : "Swipe action that edits a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати" } }
+      }
+    },
+    "tasks.action.save" : {
+      "comment" : "Confirmation action in the task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зберегти" } }
+      }
+    },
+    "tasks.action.save.accessibility" : {
+      "comment" : "VoiceOver label for saving an edited task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зберегти завдання" } }
+      }
+    },
+    "tasks.alert.save_failed" : {
+      "comment" : "Title of an alert shown when a task cannot be saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Task could not be saved" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Не вдалося зберегти завдання" } }
+      }
+    },
+    "tasks.alert.unavailable" : {
+      "comment" : "Title of an alert shown when a Tasks action fails.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks unavailable" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання недоступні" } }
+      }
+    },
+    "tasks.editor.category" : {
+      "comment" : "Label for the category picker in the task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Category" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Категорія" } }
+      }
+    },
+    "tasks.editor.date" : {
+      "comment" : "Label for the task due-date picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дата" } }
+      }
+    },
+    "tasks.editor.due_date" : {
+      "comment" : "Toggle that enables a task due date.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Due date" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Термін виконання" } }
+      }
+    },
+    "tasks.editor.edit.title" : {
+      "comment" : "Navigation title of the edit-task screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit Task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати завдання" } }
+      }
+    },
+    "tasks.editor.focus_estimate" : {
+      "comment" : "Task estimate label. The placeholder is an already localized session count.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus estimate: %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Оцінка фокусу: %@" } }
+      }
+    },
+    "tasks.editor.new.title" : {
+      "comment" : "Navigation title of the new-task screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Нове завдання" } }
+      }
+    },
+    "tasks.editor.notes_placeholder" : {
+      "comment" : "Placeholder for optional task notes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Optional details" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Необов’язкові деталі" } }
+      }
+    },
+    "tasks.editor.notes_section" : {
+      "comment" : "Heading of the task notes section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Нотатки" } }
+      }
+    },
+    "tasks.editor.plan_section" : {
+      "comment" : "Heading of the task planning section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Plan" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "План" } }
+      }
+    },
+    "tasks.editor.priority" : {
+      "comment" : "Label for the task priority picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Priority" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Пріоритет" } }
+      }
+    },
+    "tasks.editor.task_section" : {
+      "comment" : "Heading of the task title section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Task" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання" } }
+      }
+    },
+    "tasks.editor.title_placeholder" : {
+      "comment" : "Placeholder for a task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "What do you want to accomplish?" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Що ви хочете виконати?" } }
+      }
+    },
+    "tasks.empty.all.description" : {
+      "comment" : "Description shown when there are no active tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Plan work in focus sessions, then track progress here." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Плануйте роботу сесіями фокусу й відстежуйте прогрес тут." } }
+      }
+    },
+    "tasks.empty.all.title" : {
+      "comment" : "Title shown when there are no active tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No tasks yet" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдань поки немає" } }
+      }
+    },
+    "tasks.empty.category.description" : {
+      "comment" : "Description shown when a selected category contains no tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose another category or create a task for this one." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виберіть іншу категорію або створіть завдання для цієї." } }
+      }
+    },
+    "tasks.empty.category.title" : {
+      "comment" : "Title shown when a selected category contains no tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No tasks in this category" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У цій категорії немає завдань" } }
+      }
+    },
+    "tasks.filter.all" : {
+      "comment" : "Filter that shows tasks from every category.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Усі" } }
+      }
+    },
+    "tasks.priority.high" : {
+      "comment" : "High task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Important" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Важливий" } }
+      }
+    },
+    "tasks.priority.high.accessibility" : {
+      "comment" : "VoiceOver label for the high-priority flag.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "High priority" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Високий пріоритет" } }
+      }
+    },
+    "tasks.priority.low" : {
+      "comment" : "Low task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Низький" } }
+      }
+    },
+    "tasks.priority.normal" : {
+      "comment" : "Normal task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Normal" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Звичайний" } }
+      }
+    },
+    "tasks.row.complete.accessibility" : {
+      "comment" : "VoiceOver label for marking a task complete. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mark %@ complete" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Позначити виконаним: %@" } }
+      }
+    },
+    "tasks.row.edit.accessibility" : {
+      "comment" : "VoiceOver label for editing a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати: %@" } }
+      }
+    },
+    "tasks.row.reopen.accessibility" : {
+      "comment" : "VoiceOver label for reopening a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reopen %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Відкрити знову: %@" } }
+      }
+    },
+    "tasks.row.start_focus.accessibility" : {
+      "comment" : "VoiceOver label for starting focus on a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start focus on %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Почати фокус: %@" } }
+      }
+    },
+    "tasks.row.start_focus.hint" : {
+      "comment" : "VoiceOver hint for starting a focus timer from a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Starts a focus timer and opens Home" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Запускає таймер фокусу й відкриває вкладку «Головна»" } }
+      }
+    },
+    "tasks.row.timer_active.hint" : {
+      "comment" : "VoiceOver hint shown when another timer prevents starting focus.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finish or cancel the current timer first" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Спочатку завершіть або скасуйте поточний таймер" } }
       }
     },
     "home.summary.focus_time" : {

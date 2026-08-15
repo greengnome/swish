@@ -61,7 +61,7 @@ enum TimerDisplayFormatter {
         locale: Locale = .current
     ) -> String {
         String(
-            localized: "home.session_count",
+            localized: "common.session_count",
             defaultValue: "\(count) sessions",
             bundle: bundle,
             locale: locale

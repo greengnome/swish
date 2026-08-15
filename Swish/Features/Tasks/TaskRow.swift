@@ -17,9 +17,17 @@ struct TaskRow: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel(
-                task.isCompleted
-                    ? "Reopen \(task.title)"
-                    : "Mark \(task.title) complete"
+                Text(
+                    LocalizedStringResource(
+                        task.isCompleted
+                            ? "tasks.row.reopen.accessibility"
+                            : "tasks.row.complete.accessibility",
+                        defaultValue: task.isCompleted
+                            ? "Reopen \(task.title)"
+                            : "Mark \(task.title) complete",
+                        comment: "VoiceOver label for changing a task's completion state."
+                    )
+                )
             )
 
             Button(action: onEdit) {
@@ -35,7 +43,7 @@ struct TaskRow: View {
                         if task.priority == .high {
                             Image(systemName: "flag.fill")
                                 .foregroundStyle(SwishTheme.accent)
-                                .accessibilityLabel("High priority")
+                                .accessibilityLabel(Text(.tasksPriorityHighAccessibility))
                         }
                     }
 
@@ -49,12 +57,14 @@ struct TaskRow: View {
                                     .frame(width: 8, height: 8)
                             }
                         } else {
-                            Text("No category")
+                            Text(.commonCategoryNone)
                         }
 
-                        Text("•")
+                        Text(verbatim: "•")
 
-                        Text("\(task.completedPomodoros) / \(task.estimatedPomodoros) sessions")
+                        Text(
+                            verbatim: "\(task.completedPomodoros) / \(TimerDisplayFormatter.sessionCount(task.estimatedPomodoros))"
+                        )
                     }
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -72,7 +82,15 @@ struct TaskRow: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("Edit \(task.title)")
+            .accessibilityLabel(
+                Text(
+                    LocalizedStringResource(
+                        "tasks.row.edit.accessibility",
+                        defaultValue: "Edit \(task.title)",
+                        comment: "VoiceOver label for opening a task editor."
+                    )
+                )
+            )
 
             if !task.isCompleted {
                 Button(action: onStartFocus) {
@@ -82,22 +100,44 @@ struct TaskRow: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(!canStartFocus)
-                .accessibilityLabel("Start focus on \(task.title)")
+                .accessibilityLabel(
+                    Text(
+                        LocalizedStringResource(
+                            "tasks.row.start_focus.accessibility",
+                            defaultValue: "Start focus on \(task.title)",
+                            comment: "VoiceOver label for starting focus from a task."
+                        )
+                    )
+                )
                 .accessibilityHint(
-                    canStartFocus
-                        ? "Starts a focus timer and opens Home"
-                        : "Finish or cancel the current timer first"
+                    Text(
+                        canStartFocus
+                            ? .tasksRowStartFocusHint
+                            : .tasksRowTimerActiveHint
+                    )
                 )
             }
         }
         .padding(.vertical, 8)
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-            Button("Archive", systemImage: "archivebox", role: .destructive) {
+            Button(role: .destructive) {
                 onArchive()
+            } label: {
+                Label {
+                    Text(.tasksActionArchive)
+                } icon: {
+                    Image(systemName: "archivebox")
+                }
             }
 
-            Button("Edit", systemImage: "pencil") {
+            Button {
                 onEdit()
+            } label: {
+                Label {
+                    Text(.tasksActionEdit)
+                } icon: {
+                    Image(systemName: "pencil")
+                }
             }
             .tint(.blue)
         }

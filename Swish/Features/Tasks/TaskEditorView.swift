@@ -20,14 +20,22 @@ struct TaskEditorView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Task") {
-                    TextField("What do you want to accomplish?", text: $draft.title)
+                Section {
+                    TextField(
+                        String(localized: .tasksEditorTitlePlaceholder),
+                        text: $draft.title
+                    )
                         .accessibilityIdentifier("tasks.editor.title")
+                } header: {
+                    Text(.tasksEditorTaskSection)
                 }
 
-                Section("Plan") {
-                    Picker("Category", selection: $draft.categoryID) {
-                        Text("None").tag(nil as UUID?)
+                Section {
+                    Picker(
+                        String(localized: .tasksEditorCategory),
+                        selection: $draft.categoryID
+                    ) {
+                        Text(.commonCategoryNone).tag(nil as UUID?)
                         ForEach(categories) { category in
                             Label {
                                 Text(verbatim: category.displayName)
@@ -39,63 +47,96 @@ struct TaskEditorView: View {
                     }
 
                     Stepper(
-                        "Focus estimate: \(draft.estimatedPomodoros) \(sessionLabel)",
+                        focusEstimateLabel,
                         value: $draft.estimatedPomodoros,
                         in: 1...24
                     )
                     .accessibilityIdentifier("tasks.editor.estimate")
 
-                    Picker("Priority", selection: $draft.priority) {
-                        Text("Low").tag(TaskPriority.low)
-                        Text("Normal").tag(TaskPriority.normal)
-                        Text("Important").tag(TaskPriority.high)
+                    Picker(
+                        String(localized: .tasksEditorPriority),
+                        selection: $draft.priority
+                    ) {
+                        Text(.tasksPriorityLow).tag(TaskPriority.low)
+                        Text(.tasksPriorityNormal).tag(TaskPriority.normal)
+                        Text(.tasksPriorityHigh).tag(TaskPriority.high)
                     }
 
-                    Toggle("Due date", isOn: $draft.includesDueDate)
+                    Toggle(
+                        String(localized: .tasksEditorDueDate),
+                        isOn: $draft.includesDueDate
+                    )
 
                     if draft.includesDueDate {
                         DatePicker(
-                            "Date",
+                            String(localized: .tasksEditorDate),
                             selection: $draft.dueDate,
                             displayedComponents: .date
                         )
                     }
+                } header: {
+                    Text(.tasksEditorPlanSection)
                 }
 
-                Section("Notes") {
-                    TextField("Optional details", text: $draft.notes, axis: .vertical)
+                Section {
+                    TextField(
+                        String(localized: .tasksEditorNotesPlaceholder),
+                        text: $draft.notes,
+                        axis: .vertical
+                    )
                         .lineLimit(3...6)
                         .accessibilityIdentifier("tasks.editor.notes")
+                } header: {
+                    Text(.tasksEditorNotesSection)
                 }
             }
-            .navigationTitle(task == nil ? "New Task" : "Edit Task")
+            .navigationTitle(
+                Text(task == nil ? .tasksEditorNewTitle : .tasksEditorEditTitle)
+            )
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Text(.commonActionCancel)
                     }
                 }
 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(task == nil ? "Add" : "Save") {
+                    Button {
                         save()
+                    } label: {
+                        Text(task == nil ? .tasksActionAddShort : .tasksActionSave)
                     }
                     .disabled(!draft.canSave)
-                    .accessibilityLabel(task == nil ? "Add task" : "Save task")
+                    .accessibilityLabel(
+                        Text(
+                            task == nil
+                                ? .tasksActionAdd
+                                : .tasksActionSaveAccessibility
+                        )
+                    )
                     .accessibilityIdentifier("tasks.editor.save")
                 }
             }
-            .alert("Task could not be saved", isPresented: errorIsPresented) {
-                Button("OK", role: .cancel) {}
+            .alert(
+                String(localized: .tasksAlertSaveFailed),
+                isPresented: errorIsPresented
+            ) {
+                Button(String(localized: .commonActionOk), role: .cancel) {}
             } message: {
-                Text(errorMessage ?? "Please try again.")
+                Text(errorMessage ?? String(localized: .commonErrorTryAgain))
             }
         }
     }
 
-    private var sessionLabel: String {
-        draft.estimatedPomodoros == 1 ? "session" : "sessions"
+    private var focusEstimateLabel: String {
+        let count = TimerDisplayFormatter.sessionCount(draft.estimatedPomodoros)
+        return String(
+            localized: "tasks.editor.focus_estimate",
+            defaultValue: "Focus estimate: \(count)"
+        )
     }
 
     private var errorIsPresented: Binding<Bool> {
