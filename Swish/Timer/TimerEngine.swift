@@ -18,6 +18,7 @@ final class TimerEngine {
     private let store: any TimerSessionStore
     private let dateProvider: any DateProviding
     private let notifications: any TimerNotificationScheduling
+    private let liveActivities: any TimerLiveActivityCoordinating
 
     var remainingTime: TimeInterval {
         remainingTime(at: dateProvider.now)
@@ -51,13 +52,15 @@ final class TimerEngine {
         settings: PomodoroSettings,
         cycleState: PomodoroCycleState,
         dateProvider: any DateProviding,
-        notifications: any TimerNotificationScheduling
+        notifications: any TimerNotificationScheduling,
+        liveActivities: any TimerLiveActivityCoordinating
     ) {
         self.store = store
         self.settings = settings
         self.cycleState = cycleState
         self.dateProvider = dateProvider
         self.notifications = notifications
+        self.liveActivities = liveActivities
     }
 
     convenience init(
@@ -70,7 +73,8 @@ final class TimerEngine {
             settings: settings,
             cycleState: cycleState,
             dateProvider: SystemDateProvider(),
-            notifications: NoOpTimerNotificationScheduler()
+            notifications: NoOpTimerNotificationScheduler(),
+            liveActivities: NoOpTimerLiveActivityCoordinator()
         )
     }
 
@@ -112,6 +116,7 @@ final class TimerEngine {
         session.endDate = nil
         notifications.cancelSessionEnd(id: session.id)
         try store.save()
+        synchronizeLiveActivity()
     }
 
     func resume() throws {
@@ -137,6 +142,7 @@ final class TimerEngine {
             )
         }
         try store.save()
+        synchronizeLiveActivity()
     }
 
     func cancel() throws {
@@ -153,6 +159,7 @@ final class TimerEngine {
         session.actualActiveDuration = activeDuration(of: session, at: now)
         makeTerminal(session, state: .cancelled, at: now)
         try store.save()
+        synchronizeLiveActivity()
     }
 
     func skipBreak() throws {
@@ -173,6 +180,7 @@ final class TimerEngine {
         makeTerminal(session, state: .skipped, at: now)
         advanceCycle(after: session)
         try store.save()
+        synchronizeLiveActivity()
     }
 
     func resetCycle() throws {
@@ -182,11 +190,15 @@ final class TimerEngine {
 
     func restore() throws {
         currentSession = try store.fetchActiveSession()
-        guard let session = currentSession else { return }
+        guard let session = currentSession else {
+            synchronizeLiveActivity()
+            return
+        }
 
         if session.state == .running {
             if remainingTime(at: dateProvider.now) <= 0 {
                 try finishCurrentSession(at: dateProvider.now, autoStart: false)
+                return
             } else if let endDate = session.endDate {
                 scheduleSessionEndIfEnabled(
                     id: session.id,
@@ -195,6 +207,8 @@ final class TimerEngine {
                 )
             }
         }
+
+        synchronizeLiveActivity()
     }
 
     @discardableResult
@@ -246,6 +260,7 @@ final class TimerEngine {
             at: session.endDate!
         )
         try store.save()
+        synchronizeLiveActivity()
         return session
     }
 
@@ -277,6 +292,7 @@ final class TimerEngine {
         makeTerminal(session, state: .completed, at: completionDate)
         advanceCycle(after: session)
         try store.save()
+        synchronizeLiveActivity()
 
         guard autoStart else { return }
 
@@ -312,6 +328,12 @@ final class TimerEngine {
     ) {
         guard settings.notificationsEnabled else { return }
         notifications.scheduleSessionEnd(id: id, kind: kind, at: date)
+    }
+
+    private func synchronizeLiveActivity() {
+        liveActivities.synchronize(
+            with: currentSession.flatMap(TimerLiveActivityDescriptor.init)
+        )
     }
 
     private func closePause(on session: FocusSession, at date: Date) {

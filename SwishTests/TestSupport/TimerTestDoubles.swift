@@ -57,11 +57,26 @@ final class TimerNotificationSchedulerSpy: TimerNotificationScheduling {
 }
 
 @MainActor
+final class TimerLiveActivityCoordinatorSpy: TimerLiveActivityCoordinating {
+    enum Event: Equatable {
+        case active(TimerLiveActivityDescriptor)
+        case ended
+    }
+
+    private(set) var events: [Event] = []
+
+    func synchronize(with descriptor: TimerLiveActivityDescriptor?) {
+        events.append(descriptor.map(Event.active) ?? .ended)
+    }
+}
+
+@MainActor
 struct TimerEngineHarness {
     let startDate: Date
     let clock: MutableDateProvider
     let store: InMemoryTimerSessionStore
     let notifications: TimerNotificationSchedulerSpy
+    let liveActivities: TimerLiveActivityCoordinatorSpy
     let settings: PomodoroSettings
     let cycle: PomodoroCycleState
     let engine: TimerEngine
@@ -76,6 +91,7 @@ struct TimerEngineHarness {
         self.clock = MutableDateProvider(now: startDate)
         self.store = InMemoryTimerSessionStore(sessions: sessions)
         self.notifications = TimerNotificationSchedulerSpy()
+        self.liveActivities = TimerLiveActivityCoordinatorSpy()
         self.settings = settings
         self.cycle = cycle
         self.engine = TimerEngine(
@@ -83,7 +99,8 @@ struct TimerEngineHarness {
             settings: settings,
             cycleState: cycle,
             dateProvider: clock,
-            notifications: notifications
+            notifications: notifications,
+            liveActivities: liveActivities
         )
     }
 }
