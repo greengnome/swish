@@ -16,6 +16,8 @@ struct ContentView: View {
             initialTab = .stats
         } else if arguments.contains("--ui-testing-show-tasks") {
             initialTab = .tasks
+        } else if arguments.contains("--ui-testing-show-settings") {
+            initialTab = .settings
         } else {
             initialTab = .home
         }
@@ -46,7 +48,7 @@ struct ContentView: View {
                 }
                 .tag(AppTab.tasks)
 
-            AppPlaceholderView(title: "Settings", systemImage: "gearshape.fill")
+            SettingsView(settings: timerEngine.settings)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }

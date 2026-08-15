@@ -156,6 +156,32 @@ final class SwishUITests: XCTestCase {
         )
     }
 
+    @MainActor
+    func testChangesSettingsPreferences() throws {
+        let app = makeApp(showSettings: true)
+        app.launch()
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.screen"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.focusDuration"].exists
+        )
+
+        let autoStartBreaks = app.switches["settings.autoStartBreaks"]
+        XCTAssertTrue(autoStartBreaks.exists)
+        XCTAssertEqual(autoStartBreaks.value as? String, "Off")
+        tapSwitch(autoStartBreaks)
+        XCTAssertTrue(waitForValue("On", of: autoStartBreaks))
+
+        let sounds = app.switches["settings.sound"]
+        XCTAssertTrue(sounds.exists)
+        XCTAssertEqual(sounds.value as? String, "On")
+        tapSwitch(sounds)
+        XCTAssertTrue(waitForValue("Off", of: sounds))
+    }
+
     private func createTask(named title: String, in app: XCUIApplication) {
         XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
         app.buttons["tasks.add"].tap()
@@ -169,9 +195,29 @@ final class SwishUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Edit \(title)"].waitForExistence(timeout: 2))
     }
 
+    private func waitForValue(
+        _ value: String,
+        of element: XCUIElement,
+        timeout: TimeInterval = 2
+    ) -> Bool {
+        let predicate = NSPredicate(format: "value == %@", value)
+        let expectation = XCTNSPredicateExpectation(
+            predicate: predicate,
+            object: element
+        )
+        return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed
+    }
+
+    private func tapSwitch(_ element: XCUIElement) {
+        element.coordinate(
+            withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)
+        ).tap()
+    }
+
     private func makeApp(
         showTasks: Bool = false,
-        showStats: Bool = false
+        showStats: Bool = false,
+        showSettings: Bool = false
     ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
@@ -180,6 +226,9 @@ final class SwishUITests: XCTestCase {
         }
         if showStats {
             app.launchArguments.append("--ui-testing-show-stats")
+        }
+        if showSettings {
+            app.launchArguments.append("--ui-testing-show-settings")
         }
         return app
     }
