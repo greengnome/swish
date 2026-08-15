@@ -45,4 +45,27 @@ struct TaskListFilterTests {
 
         #expect(result.map(\.title) == ["First", "Second", "Completed"])
     }
+
+    @Test("Archived tasks are recoverable and sorted consistently")
+    func sortsArchivedTasks() {
+        let active = FocusTask(title: "Active", sortOrder: -1)
+        let second = FocusTask(
+            title: "Second archived",
+            createdAt: Date(timeIntervalSince1970: 20),
+            sortOrder: 1,
+            isArchived: true
+        )
+        let first = FocusTask(
+            title: "First archived",
+            createdAt: Date(timeIntervalSince1970: 10),
+            sortOrder: 0,
+            isArchived: true
+        )
+
+        let result = TaskListPresentation.archivedTasks(
+            from: [active, second, first]
+        )
+
+        #expect(result.map(\.title) == ["First archived", "Second archived"])
+    }
 }
