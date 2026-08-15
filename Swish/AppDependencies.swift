@@ -18,6 +18,7 @@ struct AppDependencies {
         let cycleState = try fetchOrInsert(PomodoroCycleState.self, in: context) {
             PomodoroCycleState()
         }
+        try DefaultFocusCategories.seedIfNeeded(in: context)
         let notificationCenter = SystemUserNotificationCenterClient()
         let permissionService = NotificationPermissionService(
             center: notificationCenter

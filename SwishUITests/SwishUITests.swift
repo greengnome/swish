@@ -40,9 +40,36 @@ final class SwishUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Cancel timer"].exists)
     }
 
-    private func makeApp() -> XCUIApplication {
+    @MainActor
+    func testCreatesAndCompletesTask() throws {
+        let app = makeApp(showTasks: true)
+        app.launch()
+
+        XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
+        app.buttons["tasks.add"].tap()
+
+        let titleField = app.textFields["tasks.editor.title"]
+        XCTAssertTrue(titleField.waitForExistence(timeout: 2))
+        titleField.tap()
+        titleField.typeText("Project roadmap")
+        app.buttons["tasks.editor.save"].tap()
+
+        let editButton = app.buttons["Edit Project roadmap"]
+        XCTAssertTrue(editButton.waitForExistence(timeout: 2))
+
+        let completeButton = app.buttons["Mark Project roadmap complete"]
+        XCTAssertTrue(completeButton.exists)
+        completeButton.tap()
+
+        XCTAssertTrue(app.buttons["Reopen Project roadmap"].waitForExistence(timeout: 2))
+    }
+
+    private func makeApp(showTasks: Bool = false) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["--ui-testing"]
+        if showTasks {
+            app.launchArguments.append("--ui-testing-show-tasks")
+        }
         return app
     }
 }

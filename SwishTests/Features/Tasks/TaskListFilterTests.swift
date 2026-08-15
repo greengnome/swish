@@ -1,0 +1,48 @@
+import Foundation
+import Testing
+@testable import Swish
+
+struct TaskListFilterTests {
+    @Test("Category filters include only matching active tasks")
+    func filtersByCategory() {
+        let work = FocusCategory(name: "Work", colorToken: "coral")
+        let personal = FocusCategory(name: "Personal", colorToken: "green")
+        let workTask = FocusTask(title: "Roadmap", category: work)
+        let personalTask = FocusTask(title: "Workout", category: personal)
+        let archivedTask = FocusTask(
+            title: "Old roadmap",
+            category: work,
+            isArchived: true
+        )
+
+        let result = TaskListPresentation.visibleTasks(
+            from: [workTask, personalTask, archivedTask],
+            filter: .category(work.id)
+        )
+
+        #expect(result.map(\.title) == ["Roadmap"])
+    }
+
+    @Test("Active tasks sort before completed tasks and preserve explicit order")
+    func sortsVisibleTasks() {
+        let first = FocusTask(
+            title: "First",
+            createdAt: Date(timeIntervalSince1970: 20),
+            sortOrder: 0
+        )
+        let second = FocusTask(
+            title: "Second",
+            createdAt: Date(timeIntervalSince1970: 10),
+            sortOrder: 1
+        )
+        let completed = FocusTask(title: "Completed", sortOrder: -1)
+        completed.complete(at: Date(timeIntervalSince1970: 30))
+
+        let result = TaskListPresentation.visibleTasks(
+            from: [completed, second, first],
+            filter: .all
+        )
+
+        #expect(result.map(\.title) == ["First", "Second", "Completed"])
+    }
+}
