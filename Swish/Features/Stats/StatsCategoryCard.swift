@@ -6,14 +6,14 @@ struct StatsCategoryCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Top categories")
+            Text(.statsCategoriesTitle)
                 .font(.headline)
 
             if categories.isEmpty {
                 ContentUnavailableView(
-                    "No focus time yet",
+                    String(localized: .statsCategoriesEmptyTitle),
                     systemImage: "chart.pie",
-                    description: Text("Completed and cancelled focus sessions appear here.")
+                    description: Text(.statsCategoriesEmptyDescription)
                 )
                 .frame(maxWidth: .infinity, minHeight: 150)
                 .accessibilityIdentifier("stats.categories.empty")
@@ -21,7 +21,10 @@ struct StatsCategoryCard: View {
                 HStack(spacing: 22) {
                     Chart(categories) { category in
                         SectorMark(
-                            angle: .value("Focus time", category.focusTime),
+                            angle: .value(
+                                String(localized: .homeSummaryFocusTime),
+                                category.focusTime
+                            ),
                             innerRadius: .ratio(0.64),
                             angularInset: 1.5
                         )
@@ -32,7 +35,7 @@ struct StatsCategoryCard: View {
                     }
                     .frame(width: 128, height: 128)
                     .chartLegend(.hidden)
-                    .accessibilityLabel("Focus time by category")
+                    .accessibilityLabel(Text(.statsCategoriesChartAccessibility))
 
                     VStack(alignment: .leading, spacing: 13) {
                         ForEach(categories.prefix(4)) { category in

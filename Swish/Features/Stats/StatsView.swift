@@ -24,14 +24,18 @@ struct StatsView: View {
                 .padding(.bottom, 24)
             }
             .background(SwishTheme.background)
-            .navigationTitle("Stats")
+            .navigationTitle(Text(.appTabStats))
             .accessibilityIdentifier("stats.screen")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
                         FocusHistoryView()
                     } label: {
-                        Label("Focus history", systemImage: "calendar")
+                        Label {
+                            Text(.statsActionFocusHistory)
+                        } icon: {
+                            Image(systemName: "calendar")
+                        }
                     }
                     .accessibilityIdentifier("stats.history")
                 }
@@ -48,9 +52,9 @@ struct StatsView: View {
     }
 
     private var periodPicker: some View {
-        Picker("Period", selection: $selectedPeriod) {
+        Picker(String(localized: .statsPeriodPicker), selection: $selectedPeriod) {
             ForEach(StatsPeriod.allCases) { period in
-                Text(period.title).tag(period)
+                Text(verbatim: period.title()).tag(period)
             }
         }
         .pickerStyle(.segmented)
@@ -59,7 +63,7 @@ struct StatsView: View {
 
     private var focusTimeCard: some View {
         StatsMetricCard(
-            title: "Focus time",
+            title: String(localized: .homeSummaryFocusTime),
             value: TimerDisplayFormatter.focusedTime(snapshot.current.focusTime),
             comparison: .make(
                 comparison: snapshot.focusTimeComparison,
@@ -69,8 +73,14 @@ struct StatsView: View {
         ) {
             Chart(snapshot.buckets) { bucket in
                 BarMark(
-                    x: .value("Period", bucket.interval.start),
-                    y: .value("Focus time", bucket.focusTime)
+                    x: .value(
+                        String(localized: .statsChartAxisPeriod),
+                        bucket.interval.start
+                    ),
+                    y: .value(
+                        String(localized: .homeSummaryFocusTime),
+                        bucket.focusTime
+                    )
                 )
                 .foregroundStyle(
                     LinearGradient(
@@ -85,18 +95,19 @@ struct StatsView: View {
             .chartYAxis(.hidden)
             .overlay {
                 if snapshot.current.focusTime == 0 {
-                    Text("No focus recorded")
+                    Text(.statsEmptyNoFocusRecorded)
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                 }
             }
-            .accessibilityLabel("Focus time chart")
+            .accessibilityLabel(Text(.statsChartFocusTimeAccessibility))
+            .accessibilityIdentifier("stats.focusTime.chart")
         }
     }
 
     private var sessionsCard: some View {
         StatsMetricCard(
-            title: "Sessions",
+            title: String(localized: .homeSummarySessions),
             value: "\(snapshot.current.completedSessions)",
             comparison: .make(
                 comparison: snapshot.completedSessionsComparison,
@@ -106,8 +117,14 @@ struct StatsView: View {
         ) {
             Chart(snapshot.buckets) { bucket in
                 AreaMark(
-                    x: .value("Period", bucket.interval.start),
-                    y: .value("Sessions", bucket.completedSessions)
+                    x: .value(
+                        String(localized: .statsChartAxisPeriod),
+                        bucket.interval.start
+                    ),
+                    y: .value(
+                        String(localized: .homeSummarySessions),
+                        bucket.completedSessions
+                    )
                 )
                 .foregroundStyle(
                     LinearGradient(
@@ -118,28 +135,41 @@ struct StatsView: View {
                 )
 
                 LineMark(
-                    x: .value("Period", bucket.interval.start),
-                    y: .value("Sessions", bucket.completedSessions)
+                    x: .value(
+                        String(localized: .statsChartAxisPeriod),
+                        bucket.interval.start
+                    ),
+                    y: .value(
+                        String(localized: .homeSummarySessions),
+                        bucket.completedSessions
+                    )
                 )
                 .foregroundStyle(SwishTheme.success)
                 .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round))
 
                 PointMark(
-                    x: .value("Period", bucket.interval.start),
-                    y: .value("Sessions", bucket.completedSessions)
+                    x: .value(
+                        String(localized: .statsChartAxisPeriod),
+                        bucket.interval.start
+                    ),
+                    y: .value(
+                        String(localized: .homeSummarySessions),
+                        bucket.completedSessions
+                    )
                 )
                 .foregroundStyle(SwishTheme.success)
                 .symbolSize(22)
             }
             .chartXAxis { chartXAxis }
             .chartYAxis(.hidden)
-            .accessibilityLabel("Completed sessions chart")
+            .accessibilityLabel(Text(.statsChartSessionsAccessibility))
+            .accessibilityIdentifier("stats.sessions.chart")
         }
     }
 
     private var tasksCard: some View {
         StatsMetricCard(
-            title: "Tasks done",
+            title: String(localized: .homeSummaryTasksDone),
             value: "\(snapshot.current.completedTasks)",
             comparison: .make(
                 comparison: snapshot.completedTasksComparison,
@@ -152,7 +182,7 @@ struct StatsView: View {
                     .font(.system(size: 48))
                     .foregroundStyle(SwishTheme.success)
 
-                Text("Tasks completed during this \(selectedPeriod.rawValue)")
+                Text(verbatim: selectedPeriod.completedTasksDescription())
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)

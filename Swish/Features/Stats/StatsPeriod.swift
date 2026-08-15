@@ -8,8 +8,112 @@ enum StatsPeriod: String, CaseIterable, Identifiable, Sendable {
 
     var id: String { rawValue }
 
-    var title: String {
-        rawValue.capitalized
+    func title(
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
+        switch self {
+        case .day:
+            String(
+                localized: "stats.period.day",
+                defaultValue: "Day",
+                bundle: bundle,
+                locale: locale
+            )
+        case .week:
+            String(
+                localized: "stats.period.week",
+                defaultValue: "Week",
+                bundle: bundle,
+                locale: locale
+            )
+        case .month:
+            String(
+                localized: "stats.period.month",
+                defaultValue: "Month",
+                bundle: bundle,
+                locale: locale
+            )
+        case .year:
+            String(
+                localized: "stats.period.year",
+                defaultValue: "Year",
+                bundle: bundle,
+                locale: locale
+            )
+        }
+    }
+
+    func comparisonLabel(
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
+        switch self {
+        case .day:
+            String(
+                localized: "stats.comparison.period.day",
+                defaultValue: "yesterday",
+                bundle: bundle,
+                locale: locale
+            )
+        case .week:
+            String(
+                localized: "stats.comparison.period.week",
+                defaultValue: "last week",
+                bundle: bundle,
+                locale: locale
+            )
+        case .month:
+            String(
+                localized: "stats.comparison.period.month",
+                defaultValue: "last month",
+                bundle: bundle,
+                locale: locale
+            )
+        case .year:
+            String(
+                localized: "stats.comparison.period.year",
+                defaultValue: "last year",
+                bundle: bundle,
+                locale: locale
+            )
+        }
+    }
+
+    func completedTasksDescription(
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
+        switch self {
+        case .day:
+            String(
+                localized: "stats.tasks.description.day",
+                defaultValue: "Tasks completed today",
+                bundle: bundle,
+                locale: locale
+            )
+        case .week:
+            String(
+                localized: "stats.tasks.description.week",
+                defaultValue: "Tasks completed this week",
+                bundle: bundle,
+                locale: locale
+            )
+        case .month:
+            String(
+                localized: "stats.tasks.description.month",
+                defaultValue: "Tasks completed this month",
+                bundle: bundle,
+                locale: locale
+            )
+        case .year:
+            String(
+                localized: "stats.tasks.description.year",
+                defaultValue: "Tasks completed this year",
+                bundle: bundle,
+                locale: locale
+            )
+        }
     }
 
     func interval(containing date: Date, calendar: Calendar) -> DateInterval {
@@ -74,4 +178,5 @@ enum StatsPeriod: String, CaseIterable, Identifiable, Sendable {
             .month
         }
     }
+
 }

@@ -45,6 +45,28 @@ struct StatsComparisonPresentationTests {
         #expect(unavailable.tone == .neutral)
     }
 
+    @Test("Comparison copy resolves in Ukrainian")
+    func localizesComparisons() throws {
+        let bundle = try localizedBundle(language: "uk")
+        let locale = Locale(identifier: "uk")
+
+        let positive = StatsComparisonPresentation.make(
+            comparison: .change(percent: 18.4),
+            period: .week,
+            bundle: bundle,
+            locale: locale
+        )
+        let newValue = StatsComparisonPresentation.make(
+            comparison: .new,
+            period: .day,
+            bundle: bundle,
+            locale: locale
+        )
+
+        #expect(positive.text == "18% — порівняно з минулим тижнем")
+        #expect(newValue.text == "Новий результат — порівняно з учора")
+    }
+
     @Test("Bucket labels match chart granularity")
     func formatsBucketLabels() {
         var calendar = Calendar(identifier: .gregorian)
@@ -62,5 +84,12 @@ struct StatsComparisonPresentationTests {
         #expect(StatsPeriod.week.bucketLabel(for: date, calendar: calendar) == "Sat")
         #expect(StatsPeriod.month.bucketLabel(for: date, calendar: calendar) == "15")
         #expect(StatsPeriod.year.bucketLabel(for: date, calendar: calendar) == "Aug")
+    }
+
+    private func localizedBundle(language: String) throws -> Bundle {
+        let resourcePath = try #require(
+            Bundle.main.path(forResource: language, ofType: "lproj")
+        )
+        return try #require(Bundle(path: resourcePath))
     }
 }

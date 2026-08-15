@@ -31,6 +31,28 @@ struct StatsPeriodTests {
         #expect(StatsPeriod.year.bucketIntervals(containing: now, calendar: calendar).count == 12)
     }
 
+    @Test("Period copy resolves in English and Ukrainian", arguments: [
+        (StatsPeriod.day, "Day", "День", "Tasks completed today", "Завдання, виконані сьогодні"),
+        (StatsPeriod.week, "Week", "Тиждень", "Tasks completed this week", "Завдання, виконані цього тижня"),
+        (StatsPeriod.month, "Month", "Місяць", "Tasks completed this month", "Завдання, виконані цього місяця"),
+        (StatsPeriod.year, "Year", "Рік", "Tasks completed this year", "Завдання, виконані цього року"),
+    ])
+    func localizesPeriodCopy(
+        period: StatsPeriod,
+        englishTitle: String,
+        ukrainianTitle: String,
+        englishDescription: String,
+        ukrainianDescription: String
+    ) throws {
+        let englishBundle = try localizedBundle(language: "en")
+        let ukrainianBundle = try localizedBundle(language: "uk")
+
+        #expect(period.title(bundle: englishBundle, locale: Locale(identifier: "en")) == englishTitle)
+        #expect(period.title(bundle: ukrainianBundle, locale: Locale(identifier: "uk")) == ukrainianTitle)
+        #expect(period.completedTasksDescription(bundle: englishBundle, locale: Locale(identifier: "en")) == englishDescription)
+        #expect(period.completedTasksDescription(bundle: ukrainianBundle, locale: Locale(identifier: "uk")) == ukrainianDescription)
+    }
+
     private var testCalendar: Calendar {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone(secondsFromGMT: 0)!
@@ -53,5 +75,12 @@ struct StatsPeriodTests {
                 hour: hour
             )
         )!
+    }
+
+    private func localizedBundle(language: String) throws -> Bundle {
+        let resourcePath = try #require(
+            Bundle.main.path(forResource: language, ofType: "lproj")
+        )
+        return try #require(Bundle(path: resourcePath))
     }
 }

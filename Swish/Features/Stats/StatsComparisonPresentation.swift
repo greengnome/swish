@@ -13,31 +13,58 @@ struct StatsComparisonPresentation: Equatable, Sendable {
 
     static func make(
         comparison: StatsComparison,
-        period: StatsPeriod
+        period: StatsPeriod,
+        bundle: Bundle = .main,
+        locale: Locale = .current
     ) -> StatsComparisonPresentation {
+        let comparisonLabel = period.comparisonLabel(
+            bundle: bundle,
+            locale: locale
+        )
+
         switch comparison {
         case .unavailable:
             return StatsComparisonPresentation(
-                text: "No previous data",
+                text: String(
+                    localized: "stats.comparison.no_previous_data",
+                    defaultValue: "No previous data",
+                    bundle: bundle,
+                    locale: locale
+                ),
                 systemImage: "minus.circle.fill",
                 tone: .neutral
             )
         case .new:
             return StatsComparisonPresentation(
-                text: "New vs \(period.comparisonLabel)",
+                text: String(
+                    localized: "stats.comparison.new",
+                    defaultValue: "New vs \(comparisonLabel)",
+                    bundle: bundle,
+                    locale: locale
+                ),
                 systemImage: "sparkles",
                 tone: .positive
             )
         case .unchanged:
             return StatsComparisonPresentation(
-                text: "No change vs \(period.comparisonLabel)",
+                text: String(
+                    localized: "stats.comparison.unchanged",
+                    defaultValue: "No change vs \(comparisonLabel)",
+                    bundle: bundle,
+                    locale: locale
+                ),
                 systemImage: "equal.circle.fill",
                 tone: .neutral
             )
         case .change(let percent):
             let roundedPercent = Int(percent.rounded())
             return StatsComparisonPresentation(
-                text: "\(abs(roundedPercent))% vs \(period.comparisonLabel)",
+                text: String(
+                    localized: "stats.comparison.change",
+                    defaultValue: "\(abs(roundedPercent))% vs \(comparisonLabel)",
+                    bundle: bundle,
+                    locale: locale
+                ),
                 systemImage: roundedPercent >= 0
                     ? "arrow.up.circle.fill"
                     : "arrow.down.circle.fill",
@@ -48,19 +75,6 @@ struct StatsComparisonPresentation: Equatable, Sendable {
 }
 
 extension StatsPeriod {
-    var comparisonLabel: String {
-        switch self {
-        case .day:
-            "yesterday"
-        case .week:
-            "last week"
-        case .month:
-            "last month"
-        case .year:
-            "last year"
-        }
-    }
-
     func bucketLabel(for date: Date, calendar: Calendar) -> String {
         let formatter = DateFormatter()
         formatter.calendar = calendar

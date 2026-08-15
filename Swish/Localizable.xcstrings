@@ -232,6 +232,214 @@
         }
       }
     },
+    "stats.action.focus_history" : {
+      "comment" : "Action that opens the focus-session history from Stats.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus history" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
+      }
+    },
+    "stats.categories.chart.accessibility" : {
+      "comment" : "VoiceOver label for the focus-time category chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time by category" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу за категоріями" } }
+      }
+    },
+    "stats.categories.empty.description" : {
+      "comment" : "Description shown when Stats has no category data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed and cancelled focus sessions appear here." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тут з’являться завершені й скасовані сесії фокусу." } }
+      }
+    },
+    "stats.categories.empty.title" : {
+      "comment" : "Title shown when Stats has no category data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus time yet" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Часу фокусу поки немає" } }
+      }
+    },
+    "stats.categories.title" : {
+      "comment" : "Heading for the category breakdown in Stats.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Top categories" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Найпопулярніші категорії" } }
+      }
+    },
+    "stats.chart.axis.period" : {
+      "comment" : "Accessibility dimension name for time periods in Stats charts.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Period" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Період" } }
+      }
+    },
+    "stats.chart.focus_time.accessibility" : {
+      "comment" : "VoiceOver label for the focus-time chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time chart" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Графік часу фокусу" } }
+      }
+    },
+    "stats.chart.sessions.accessibility" : {
+      "comment" : "VoiceOver label for the completed-sessions chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed sessions chart" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Графік завершених сесій" } }
+      }
+    },
+    "stats.comparison.change" : {
+      "comment" : "Percentage change against the preceding period. The first placeholder is an absolute percentage and the second names the period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld%% vs %2$@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld%% — %2$@" } }
+      }
+    },
+    "stats.comparison.new" : {
+      "comment" : "Comparison shown when the preceding period had no data. The placeholder names that period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New vs %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Новий результат — %@" } }
+      }
+    },
+    "stats.comparison.no_previous_data" : {
+      "comment" : "Comparison shown when no earlier data is available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No previous data" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає попередніх даних" } }
+      }
+    },
+    "stats.comparison.period.day" : {
+      "comment" : "Name of the previous day used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "yesterday" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з учора" } }
+      }
+    },
+    "stats.comparison.period.month" : {
+      "comment" : "Name of the previous month used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "last month" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим місяцем" } }
+      }
+    },
+    "stats.comparison.period.week" : {
+      "comment" : "Name of the previous week used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "last week" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим тижнем" } }
+      }
+    },
+    "stats.comparison.period.year" : {
+      "comment" : "Name of the previous year used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "last year" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим роком" } }
+      }
+    },
+    "stats.comparison.unchanged" : {
+      "comment" : "Comparison shown when a metric matches the preceding period. The placeholder names that period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No change vs %@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без змін — %@" } }
+      }
+    },
+    "stats.empty.no_focus_recorded" : {
+      "comment" : "Message over the focus-time chart when it has no data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus recorded" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу не записано" } }
+      }
+    },
+    "stats.period.day" : {
+      "comment" : "Day option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Day" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "День" } }
+      }
+    },
+    "stats.period.month" : {
+      "comment" : "Month option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Month" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Місяць" } }
+      }
+    },
+    "stats.period.picker" : {
+      "comment" : "VoiceOver label for the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Period" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Період" } }
+      }
+    },
+    "stats.period.week" : {
+      "comment" : "Week option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Week" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тиждень" } }
+      }
+    },
+    "stats.period.year" : {
+      "comment" : "Year option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Year" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Рік" } }
+      }
+    },
+    "stats.tasks.description.day" : {
+      "comment" : "Description below the completed-task count for the day period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed today" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані сьогодні" } }
+      }
+    },
+    "stats.tasks.description.month" : {
+      "comment" : "Description below the completed-task count for the month period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this month" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього місяця" } }
+      }
+    },
+    "stats.tasks.description.week" : {
+      "comment" : "Description below the completed-task count for the week period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this week" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього тижня" } }
+      }
+    },
+    "stats.tasks.description.year" : {
+      "comment" : "Description below the completed-task count for the year period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this year" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього року" } }
+      }
+    },
     "tasks.action.add" : {
       "comment" : "Action that opens the new-task editor, or its VoiceOver label.",
       "extractionState" : "manual",
