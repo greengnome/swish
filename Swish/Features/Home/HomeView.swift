@@ -9,6 +9,8 @@ struct HomeView: View {
     @Query private var tasks: [FocusTask]
 
     @State private var selectedKind = SessionKind.focus
+    @State private var selectedTaskID: UUID?
+    @State private var isTaskPickerPresented = false
     @State private var errorMessage: String?
 
     var body: some View {
@@ -17,6 +19,10 @@ struct HomeView: View {
                 VStack(spacing: 26) {
                     if let task = activeTask {
                         CurrentTaskBanner(task: task)
+                    } else if showsTaskSelector {
+                        HomeTaskPickerButton(task: selectedTask) {
+                            isTaskPickerPresented = true
+                        }
                     }
 
                     TimelineView(.periodic(from: .now, by: 1)) { context in
@@ -62,6 +68,13 @@ struct HomeView: View {
                 refreshTimer()
             }
         }
+        .sheet(isPresented: $isTaskPickerPresented) {
+            HomeTaskPickerView(
+                tasks: selectableTasks,
+                selectedTaskID: $selectedTaskID
+            )
+            .presentationDetents([.medium, .large])
+        }
         .alert("Timer unavailable", isPresented: errorIsPresented) {
             Button("OK", role: .cancel) {}
         } message: {
@@ -78,6 +91,18 @@ struct HomeView: View {
     private var activeTask: FocusTask? {
         guard timerEngine.hasActiveSession else { return nil }
         return timerEngine.currentSession?.task
+    }
+
+    private var selectableTasks: [FocusTask] {
+        HomeTaskPickerPresentation.selectableTasks(from: tasks)
+    }
+
+    private var selectedTask: FocusTask? {
+        selectableTasks.first { $0.id == selectedTaskID }
+    }
+
+    private var showsTaskSelector: Bool {
+        !timerEngine.hasActiveSession && selectedKind == .focus
     }
 
     private var displayedDuration: TimeInterval {
@@ -136,15 +161,18 @@ struct HomeView: View {
     }
 
     private func startSelectedMode() {
+        let kind = selectedKind
+        let task = selectedTask
+
         Task { @MainActor in
             if timerEngine.settings.notificationsEnabled {
                 _ = try? await notificationPermissionService.requestAuthorizationIfNeeded()
             }
 
             do {
-                switch selectedKind {
+                switch kind {
                 case .focus:
-                    try timerEngine.startFocus()
+                    try timerEngine.startFocus(task: task)
                 case .shortBreak:
                     try timerEngine.startShortBreak()
                 case .longBreak:

@@ -84,6 +84,32 @@ final class SwishUITests: XCTestCase {
         )
     }
 
+    @MainActor
+    func testSelectsTaskFromHomeForNextFocusSession() throws {
+        let app = makeApp(showTasks: true)
+        app.launch()
+
+        createTask(named: "Design landing page", in: app)
+        app.tabBars.buttons["Home"].tap()
+
+        let taskSelector = app.buttons["home.taskSelector"]
+        XCTAssertTrue(taskSelector.waitForExistence(timeout: 2))
+        taskSelector.tap()
+
+        let taskChoice = app.buttons["Select Design landing page"]
+        XCTAssertTrue(taskChoice.waitForExistence(timeout: 2))
+        taskChoice.tap()
+
+        XCTAssertEqual(taskSelector.label, "Working on Design landing page")
+        app.buttons["Start focus"].tap()
+
+        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 3))
+        XCTAssertEqual(
+            app.descendants(matching: .any)["home.currentTask"].label,
+            "Working on Design landing page"
+        )
+    }
+
     private func createTask(named title: String, in app: XCUIApplication) {
         XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
         app.buttons["tasks.add"].tap()
