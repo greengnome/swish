@@ -53,6 +53,20 @@ jobs:
             -derivedDataPath "$RUNNER_TEMP/DerivedData" \
             -resultBundlePath "$RUNNER_TEMP/SwishTests.xcresult" \
             -parallel-testing-enabled NO \
+            -skip-testing:SwishUITests/SwishUITests/testDisplaysRunningTimerOutsideApp \
+            test-without-building
+
+      - name: Run Live Activity system UI test in isolation
+        run: |
+          xcodebuild \
+            -project Swish.xcodeproj \
+            -scheme Swish \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5' \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/SwishLiveActivityUITests.xcresult" \
+            -parallel-testing-enabled NO \
+            -only-testing:SwishUITests/SwishUITests/testDisplaysRunningTimerOutsideApp \
             test-without-building
 
       - name: Upload test results
@@ -60,6 +74,8 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: Swish-test-results
-          path: ${{ runner.temp }}/SwishTests.xcresult
+          path: |
+            ${{ runner.temp }}/SwishTests.xcresult
+            ${{ runner.temp }}/SwishLiveActivityUITests.xcresult
           if-no-files-found: ignore
           retention-days: 7

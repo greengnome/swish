@@ -205,6 +205,14 @@ final class SwishUITests: XCTestCase {
     @MainActor
     func testDisplaysRunningTimerOutsideApp() throws {
         let app = makeApp()
+        defer {
+            app.activate()
+            let cancelButton = app.buttons["home.timer.cancel"]
+            if cancelButton.waitForExistence(timeout: 2) {
+                cancelButton.tap()
+            }
+            app.terminate()
+        }
         app.launch()
 
         XCTAssertTrue(app.buttons["Start focus"].waitForExistence(timeout: 3))
@@ -299,6 +307,42 @@ final class SwishUITests: XCTestCase {
         completeButton.tap()
 
         XCTAssertTrue(app.buttons["Reopen Project roadmap"].waitForExistence(timeout: 2))
+    }
+
+    @MainActor
+    func testArchivesAndRestoresTask() throws {
+        let app = makeApp(showTasks: true)
+        app.launch()
+
+        createTask(named: "Recoverable task", in: app)
+        let taskTitle = app.staticTexts["Recoverable task"]
+        XCTAssertTrue(taskTitle.waitForExistence(timeout: 2))
+        taskTitle.swipeLeft()
+
+        let archiveAction = app.buttons["Archive"]
+        XCTAssertTrue(archiveAction.waitForExistence(timeout: 2))
+        archiveAction.tap()
+        XCTAssertFalse(taskTitle.exists)
+
+        app.buttons["tasks.archived"].tap()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["tasks.archived.screen"]
+                .waitForExistence(timeout: 2)
+        )
+
+        let archivedTitle = app.staticTexts["Recoverable task"]
+        XCTAssertTrue(archivedTitle.waitForExistence(timeout: 2))
+        archivedTitle.swipeLeft()
+        let restoreAction = app.buttons["Restore"]
+        XCTAssertTrue(restoreAction.waitForExistence(timeout: 2))
+        restoreAction.tap()
+        XCTAssertTrue(
+            app.staticTexts["No archived tasks"]
+                .waitForExistence(timeout: 2)
+        )
+
+        app.buttons["Done"].tap()
+        XCTAssertTrue(taskTitle.waitForExistence(timeout: 2))
     }
 
     @MainActor
@@ -528,6 +572,17 @@ final class SwishUITests: XCTestCase {
             app.descendants(matching: .any)["settings.appearance"]
                 .waitForExistence(timeout: 2)
         )
+        XCTAssertEqual(
+            app.switches["settings.showTaskTitlesOnLockScreen"].value as? String,
+            "Off"
+        )
+
+        app.swipeUp()
+        app.swipeUp()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.support"]
+                .waitForExistence(timeout: 2)
+        )
     }
 
     @MainActor
@@ -554,10 +609,16 @@ final class SwishUITests: XCTestCase {
 
         app.swipeUp()
         XCTAssertTrue(app.staticTexts["Відгук"].waitForExistence(timeout: 2))
-        XCTAssertEqual(app.switches["settings.sound"].label, "Звуки")
+        XCTAssertEqual(app.switches["settings.sound"].label, "Звуки сповіщень")
         XCTAssertEqual(app.switches["settings.haptics"].label, "Вібровідгук")
         XCTAssertEqual(app.switches["settings.notifications"].label, "Сповіщення")
         XCTAssertTrue(app.staticTexts["Вигляд"].exists)
+
+        XCTAssertTrue(app.staticTexts["Конфіденційність"].exists)
+        XCTAssertEqual(
+            app.switches["settings.showTaskTitlesOnLockScreen"].label,
+            "Показувати назви завдань на екрані блокування"
+        )
 
         app.swipeUp()
         XCTAssertTrue(app.staticTexts["Мова"].waitForExistence(timeout: 2))
