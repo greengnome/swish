@@ -29,7 +29,11 @@ struct TaskEditorView: View {
                     Picker("Category", selection: $draft.categoryID) {
                         Text("None").tag(nil as UUID?)
                         ForEach(categories) { category in
-                            Label(category.name, systemImage: category.iconName ?? "tag.fill")
+                            Label {
+                                Text(verbatim: category.displayName)
+                            } icon: {
+                                Image(systemName: category.iconName ?? "tag.fill")
+                            }
                                 .tag(category.id as UUID?)
                         }
                     }

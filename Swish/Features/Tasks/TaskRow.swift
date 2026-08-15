@@ -42,7 +42,7 @@ struct TaskRow: View {
                     HStack(spacing: 8) {
                         if let category = task.category {
                             Label {
-                                Text(category.name)
+                                Text(verbatim: category.displayName)
                             } icon: {
                                 Circle()
                                     .fill(category.presentationColor)

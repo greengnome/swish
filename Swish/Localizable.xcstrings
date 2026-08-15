@@ -100,6 +100,60 @@
     "Clear History" : {
 
     },
+    "category.default.personal" : {
+      "comment" : "Display name for the built-in Personal focus category.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Особисте"
+          }
+        }
+      }
+    },
+    "category.default.study" : {
+      "comment" : "Display name for the built-in Study focus category.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Study"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Навчання"
+          }
+        }
+      }
+    },
+    "category.default.work" : {
+      "comment" : "Display name for the built-in Work focus category.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Work"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Робота"
+          }
+        }
+      }
+    },
     "common.action.ok" : {
       "comment" : "A generic button title that dismisses a message or confirms an acknowledgement.",
       "extractionState" : "manual",

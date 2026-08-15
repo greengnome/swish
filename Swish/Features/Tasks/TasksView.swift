@@ -83,7 +83,7 @@ struct TasksView: View {
 
                 ForEach(activeCategories) { category in
                     filterButton(
-                        title: category.name,
+                        title: category.displayName,
                         filter: .category(category.id),
                         color: category.presentationColor
                     )
@@ -131,7 +131,7 @@ struct TasksView: View {
         return Button {
             selectedFilter = filter
         } label: {
-            Text(title)
+            Text(verbatim: title)
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(isSelected ? .white : .primary)
                 .padding(.horizontal, 17)

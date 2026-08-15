@@ -45,7 +45,11 @@ struct StatsCategoryCard: View {
                                     )
                                     .frame(width: 9, height: 9)
 
-                                Text(category.name)
+                                Text(
+                                    verbatim: FocusCategoryNamePresentation.displayName(
+                                        for: category.name
+                                    )
+                                )
                                     .font(.subheadline)
                                     .lineLimit(1)
 

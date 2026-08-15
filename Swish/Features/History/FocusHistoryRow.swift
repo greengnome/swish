@@ -39,7 +39,10 @@ struct FocusHistoryRow: View {
     private var detailText: String {
         let outcome = entry.isCompleted ? "Completed" : "Cancelled"
         guard let categoryName = entry.categoryName else { return outcome }
-        return "\(outcome) · \(categoryName)"
+        let displayedCategoryName = FocusCategoryNamePresentation.displayName(
+            for: categoryName
+        )
+        return "\(outcome) · \(displayedCategoryName)"
     }
 
     private var accessibilityLabel: String {

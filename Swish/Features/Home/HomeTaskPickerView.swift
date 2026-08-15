@@ -95,7 +95,7 @@ struct HomeTaskPickerView: View {
     }
 
     private func taskSubtitle(_ task: FocusTask) -> String {
-        let categoryName = task.category?.name ?? "No category"
+        let categoryName = task.category?.displayName ?? "No category"
         return "\(categoryName) • \(task.completedPomodoros) / \(task.estimatedPomodoros) sessions"
     }
 

@@ -127,6 +127,21 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testDisplaysDefaultCategoriesInUkrainian() throws {
+        let app = makeApp(
+            showTasks: true,
+            language: "uk",
+            locale: "uk_UA"
+        )
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Робота"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.buttons["Особисте"].exists)
+        XCTAssertTrue(app.buttons["Навчання"].exists)
+        XCTAssertFalse(app.buttons["Work"].exists)
+    }
+
+    @MainActor
     func testTimerStartsPausesAndResumes() throws {
         let app = makeApp()
         app.launch()
@@ -410,7 +425,9 @@ final class SwishUITests: XCTestCase {
     private func makeApp(
         showTasks: Bool = false,
         showStats: Bool = false,
-        showSettings: Bool = false
+        showSettings: Bool = false,
+        language: String? = nil,
+        locale: String? = nil
     ) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = [
@@ -425,6 +442,18 @@ final class SwishUITests: XCTestCase {
         }
         if showSettings {
             app.launchArguments.append("--ui-testing-show-settings")
+        }
+        if let language {
+            app.launchArguments.append(contentsOf: [
+                "-AppleLanguages",
+                "(\(language))"
+            ])
+        }
+        if let locale {
+            app.launchArguments.append(contentsOf: [
+                "-AppleLocale",
+                locale
+            ])
         }
         return app
     }
