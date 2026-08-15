@@ -8,9 +8,11 @@ struct FocusCategoryPresentationTests {
         ("Work", "en", "Work"),
         ("Personal", "en", "Personal"),
         ("Study", "en", "Study"),
+        ("Uncategorized", "en", "Uncategorized"),
         ("Work", "uk", "Робота"),
         ("Personal", "uk", "Особисте"),
         ("Study", "uk", "Навчання"),
+        ("Uncategorized", "uk", "Без категорії"),
     ])
     func resolvesBuiltInName(
         storedName: String,

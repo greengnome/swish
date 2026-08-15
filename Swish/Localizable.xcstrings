@@ -104,6 +104,14 @@
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання" } }
       }
     },
+    "app.alert.focus_start_failed" : {
+      "comment" : "Title shown when a focus session cannot be started.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus could not start" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Не вдалося почати фокус" } }
+      }
+    },
     "category.default.personal" : {
       "comment" : "Display name for the built-in Personal focus category.",
       "extractionState" : "manual",
@@ -189,6 +197,14 @@
       "extractionState" : "manual",
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "No category" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без категорії" } }
+      }
+    },
+    "common.category.uncategorized" : {
+      "comment" : "Label for focus time that has no category in Stats.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Uncategorized" } },
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без категорії" } }
       }
     },
@@ -326,6 +342,46 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus History" } },
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
+      }
+    },
+    "notification.break.body" : {
+      "comment" : "Notification message shown when a break finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Ready for another focus session?" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Готові до наступної сесії фокусу?" } }
+      }
+    },
+    "notification.focus.body" : {
+      "comment" : "Notification message shown when a focus session finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Great work. Time for a break." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Чудова робота. Час на перерву." } }
+      }
+    },
+    "notification.focus.title" : {
+      "comment" : "Title of the notification shown when focus finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus complete" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус завершено" } }
+      }
+    },
+    "notification.long_break.title" : {
+      "comment" : "Title of the notification shown when a long break finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break complete" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Довгу перерву завершено" } }
+      }
+    },
+    "notification.short_break.title" : {
+      "comment" : "Title of the notification shown when a short break finishes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Break complete" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Перерву завершено" } }
       }
     },
     "settings.about.section" : {
@@ -1390,6 +1446,38 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } },
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } }
+      }
+    },
+    "timer.error.active_session_exists" : {
+      "comment" : "Error shown when starting a timer while another timer is active.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "A timer is already running." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер уже працює." } }
+      }
+    },
+    "timer.error.focus_cannot_be_skipped" : {
+      "comment" : "Error shown when attempting to skip a focus session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus sessions cannot be skipped." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сесії фокусу не можна пропускати." } }
+      }
+    },
+    "timer.error.invalid_transition" : {
+      "comment" : "Error shown when a timer action is unavailable in its current state.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This timer action is not available right now." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Ця дія з таймером зараз недоступна." } }
+      }
+    },
+    "timer.error.no_active_session" : {
+      "comment" : "Error shown when a timer action requires an active session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "There is no active timer." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає активного таймера." } }
       }
     },
     "onboarding.accessibility.page" : {

@@ -28,6 +28,13 @@ enum FocusCategoryNamePresentation {
                 bundle: bundle,
                 locale: locale
             )
+        case "Uncategorized":
+            String(
+                localized: "common.category.uncategorized",
+                defaultValue: "Uncategorized",
+                bundle: bundle,
+                locale: locale
+            )
         default:
             storedName
         }

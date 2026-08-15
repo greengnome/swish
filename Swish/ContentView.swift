@@ -74,10 +74,16 @@ struct ContentView: View {
         }
         .tint(SwishTheme.accent)
         .preferredColorScheme(timerEngine.settings.appearance.preferredColorScheme)
-        .alert("Focus could not start", isPresented: startFocusErrorIsPresented) {
-            Button("OK", role: .cancel) {}
+        .alert(
+            String(
+                localized: "app.alert.focus_start_failed",
+                defaultValue: "Focus could not start"
+            ),
+            isPresented: startFocusErrorIsPresented
+        ) {
+            Button(String(localized: .commonActionOk), role: .cancel) {}
         } message: {
-            Text(startFocusError ?? "Please try again.")
+            Text(startFocusError ?? String(localized: .commonErrorTryAgain))
         }
     }
 

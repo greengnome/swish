@@ -58,6 +58,46 @@ struct LocalTimerNotificationSchedulerTests {
         #expect(content.body == "Ready for another focus session?")
     }
 
+    @Test("Timer notifications resolve in Ukrainian")
+    func localizesNotificationsInUkrainian() throws {
+        let now = Date(timeIntervalSince1970: 65_000)
+        let center = UserNotificationCenterClientSpy()
+        let bundle = try localizedBundle(language: "uk")
+        let scheduler = LocalTimerNotificationScheduler(
+            center: center,
+            dateProvider: MutableDateProvider(now: now),
+            localizationBundle: bundle,
+            localizationLocale: Locale(identifier: "uk")
+        )
+
+        scheduler.scheduleSessionEnd(
+            id: UUID(),
+            kind: .focus,
+            at: now.addingTimeInterval(30)
+        )
+        scheduler.scheduleSessionEnd(
+            id: UUID(),
+            kind: .shortBreak,
+            at: now.addingTimeInterval(60)
+        )
+        scheduler.scheduleSessionEnd(
+            id: UUID(),
+            kind: .longBreak,
+            at: now.addingTimeInterval(90)
+        )
+
+        #expect(center.addedRequests.map(\.content.title) == [
+            "Фокус завершено",
+            "Перерву завершено",
+            "Довгу перерву завершено",
+        ])
+        #expect(center.addedRequests.map(\.content.body) == [
+            "Чудова робота. Час на перерву.",
+            "Готові до наступної сесії фокусу?",
+            "Готові до наступної сесії фокусу?",
+        ])
+    }
+
     @Test("A past end date is never scheduled")
     func ignoresPastDate() {
         let now = Date(timeIntervalSince1970: 70_000)
@@ -90,5 +130,12 @@ struct LocalTimerNotificationSchedulerTests {
         #expect(center.removedIdentifierGroups == [[
             "swish.timer.session.\(id.uuidString)"
         ]])
+    }
+
+    private func localizedBundle(language: String) throws -> Bundle {
+        let resourcePath = try #require(
+            Bundle.main.path(forResource: language, ofType: "lproj")
+        )
+        return try #require(Bundle(path: resourcePath))
     }
 }

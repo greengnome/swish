@@ -7,13 +7,19 @@ final class LocalTimerNotificationScheduler: TimerNotificationScheduling {
 
     private let center: any UserNotificationCenterClient
     private let dateProvider: any DateProviding
+    private let localizationBundle: Bundle
+    private let localizationLocale: Locale
 
     init(
         center: any UserNotificationCenterClient,
-        dateProvider: any DateProviding
+        dateProvider: any DateProviding,
+        localizationBundle: Bundle = .main,
+        localizationLocale: Locale = .current
     ) {
         self.center = center
         self.dateProvider = dateProvider
+        self.localizationBundle = localizationBundle
+        self.localizationLocale = localizationLocale
     }
 
     convenience init(center: any UserNotificationCenterClient) {
@@ -59,20 +65,45 @@ final class LocalTimerNotificationScheduler: TimerNotificationScheduling {
     private func notificationTitle(for kind: SessionKind) -> String {
         switch kind {
         case .focus:
-            "Focus complete"
+            String(
+                localized: "notification.focus.title",
+                defaultValue: "Focus complete",
+                bundle: localizationBundle,
+                locale: localizationLocale
+            )
         case .shortBreak:
-            "Break complete"
+            String(
+                localized: "notification.short_break.title",
+                defaultValue: "Break complete",
+                bundle: localizationBundle,
+                locale: localizationLocale
+            )
         case .longBreak:
-            "Long break complete"
+            String(
+                localized: "notification.long_break.title",
+                defaultValue: "Long break complete",
+                bundle: localizationBundle,
+                locale: localizationLocale
+            )
         }
     }
 
     private func notificationBody(for kind: SessionKind) -> String {
         switch kind {
         case .focus:
-            "Great work. Time for a break."
+            String(
+                localized: "notification.focus.body",
+                defaultValue: "Great work. Time for a break.",
+                bundle: localizationBundle,
+                locale: localizationLocale
+            )
         case .shortBreak, .longBreak:
-            "Ready for another focus session?"
+            String(
+                localized: "notification.break.body",
+                defaultValue: "Ready for another focus session?",
+                bundle: localizationBundle,
+                locale: localizationLocale
+            )
         }
     }
 }
