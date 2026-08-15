@@ -1,0 +1,388 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ coming next" : {
+
+    },
+    "%@ timer" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld / %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
+    "%lld / %lld sessions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld sessions"
+          }
+        }
+      }
+    },
+    "%lld min" : {
+
+    },
+    "%lld of %lld estimated sessions" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld estimated sessions"
+          }
+        }
+      }
+    },
+    "•" : {
+
+    },
+    "About" : {
+
+    },
+    "Active tasks" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add task" : {
+
+    },
+    "An active or paused timer is never removed." : {
+
+    },
+    "Appearance" : {
+
+    },
+    "Archive" : {
+
+    },
+    "Auto-start breaks" : {
+
+    },
+    "Auto-start focus" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Cancel timer" : {
+
+    },
+    "Category" : {
+
+    },
+    "Choose a task" : {
+
+    },
+    "Choose another date or complete a focus session." : {
+
+    },
+    "Choose Task" : {
+
+    },
+    "Clear focus history" : {
+
+    },
+    "Clear focus history?" : {
+
+    },
+    "Clear History" : {
+
+    },
+    "common.action.ok" : {
+      "comment" : "A generic button title that dismisses a message or confirms an acknowledgement.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Гаразд"
+          }
+        }
+      }
+    },
+    "Completed and cancelled focus sessions appear here." : {
+
+    },
+    "Completed sessions chart" : {
+
+    },
+    "Continue" : {
+
+    },
+    "Create a task" : {
+
+    },
+    "Create a task from the Tasks tab first." : {
+
+    },
+    "Cycle" : {
+
+    },
+    "Data" : {
+
+    },
+    "Date" : {
+
+    },
+    "Due date" : {
+
+    },
+    "Duration changes apply to the next session, never one already in progress." : {
+
+    },
+    "Edit" : {
+
+    },
+    "Edit %@" : {
+
+    },
+    "Edit Task" : {
+
+    },
+    "Every %lld focus sessions" : {
+
+    },
+    "Feedback" : {
+
+    },
+    "Finish or cancel the current timer first" : {
+
+    },
+    "Focus could not start" : {
+
+    },
+    "Focus estimate: %lld %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Focus estimate: %1$lld %2$@"
+          }
+        }
+      }
+    },
+    "Focus history" : {
+
+    },
+    "Focus History" : {
+
+    },
+    "Focus time" : {
+
+    },
+    "Focus time by category" : {
+
+    },
+    "Focus time chart" : {
+
+    },
+    "Haptics" : {
+
+    },
+    "High priority" : {
+
+    },
+    "History date" : {
+
+    },
+    "Home" : {
+
+    },
+    "Important" : {
+
+    },
+    "Let's focus" : {
+
+    },
+    "Long break" : {
+
+    },
+    "Low" : {
+
+    },
+    "Mark %@ complete" : {
+
+    },
+    "New Task" : {
+
+    },
+    "No active tasks" : {
+
+    },
+    "No category" : {
+
+    },
+    "No focus recorded" : {
+
+    },
+    "No focus sessions" : {
+
+    },
+    "No focus time yet" : {
+
+    },
+    "None" : {
+
+    },
+    "Normal" : {
+
+    },
+    "Not selected" : {
+
+    },
+    "Notes" : {
+
+    },
+    "Notifications" : {
+
+    },
+    "Off" : {
+
+    },
+    "OK" : {
+
+    },
+    "On" : {
+
+    },
+    "Onboarding page %lld" : {
+
+    },
+    "Optional details" : {
+
+    },
+    "Period" : {
+
+    },
+    "Plan" : {
+
+    },
+    "Priority" : {
+
+    },
+    "Recorded sessions" : {
+
+    },
+    "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept." : {
+
+    },
+    "Reopen %@" : {
+
+    },
+    "S" : {
+
+    },
+    "Save" : {
+
+    },
+    "Save task" : {
+
+    },
+    "Select %@" : {
+
+    },
+    "Select no task" : {
+
+    },
+    "Selected" : {
+
+    },
+    "Selects an optional task for the next focus session" : {
+
+    },
+    "Sessions" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Settings unavailable" : {
+
+    },
+    "Skip break" : {
+
+    },
+    "Sounds" : {
+
+    },
+    "Start focus on %@" : {
+
+    },
+    "Starts a focus timer and opens Home" : {
+
+    },
+    "Stats" : {
+
+    },
+    "Swish" : {
+
+    },
+    "Task" : {
+
+    },
+    "Task could not be saved" : {
+
+    },
+    "Tasks" : {
+
+    },
+    "Tasks completed during this %@" : {
+
+    },
+    "Tasks unavailable" : {
+
+    },
+    "Theme" : {
+
+    },
+    "This screen will be implemented in its own reviewed batch." : {
+
+    },
+    "Timer" : {
+
+    },
+    "Timer unavailable" : {
+
+    },
+    "Today" : {
+
+    },
+    "Top categories" : {
+
+    },
+    "Version" : {
+
+    },
+    "View all" : {
+
+    },
+    "What do you want to accomplish?" : {
+
+    },
+    "Working on" : {
+
+    },
+    "Working on %@" : {
+
+    }
+  },
+  "version" : "1.0"
+}
