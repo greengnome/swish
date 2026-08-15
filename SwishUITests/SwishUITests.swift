@@ -489,6 +489,43 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testUsesSettingsInUkrainian() throws {
+        let app = makeApp(
+            showSettings: true,
+            language: "uk",
+            locale: "uk_UA"
+        )
+        app.launch()
+
+        XCTAssertTrue(app.navigationBars["Налаштування"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Таймер"].exists)
+        XCTAssertTrue(app.staticTexts["Цикл"].exists)
+
+        let focusDuration = app.descendants(matching: .any)["settings.focusDuration"]
+        XCTAssertTrue(focusDuration.exists)
+        XCTAssertTrue(focusDuration.label.contains("Фокус"))
+        XCTAssertTrue(focusDuration.label.contains("25 хв"))
+
+        let autoStartBreaks = app.switches["settings.autoStartBreaks"]
+        XCTAssertEqual(autoStartBreaks.label, "Автозапуск перерв")
+        XCTAssertEqual(autoStartBreaks.value as? String, "Вимкнено")
+
+        app.swipeUp()
+        XCTAssertTrue(app.staticTexts["Відгук"].waitForExistence(timeout: 2))
+        XCTAssertEqual(app.switches["settings.sound"].label, "Звуки")
+        XCTAssertEqual(app.switches["settings.haptics"].label, "Вібровідгук")
+        XCTAssertEqual(app.switches["settings.notifications"].label, "Сповіщення")
+        XCTAssertTrue(app.staticTexts["Вигляд"].exists)
+
+        app.swipeUp()
+        XCTAssertTrue(app.staticTexts["Дані"].waitForExistence(timeout: 2))
+        XCTAssertTrue(app.staticTexts["Записані сесії"].exists)
+        XCTAssertTrue(app.buttons["Очистити історію фокусу"].exists)
+        XCTAssertTrue(app.staticTexts["Про застосунок"].exists)
+        XCTAssertTrue(app.staticTexts["Версія"].exists)
+    }
+
+    @MainActor
     func testClearsRecordedFocusHistory() throws {
         let app = makeApp()
         app.launch()

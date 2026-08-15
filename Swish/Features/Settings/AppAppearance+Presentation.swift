@@ -1,14 +1,32 @@
 import SwiftUI
 
 extension AppAppearance {
-    var title: String {
+    func title(
+        bundle: Bundle = .main,
+        locale: Locale = .current
+    ) -> String {
         switch self {
         case .system:
-            "System"
+            String(
+                localized: "settings.appearance.system",
+                defaultValue: "System",
+                bundle: bundle,
+                locale: locale
+            )
         case .light:
-            "Light"
+            String(
+                localized: "settings.appearance.light",
+                defaultValue: "Light",
+                bundle: bundle,
+                locale: locale
+            )
         case .dark:
-            "Dark"
+            String(
+                localized: "settings.appearance.dark",
+                defaultValue: "Dark",
+                bundle: bundle,
+                locale: locale
+            )
         }
     }
 

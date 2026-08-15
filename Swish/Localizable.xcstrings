@@ -200,6 +200,22 @@
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Спробуйте ще раз." } }
       }
     },
+    "common.state.off" : {
+      "comment" : "Accessibility value for a disabled setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Off" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вимкнено" } }
+      }
+    },
+    "common.state.on" : {
+      "comment" : "Accessibility value for an enabled setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "On" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Увімкнено" } }
+      }
+    },
     "home.alert.timer_unavailable" : {
       "comment" : "Title of an alert shown when a timer action fails.",
       "extractionState" : "manual",
@@ -310,6 +326,278 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus History" } },
         "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
+      }
+    },
+    "settings.about.section" : {
+      "comment" : "Header for app information in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Про застосунок" } }
+      }
+    },
+    "settings.about.version" : {
+      "comment" : "Label for the app version in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Версія" } }
+      }
+    },
+    "settings.alert.unavailable" : {
+      "comment" : "Title shown when a Settings operation fails.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings unavailable" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Налаштування недоступні" } }
+      }
+    },
+    "settings.appearance.dark" : {
+      "comment" : "Dark appearance option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Темна" } }
+      }
+    },
+    "settings.appearance.light" : {
+      "comment" : "Light appearance option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Світла" } }
+      }
+    },
+    "settings.appearance.section" : {
+      "comment" : "Header for appearance preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Appearance" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вигляд" } }
+      }
+    },
+    "settings.appearance.system" : {
+      "comment" : "Appearance option that follows the system setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Системна" } }
+      }
+    },
+    "settings.appearance.theme" : {
+      "comment" : "Label for the appearance theme picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Theme" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тема" } }
+      }
+    },
+    "settings.cycle.auto_start_breaks" : {
+      "comment" : "Toggle that automatically starts break sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-start breaks" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Автозапуск перерв" } }
+      }
+    },
+    "settings.cycle.auto_start_focus" : {
+      "comment" : "Toggle that automatically starts focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-start focus" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Автозапуск фокусу" } }
+      }
+    },
+    "settings.cycle.every_focus_sessions" : {
+      "comment" : "Frequency for scheduling a long break after a number of focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Every %lld focus session" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Every %lld focus sessions" } }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Після кожної %lld сесії фокусу" } },
+              "few" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесій фокусу" } },
+              "many" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесій фокусу" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесії фокусу" } }
+            }
+          }
+        }
+      }
+    },
+    "settings.cycle.section" : {
+      "comment" : "Header for focus-cycle preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cycle" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Цикл" } }
+      }
+    },
+    "settings.data.clear" : {
+      "comment" : "Destructive action that begins clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear focus history" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію фокусу" } }
+      }
+    },
+    "settings.data.clear_confirmation.action" : {
+      "comment" : "Destructive confirmation action for clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear History" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію" } }
+      }
+    },
+    "settings.data.clear_confirmation.message" : {
+      "comment" : "Explanation shown before permanently deleting recorded sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Записані сесії буде видалено назавжди. Ваші завдання й налаштування буде збережено." } }
+      }
+    },
+    "settings.data.clear_confirmation.title" : {
+      "comment" : "Title asking the user to confirm clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear focus history?" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію фокусу?" } }
+      }
+    },
+    "settings.data.footer" : {
+      "comment" : "Reassurance below history deletion controls.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "An active or paused timer is never removed." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Активний або призупинений таймер ніколи не видаляється." } }
+      }
+    },
+    "settings.data.recorded_sessions" : {
+      "comment" : "Label for the number of recorded focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recorded sessions" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Записані сесії" } }
+      }
+    },
+    "settings.data.section" : {
+      "comment" : "Header for stored-data controls in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Data" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дані" } }
+      }
+    },
+    "settings.duration.minutes" : {
+      "comment" : "A timer duration in minutes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
+              "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
+              "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } }
+            }
+          }
+        }
+      }
+    },
+    "settings.feedback.haptics" : {
+      "comment" : "Toggle for haptic feedback.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Haptics" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вібровідгук" } }
+      }
+    },
+    "settings.feedback.notifications" : {
+      "comment" : "Toggle for timer notifications.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сповіщення" } }
+      }
+    },
+    "settings.feedback.section" : {
+      "comment" : "Header for feedback preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Feedback" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Відгук" } }
+      }
+    },
+    "settings.feedback.sounds" : {
+      "comment" : "Toggle for timer sounds.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sounds" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Звуки" } }
+      }
+    },
+    "settings.notifications.permission_required" : {
+      "comment" : "Guidance shown when notification permission is denied.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications for Swish in System Settings to receive timer alerts." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Увімкніть сповіщення для Swish у системних налаштуваннях, щоб отримувати сповіщення таймера." } }
+      }
+    },
+    "settings.timer.focus" : {
+      "comment" : "Label for the focus duration picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус" } }
+      }
+    },
+    "settings.timer.footer" : {
+      "comment" : "Explanation below timer-duration preferences.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Duration changes apply to the next session, never one already in progress." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зміни тривалості застосовуються до наступної сесії, але не до поточної." } }
+      }
+    },
+    "settings.timer.long_break" : {
+      "comment" : "Label for the long-break duration and frequency pickers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Довга перерва" } }
+      }
+    },
+    "settings.timer.section" : {
+      "comment" : "Header for timer-duration preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Timer" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер" } }
+      }
+    },
+    "settings.timer.short_break" : {
+      "comment" : "Label for the short-break duration picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Short break" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Коротка перерва" } }
       }
     },
     "stats.action.focus_history" : {

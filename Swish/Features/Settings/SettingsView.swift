@@ -26,112 +26,156 @@ struct SettingsView: View {
             }
             .scrollContentBackground(.hidden)
             .background(.background)
-            .navigationTitle("Settings")
+            .navigationTitle(String(localized: .appTabSettings))
             .accessibilityIdentifier("settings.screen")
         }
-        .alert("Settings unavailable", isPresented: errorIsPresented) {
-            Button("OK", role: .cancel) {}
+        .alert(
+            String(
+                localized: "settings.alert.unavailable",
+                defaultValue: "Settings unavailable"
+            ),
+            isPresented: errorIsPresented
+        ) {
+            Button(String(localized: .commonActionOk), role: .cancel) {}
         } message: {
-            Text(errorMessage ?? "Please try again.")
+            Text(errorMessage ?? String(localized: .commonErrorTryAgain))
         }
         .confirmationDialog(
-            "Clear focus history?",
+            String(localized: "settings.data.clear_confirmation.title", defaultValue: "Clear focus history?"),
             isPresented: $isClearHistoryConfirmationPresented,
             titleVisibility: .visible
         ) {
-            Button("Clear History", role: .destructive) {
+            Button(
+                String(
+                    localized: "settings.data.clear_confirmation.action",
+                    defaultValue: "Clear History"
+                ),
+                role: .destructive
+            ) {
                 clearHistory()
             }
-            Button("Cancel", role: .cancel) {}
+            Button(String(localized: .commonActionCancel), role: .cancel) {}
         } message: {
-            Text("Recorded sessions will be permanently deleted. Your tasks and preferences will be kept.")
+            Text(
+                String(
+                    localized: "settings.data.clear_confirmation.message",
+                    defaultValue: "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept."
+                )
+            )
         }
     }
 
     private var timerSection: some View {
         Section {
             durationPicker(
-                title: "Focus",
+                title: String(localized: "settings.timer.focus", defaultValue: "Focus"),
                 selection: durationBinding(\.focusDuration),
                 options: TimerSettingsDraft.focusMinuteOptions,
                 identifier: "settings.focusDuration"
             )
             durationPicker(
-                title: "Short break",
+                title: String(localized: "settings.timer.short_break", defaultValue: "Short break"),
                 selection: durationBinding(\.shortBreakDuration),
                 options: TimerSettingsDraft.shortBreakMinuteOptions,
                 identifier: "settings.shortBreakDuration"
             )
             durationPicker(
-                title: "Long break",
+                title: String(localized: "settings.timer.long_break", defaultValue: "Long break"),
                 selection: durationBinding(\.longBreakDuration),
                 options: TimerSettingsDraft.longBreakMinuteOptions,
                 identifier: "settings.longBreakDuration"
             )
         } header: {
-            Text("Timer")
+            Text(String(localized: "settings.timer.section", defaultValue: "Timer"))
         } footer: {
             Text(
-                "Duration changes apply to the next session, never one already in progress."
+                String(
+                    localized: "settings.timer.footer",
+                    defaultValue: "Duration changes apply to the next session, never one already in progress."
+                )
             )
         }
     }
 
     private var cycleSection: some View {
-        Section("Cycle") {
+        Section(String(localized: "settings.cycle.section", defaultValue: "Cycle")) {
             Picker(
-                "Long break",
+                String(localized: "settings.timer.long_break", defaultValue: "Long break"),
                 selection: settingBinding(\.longBreakEvery)
             ) {
                 ForEach(TimerSettingsDraft.longBreakIntervalOptions, id: \.self) { count in
-                    Text("Every \(count) focus sessions").tag(count)
+                    Text(verbatim: SettingsPresentation.longBreakInterval(count)).tag(count)
                 }
             }
             .accessibilityIdentifier("settings.longBreakEvery")
 
             Toggle(
-                "Auto-start breaks",
+                String(localized: "settings.cycle.auto_start_breaks", defaultValue: "Auto-start breaks"),
                 isOn: settingBinding(\.autoStartBreaks)
             )
             .accessibilityIdentifier("settings.autoStartBreaks")
-            .accessibilityValue(settings.autoStartBreaks ? "On" : "Off")
+            .accessibilityValue(SettingsPresentation.toggleState(isOn: settings.autoStartBreaks))
 
             Toggle(
-                "Auto-start focus",
+                String(localized: "settings.cycle.auto_start_focus", defaultValue: "Auto-start focus"),
                 isOn: settingBinding(\.autoStartFocus)
             )
             .accessibilityIdentifier("settings.autoStartFocus")
-            .accessibilityValue(settings.autoStartFocus ? "On" : "Off")
+            .accessibilityValue(SettingsPresentation.toggleState(isOn: settings.autoStartFocus))
         }
     }
 
     private var feedbackSection: some View {
-        Section("Feedback") {
-            Toggle("Sounds", isOn: settingBinding(\.soundEnabled))
+        Section(String(localized: "settings.feedback.section", defaultValue: "Feedback")) {
+            Toggle(
+                String(
+                    localized: "settings.feedback.sounds",
+                    defaultValue: "Sounds"
+                ),
+                isOn: settingBinding(\.soundEnabled)
+            )
                 .accessibilityIdentifier("settings.sound")
-                .accessibilityValue(settings.soundEnabled ? "On" : "Off")
+                .accessibilityValue(SettingsPresentation.toggleState(isOn: settings.soundEnabled))
 
-            Toggle("Haptics", isOn: settingBinding(\.hapticsEnabled))
+            Toggle(
+                String(
+                    localized: "settings.feedback.haptics",
+                    defaultValue: "Haptics"
+                ),
+                isOn: settingBinding(\.hapticsEnabled)
+            )
                 .accessibilityIdentifier("settings.haptics")
-                .accessibilityValue(settings.hapticsEnabled ? "On" : "Off")
+                .accessibilityValue(SettingsPresentation.toggleState(isOn: settings.hapticsEnabled))
 
-            Toggle("Notifications", isOn: notificationsBinding)
+            Toggle(
+                String(
+                    localized: "settings.feedback.notifications",
+                    defaultValue: "Notifications"
+                ),
+                isOn: notificationsBinding
+            )
                 .accessibilityIdentifier("settings.notifications")
-                .accessibilityValue(settings.notificationsEnabled ? "On" : "Off")
+                .accessibilityValue(SettingsPresentation.toggleState(isOn: settings.notificationsEnabled))
         }
     }
 
     private var aboutSection: some View {
-        Section("About") {
-            LabeledContent("Version", value: appVersion)
+        Section(String(localized: "settings.about.section", defaultValue: "About")) {
+            LabeledContent(String(localized: "settings.about.version", defaultValue: "Version"), value: appVersion)
         }
     }
 
     private var appearanceSection: some View {
-        Section("Appearance") {
-            Picker("Theme", selection: appearanceBinding) {
+        Section(String(localized: "settings.appearance.section", defaultValue: "Appearance")) {
+            Picker(
+                String(
+                    localized: "settings.appearance.theme",
+                    defaultValue: "Theme"
+                ),
+                selection: appearanceBinding
+            ) {
                 ForEach(AppAppearance.allCases) { appearance in
-                    Text(appearance.title).tag(appearance)
+                    Text(verbatim: appearance.title()).tag(appearance)
                 }
             }
             .accessibilityIdentifier("settings.appearance")
@@ -140,20 +184,20 @@ struct SettingsView: View {
 
     private var dataSection: some View {
         Section {
-            LabeledContent("Recorded sessions") {
+            LabeledContent(String(localized: "settings.data.recorded_sessions", defaultValue: "Recorded sessions")) {
                 Text("\(recordedSessionCount)")
                     .accessibilityIdentifier("settings.historyCount")
             }
 
-            Button("Clear focus history", role: .destructive) {
+            Button(String(localized: "settings.data.clear", defaultValue: "Clear focus history"), role: .destructive) {
                 isClearHistoryConfirmationPresented = true
             }
             .disabled(recordedSessionCount == 0)
             .accessibilityIdentifier("settings.clearHistory")
         } header: {
-            Text("Data")
+            Text(String(localized: "settings.data.section", defaultValue: "Data"))
         } footer: {
-            Text("An active or paused timer is never removed.")
+            Text(String(localized: "settings.data.footer", defaultValue: "An active or paused timer is never removed."))
         }
     }
 
@@ -165,7 +209,7 @@ struct SettingsView: View {
     ) -> some View {
         Picker(title, selection: selection) {
             ForEach(options, id: \.self) { minutes in
-                Text("\(minutes) min").tag(minutes)
+                Text(verbatim: SettingsPresentation.minutes(minutes)).tag(minutes)
             }
         }
         .accessibilityIdentifier(identifier)
@@ -266,8 +310,10 @@ struct SettingsView: View {
                 if !isAuthorized {
                     settings.notificationsEnabled = false
                     persistSettings()
-                    errorMessage = "Enable notifications for Swish in System Settings "
-                        + "to receive timer alerts."
+                    errorMessage = String(
+                        localized: "settings.notifications.permission_required",
+                        defaultValue: "Enable notifications for Swish in System Settings to receive timer alerts."
+                    )
                 }
             } catch {
                 settings.notificationsEnabled = false
