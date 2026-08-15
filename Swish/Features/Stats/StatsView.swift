@@ -26,6 +26,16 @@ struct StatsView: View {
             .background(SwishTheme.background)
             .navigationTitle("Stats")
             .accessibilityIdentifier("stats.screen")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        FocusHistoryView()
+                    } label: {
+                        Label("Focus history", systemImage: "calendar")
+                    }
+                    .accessibilityIdentifier("stats.history")
+                }
+            }
         }
     }
 

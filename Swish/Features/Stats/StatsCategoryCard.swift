@@ -25,7 +25,9 @@ struct StatsCategoryCard: View {
                             innerRadius: .ratio(0.64),
                             angularInset: 1.5
                         )
-                        .foregroundStyle(categoryColor(category.colorToken))
+                        .foregroundStyle(
+                            SwishTheme.categoryColor(for: category.colorToken)
+                        )
                         .cornerRadius(4)
                     }
                     .frame(width: 128, height: 128)
@@ -36,7 +38,11 @@ struct StatsCategoryCard: View {
                         ForEach(categories.prefix(4)) { category in
                             HStack(spacing: 8) {
                                 Circle()
-                                    .fill(categoryColor(category.colorToken))
+                                    .fill(
+                                        SwishTheme.categoryColor(
+                                            for: category.colorToken
+                                        )
+                                    )
                                     .frame(width: 9, height: 9)
 
                                 Text(category.name)
@@ -62,18 +68,4 @@ struct StatsCategoryCard: View {
         .shadow(color: .black.opacity(0.045), radius: 16, y: 7)
     }
 
-    private func categoryColor(_ token: String) -> Color {
-        switch token.lowercased() {
-        case "coral", "orange":
-            SwishTheme.accent
-        case "green":
-            .green
-        case "blue":
-            .blue
-        case "purple":
-            .purple
-        default:
-            .secondary
-        }
-    }
 }

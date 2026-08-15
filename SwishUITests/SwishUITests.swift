@@ -132,6 +132,30 @@ final class SwishUITests: XCTestCase {
         )
     }
 
+    @MainActor
+    func testOpensFocusHistoryFromStats() throws {
+        let app = makeApp(showStats: true)
+        app.launch()
+
+        let historyButton = app.buttons["stats.history"]
+        XCTAssertTrue(historyButton.waitForExistence(timeout: 2))
+        historyButton.tap()
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["history.screen"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertEqual(app.staticTexts["history.focusTime.value"].label, "0m")
+        XCTAssertEqual(app.staticTexts["history.sessions.value"].label, "0")
+        XCTAssertEqual(app.staticTexts["history.tasks.value"].label, "0")
+
+        app.swipeUp()
+        XCTAssertTrue(
+            app.descendants(matching: .any)["history.empty"]
+                .waitForExistence(timeout: 2)
+        )
+    }
+
     private func createTask(named title: String, in app: XCUIApplication) {
         XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
         app.buttons["tasks.add"].tap()

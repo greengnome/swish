@@ -9,4 +9,19 @@ enum SwishTheme {
 
     static let cardRadius: CGFloat = 24
     static let screenPadding: CGFloat = 20
+
+    static func categoryColor(for token: String?) -> Color {
+        switch token?.lowercased() {
+        case "coral", "orange":
+            accent
+        case "green":
+            .green
+        case "blue":
+            .blue
+        case "purple":
+            .purple
+        default:
+            .secondary
+        }
+    }
 }
