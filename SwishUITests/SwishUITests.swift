@@ -203,6 +203,48 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testDisplaysRunningTimerOutsideApp() throws {
+        let app = makeApp()
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Start focus"].waitForExistence(timeout: 3))
+        app.buttons["Start focus"].tap()
+        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 2))
+
+        XCUIDevice.shared.press(.home)
+
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        XCTAssertTrue(
+            springboard.wait(for: .runningForeground, timeout: 3),
+            "Starting a timer should leave a running Live Activity visible outside Swish."
+        )
+        Thread.sleep(forTimeInterval: 2)
+
+        let compactScreenshot = XCTAttachment(
+            screenshot: XCUIScreen.main.screenshot()
+        )
+        compactScreenshot.name = "Running focus Live Activity — compact"
+        compactScreenshot.lifetime = .keepAlways
+        add(compactScreenshot)
+
+        springboard.coordinate(
+            withNormalizedOffset: CGVector(dx: 0.5, dy: 0.04)
+        ).press(forDuration: 1)
+
+        XCTAssertTrue(
+            springboard.staticTexts["Focus"].waitForExistence(timeout: 3),
+            "Long-pressing the timer should reveal the expanded Live Activity."
+        )
+
+        let expandedScreenshot = XCTAttachment(
+            screenshot: XCUIScreen.main.screenshot()
+        )
+        expandedScreenshot.name = "Running focus Live Activity — expanded"
+        expandedScreenshot.lifetime = .keepAlways
+        add(expandedScreenshot)
+    }
+
+    @MainActor
     func testOpensSettingsFromHomeToolbar() throws {
         let app = makeApp()
         app.launch()
