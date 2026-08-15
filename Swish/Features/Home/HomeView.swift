@@ -13,6 +13,8 @@ struct HomeView: View {
     @State private var isTaskPickerPresented = false
     @State private var errorMessage: String?
 
+    let onOpenSettings: () -> Void
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -54,8 +56,12 @@ struct HomeView: View {
             .navigationTitle("Swish")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Settings", systemImage: "slider.horizontal.3") {}
-                        .accessibilityIdentifier("home.settings")
+                    Button(
+                        "Settings",
+                        systemImage: "slider.horizontal.3",
+                        action: onOpenSettings
+                    )
+                    .accessibilityIdentifier("home.settings")
                 }
             }
         }

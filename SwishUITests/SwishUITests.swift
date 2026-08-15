@@ -42,6 +42,22 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testOpensSettingsFromHomeToolbar() throws {
+        let app = makeApp()
+        app.launch()
+
+        let settingsButton = app.buttons["home.settings"]
+        XCTAssertTrue(settingsButton.waitForExistence(timeout: 2))
+        settingsButton.tap()
+
+        XCTAssertTrue(
+            app.descendants(matching: .any)["settings.screen"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(app.tabBars.buttons["Settings"].isSelected)
+    }
+
+    @MainActor
     func testCreatesAndCompletesTask() throws {
         let app = makeApp(showTasks: true)
         app.launch()

@@ -27,11 +27,13 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                .tag(AppTab.home)
+            HomeView {
+                selectedTab = .settings
+            }
+            .tabItem {
+                Label("Home", systemImage: "house.fill")
+            }
+            .tag(AppTab.home)
 
             StatsView()
                 .tabItem {
