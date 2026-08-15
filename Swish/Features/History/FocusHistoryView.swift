@@ -13,7 +13,7 @@ struct FocusHistoryView: View {
         ScrollView {
             VStack(spacing: 18) {
                 DatePicker(
-                    "History date",
+                    String(localized: .historyDatePickerLabel),
                     selection: $selectedDate,
                     in: ...Date.now,
                     displayedComponents: .date
@@ -40,14 +40,16 @@ struct FocusHistoryView: View {
             .padding(.bottom, 24)
         }
         .background(SwishTheme.background)
-        .navigationTitle("Focus History")
+        .navigationTitle(Text(.historyTitle))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("history.screen")
         .toolbar {
             if !calendar.isDateInToday(selectedDate) {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Today") {
+                    Button {
                         selectedDate = .now
+                    } label: {
+                        Text(.homeSummaryToday)
                     }
                     .accessibilityIdentifier("history.today")
                 }
@@ -66,14 +68,14 @@ struct FocusHistoryView: View {
     @ViewBuilder
     private var sessionSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Sessions")
+            Text(.homeSummarySessions)
                 .font(.headline)
 
             if selectedDay.entries.isEmpty {
                 ContentUnavailableView(
-                    "No focus sessions",
+                    String(localized: .historyEmptyTitle),
                     systemImage: "clock.badge.xmark",
-                    description: Text("Choose another date or complete a focus session.")
+                    description: Text(.historyEmptyDescription)
                 )
                 .frame(maxWidth: .infinity, minHeight: 180)
                 .background(

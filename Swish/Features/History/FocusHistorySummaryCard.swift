@@ -7,7 +7,7 @@ struct FocusHistorySummaryCard: View {
         HStack {
             metric(
                 value: TimerDisplayFormatter.focusedTime(day.focusTime),
-                title: "Focused",
+                title: String(localized: .historySummaryFocused),
                 systemImage: "scope",
                 color: SwishTheme.accent,
                 identifier: "history.focusTime.value"
@@ -18,7 +18,7 @@ struct FocusHistorySummaryCard: View {
 
             metric(
                 value: "\(day.completedSessions)",
-                title: "Sessions",
+                title: String(localized: .homeSummarySessions),
                 systemImage: "clock",
                 color: .orange,
                 identifier: "history.sessions.value"
@@ -29,7 +29,7 @@ struct FocusHistorySummaryCard: View {
 
             metric(
                 value: "\(day.completedTasks)",
-                title: "Tasks",
+                title: String(localized: .appTabTasks),
                 systemImage: "checkmark.circle",
                 color: SwishTheme.success,
                 identifier: "history.tasks.value"

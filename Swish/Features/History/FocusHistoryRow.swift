@@ -15,11 +15,11 @@ struct FocusHistoryRow: View {
                 .frame(width: 10, height: 10)
 
             VStack(alignment: .leading, spacing: 3) {
-                Text(entry.taskTitle ?? "Unassigned focus")
+                Text(verbatim: FocusHistoryEntryPresentation.taskTitle(for: entry))
                     .font(.subheadline.weight(.semibold))
                     .lineLimit(1)
 
-                Text(detailText)
+                Text(verbatim: FocusHistoryEntryPresentation.detail(for: entry))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
@@ -33,23 +33,8 @@ struct FocusHistoryRow: View {
         }
         .padding(.vertical, 8)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(accessibilityLabel)
-    }
-
-    private var detailText: String {
-        let outcome = entry.isCompleted ? "Completed" : "Cancelled"
-        guard let categoryName = entry.categoryName else { return outcome }
-        let displayedCategoryName = FocusCategoryNamePresentation.displayName(
-            for: categoryName
+        .accessibilityLabel(
+            FocusHistoryEntryPresentation.accessibilityLabel(for: entry)
         )
-        return "\(outcome) · \(displayedCategoryName)"
-    }
-
-    private var accessibilityLabel: String {
-        [
-            entry.taskTitle ?? "Unassigned focus",
-            detailText,
-            TimerDisplayFormatter.focusedTime(entry.focusTime)
-        ].joined(separator: ", ")
     }
 }

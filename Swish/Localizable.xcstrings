@@ -232,6 +232,86 @@
         }
       }
     },
+    "history.date_picker.label" : {
+      "comment" : "VoiceOver label for the date picker in Focus History.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "History date" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дата історії" } }
+      }
+    },
+    "history.empty.description" : {
+      "comment" : "Guidance shown when the selected history date has no focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose another date or complete a focus session." } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виберіть іншу дату або завершіть сесію фокусу." } }
+      }
+    },
+    "history.empty.title" : {
+      "comment" : "Title shown when the selected history date has no focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus sessions" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає сесій фокусу" } }
+      }
+    },
+    "history.row.accessibility" : {
+      "comment" : "VoiceOver summary for a focus-history row. Placeholders are task, outcome details, and duration.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, %2$@, %3$@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, %2$@, %3$@" } }
+      }
+    },
+    "history.row.cancelled" : {
+      "comment" : "Outcome label for a cancelled focus session in history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancelled" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Скасовано" } }
+      }
+    },
+    "history.row.completed" : {
+      "comment" : "Outcome label for a completed focus session in history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завершено" } }
+      }
+    },
+    "history.row.detail_with_category" : {
+      "comment" : "History row detail. Placeholders are session outcome and category name.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · %2$@" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · %2$@" } }
+      }
+    },
+    "history.row.unassigned" : {
+      "comment" : "Title for a focus session that was not assigned to a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unassigned focus" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус без завдання" } }
+      }
+    },
+    "history.summary.focused" : {
+      "comment" : "Label for focused time in the history summary.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focused" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У фокусі" } }
+      }
+    },
+    "history.title" : {
+      "comment" : "Navigation title of the Focus History screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus History" } },
+        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
+      }
+    },
     "stats.action.focus_history" : {
       "comment" : "Action that opens the focus-session history from Stats.",
       "extractionState" : "manual",

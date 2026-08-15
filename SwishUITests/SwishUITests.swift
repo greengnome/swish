@@ -425,6 +425,39 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testUsesFocusHistoryInUkrainian() throws {
+        let app = makeApp(
+            showStats: true,
+            language: "uk",
+            locale: "uk_UA"
+        )
+        app.launch()
+
+        let historyButton = app.buttons["stats.history"]
+        XCTAssertTrue(historyButton.waitForExistence(timeout: 2))
+        historyButton.tap()
+
+        XCTAssertTrue(
+            app.navigationBars["Історія фокусу"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(app.descendants(matching: .any)["history.calendar"].exists)
+        XCTAssertTrue(app.staticTexts["У фокусі"].exists)
+        XCTAssertTrue(app.staticTexts["Сесії"].exists)
+        XCTAssertTrue(app.staticTexts["Завдання"].exists)
+
+        app.swipeUp()
+        XCTAssertTrue(
+            app.staticTexts["Немає сесій фокусу"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(
+            app.staticTexts["Виберіть іншу дату або завершіть сесію фокусу."]
+                .exists
+        )
+    }
+
+    @MainActor
     func testChangesSettingsPreferences() throws {
         let app = makeApp(showSettings: true)
         app.launch()
