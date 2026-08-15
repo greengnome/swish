@@ -75,10 +75,14 @@ struct HomeTimerCard: View {
                 if isActive {
                     Button(role: .destructive, action: onCancel) {
                         Image(systemName: "xmark")
-                            .frame(width: 48, height: 48)
+                            .font(.caption.weight(.bold))
+                            .foregroundStyle(.red)
+                            .frame(width: 38, height: 38)
+                            .background(.red.opacity(0.1), in: Circle())
                     }
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.circle)
+                    .buttonStyle(.plain)
+                    .frame(width: 44, height: 44)
+                    .contentShape(Circle())
                     .accessibilityLabel("Cancel timer")
                     .accessibilityIdentifier("home.timer.cancel")
                 }
