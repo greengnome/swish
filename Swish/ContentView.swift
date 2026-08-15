@@ -2,7 +2,11 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(TimerEngine.self) private var timerEngine
+    @Environment(NotificationPermissionService.self) private var notificationPermissionService
+
     @State private var selectedTab: AppTab
+    @State private var startFocusError: String?
 
     init() {
         let startsOnTasks = ProcessInfo.processInfo.arguments.contains(
@@ -25,7 +29,10 @@ struct ContentView: View {
                 }
                 .tag(AppTab.stats)
 
-            TasksView()
+            TasksView(
+                canStartFocus: !timerEngine.hasActiveSession,
+                onStartFocus: startFocus
+            )
                 .tabItem {
                     Label("Tasks", systemImage: "checklist")
                 }
@@ -38,6 +45,33 @@ struct ContentView: View {
                 .tag(AppTab.settings)
         }
         .tint(SwishTheme.accent)
+        .alert("Focus could not start", isPresented: startFocusErrorIsPresented) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(startFocusError ?? "Please try again.")
+        }
+    }
+
+    private var startFocusErrorIsPresented: Binding<Bool> {
+        Binding(
+            get: { startFocusError != nil },
+            set: { if !$0 { startFocusError = nil } }
+        )
+    }
+
+    private func startFocus(on task: FocusTask) {
+        Task { @MainActor in
+            if timerEngine.settings.notificationsEnabled {
+                _ = try? await notificationPermissionService.requestAuthorizationIfNeeded()
+            }
+
+            do {
+                try timerEngine.startFocus(task: task)
+                selectedTab = .home
+            } catch {
+                startFocusError = error.localizedDescription
+            }
+        }
     }
 }
 

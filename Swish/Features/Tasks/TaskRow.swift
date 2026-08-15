@@ -2,7 +2,9 @@ import SwiftUI
 
 struct TaskRow: View {
     let task: FocusTask
+    let canStartFocus: Bool
     let onToggleCompletion: () -> Void
+    let onStartFocus: () -> Void
     let onEdit: () -> Void
     let onArchive: () -> Void
 
@@ -71,6 +73,22 @@ struct TaskRow: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel("Edit \(task.title)")
+
+            if !task.isCompleted {
+                Button(action: onStartFocus) {
+                    Image(systemName: "play.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(canStartFocus ? SwishTheme.accent : Color.secondary)
+                }
+                .buttonStyle(.plain)
+                .disabled(!canStartFocus)
+                .accessibilityLabel("Start focus on \(task.title)")
+                .accessibilityHint(
+                    canStartFocus
+                        ? "Starts a focus timer and opens Home"
+                        : "Finish or cancel the current timer first"
+                )
+            }
         }
         .padding(.vertical, 8)
         .swipeActions(edge: .trailing, allowsFullSwipe: false) {

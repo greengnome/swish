@@ -15,6 +15,10 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 26) {
+                    if let task = activeTask {
+                        CurrentTaskBanner(task: task)
+                    }
+
                     TimelineView(.periodic(from: .now, by: 1)) { context in
                         HomeTimerCard(
                             kind: displayedKind,
@@ -69,6 +73,11 @@ struct HomeView: View {
         timerEngine.hasActiveSession
             ? timerEngine.currentSession?.kind ?? selectedKind
             : selectedKind
+    }
+
+    private var activeTask: FocusTask? {
+        guard timerEngine.hasActiveSession else { return nil }
+        return timerEngine.currentSession?.task
     }
 
     private var displayedDuration: TimeInterval {

@@ -10,6 +10,9 @@ struct TasksView: View {
     @State private var editorDestination: TaskEditorDestination?
     @State private var errorMessage: String?
 
+    let canStartFocus: Bool
+    let onStartFocus: (FocusTask) -> Void
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -22,7 +25,9 @@ struct TasksView: View {
                         ForEach(visibleTasks) { task in
                             TaskRow(
                                 task: task,
+                                canStartFocus: canStartFocus,
                                 onToggleCompletion: { toggleCompletion(of: task) },
+                                onStartFocus: { onStartFocus(task) },
                                 onEdit: { editorDestination = .edit(task) },
                                 onArchive: { archive(task) }
                             )
