@@ -11,9 +11,7 @@ import SwiftUI
 @main
 @MainActor
 struct SwishApp: App {
-    private let modelContainer: ModelContainer
-    @State private var timerEngine: TimerEngine
-    @State private var notificationPermissionService: NotificationPermissionService
+    private let dependencies: AppDependencies?
     @State private var onboardingStore: OnboardingStore
 
     init() {
@@ -23,32 +21,33 @@ struct SwishApp: App {
                 inMemory: isUITesting,
                 notificationsEnabled: !isUITesting
             )
-            modelContainer = dependencies.modelContainer
-            _timerEngine = State(initialValue: dependencies.timerEngine)
-            _notificationPermissionService = State(
-                initialValue: dependencies.notificationPermissionService
-            )
+            self.dependencies = dependencies
             _onboardingStore = State(initialValue: OnboardingStore())
         } catch {
-            fatalError("Could not create app dependencies: \(error)")
+            dependencies = nil
+            _onboardingStore = State(initialValue: OnboardingStore())
         }
     }
 
     var body: some Scene {
         WindowGroup {
-            Group {
-                if onboardingStore.hasCompletedOnboarding {
-                    ContentView()
-                } else {
-                    WelcomeView(onContinue: onboardingStore.complete)
+            if let dependencies {
+                Group {
+                    if onboardingStore.hasCompletedOnboarding {
+                        ContentView()
+                    } else {
+                        WelcomeView(onContinue: onboardingStore.complete)
+                    }
                 }
-            }
-                .environment(timerEngine)
-                .environment(notificationPermissionService)
+                .environment(dependencies.timerEngine)
+                .environment(dependencies.notificationPermissionService)
                 .preferredColorScheme(
-                    timerEngine.settings.appearance.preferredColorScheme
+                    dependencies.timerEngine.settings.appearance.preferredColorScheme
                 )
+                .modelContainer(dependencies.modelContainer)
+            } else {
+                StartupFailureView()
+            }
         }
-        .modelContainer(modelContainer)
     }
 }
