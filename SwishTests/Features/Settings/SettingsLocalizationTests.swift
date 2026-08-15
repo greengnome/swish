@@ -25,6 +25,13 @@ struct SettingsLocalizationTests {
         ("settings.feedback.notifications", "Notifications", "Сповіщення"),
         ("settings.feedback.section", "Feedback", "Відгук"),
         ("settings.feedback.sounds", "Sounds", "Звуки"),
+        ("settings.language.app_language", "App language", "Мова застосунку"),
+        (
+            "settings.language.footer",
+            "Choose a language in iOS Settings.",
+            "Виберіть мову в налаштуваннях iOS."
+        ),
+        ("settings.language.section", "Language", "Мова"),
         ("settings.timer.focus", "Focus", "Фокус"),
         ("settings.timer.long_break", "Long break", "Довга перерва"),
         ("settings.timer.section", "Timer", "Таймер"),

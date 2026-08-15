@@ -1,115 +1,97 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@ coming next" : {
-
-    },
     "%lld" : {
 
     },
-    "%lld / %lld" : {
+    "app.alert.focus_start_failed" : {
+      "comment" : "Title shown when a focus session cannot be started.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld / %2$lld"
+            "state" : "translated",
+            "value" : "Focus could not start"
           }
-        }
-      }
-    },
-    "%lld / %lld sessions" : {
-      "localizations" : {
-        "en" : {
+        },
+        "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld / %2$lld sessions"
+            "state" : "translated",
+            "value" : "Не вдалося почати фокус"
           }
         }
       }
-    },
-    "•" : {
-
-    },
-    "About" : {
-
-    },
-    "Add" : {
-
-    },
-    "Add task" : {
-
-    },
-    "An active or paused timer is never removed." : {
-
-    },
-    "Appearance" : {
-
-    },
-    "Archive" : {
-
-    },
-    "Auto-start breaks" : {
-
-    },
-    "Auto-start focus" : {
-
-    },
-    "Cancel" : {
-
-    },
-    "Category" : {
-
-    },
-    "Choose another date or complete a focus session." : {
-
-    },
-    "Clear focus history" : {
-
-    },
-    "Clear focus history?" : {
-
-    },
-    "Clear History" : {
-
     },
     "app.tab.home" : {
       "comment" : "Title of the Home tab.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Home" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Головна" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Головна"
+          }
+        }
       }
     },
     "app.tab.settings" : {
       "comment" : "Title of the Settings tab and Home settings button.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Налаштування" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштування"
+          }
+        }
       }
     },
     "app.tab.stats" : {
       "comment" : "Title of the Stats tab.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Stats" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Статистика" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статистика"
+          }
+        }
       }
     },
     "app.tab.tasks" : {
       "comment" : "Title of the Tasks tab.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання" } }
-      }
-    },
-    "app.alert.focus_start_failed" : {
-      "comment" : "Title shown when a focus session cannot be started.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus could not start" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Не вдалося почати фокус" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання"
+          }
+        }
       }
     },
     "category.default.personal" : {
@@ -170,8 +152,18 @@
       "comment" : "A generic action that dismisses without saving or selecting.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Скасувати" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скасувати"
+          }
+        }
       }
     },
     "common.action.ok" : {
@@ -196,48 +188,54 @@
       "comment" : "Label used when no category is assigned.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No category" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без категорії" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No category"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без категорії"
+          }
+        }
       }
     },
     "common.category.uncategorized" : {
       "comment" : "Label for focus time that has no category in Stats.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Uncategorized" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без категорії" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncategorized"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без категорії"
+          }
+        }
       }
     },
     "common.error.try_again" : {
       "comment" : "Generic recovery message shown when no more specific error text is available.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Please try again." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Спробуйте ще раз." } }
-      }
-    },
-    "common.state.off" : {
-      "comment" : "Accessibility value for a disabled setting.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Off" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вимкнено" } }
-      }
-    },
-    "common.state.on" : {
-      "comment" : "Accessibility value for an enabled setting.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "On" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Увімкнено" } }
-      }
-    },
-    "home.alert.timer_unavailable" : {
-      "comment" : "Title of an alert shown when a timer action fails.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Timer unavailable" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер недоступний" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please try again."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спробуйте ще раз."
+          }
+        }
       }
     },
     "common.session_count" : {
@@ -247,19 +245,85 @@
         "en" : {
           "variations" : {
             "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld session" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld sessions" } }
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld session"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld sessions"
+                }
+              }
             }
           }
         },
         "uk" : {
           "variations" : {
             "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld сесія" } },
-              "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld сесії" } },
-              "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld сесій" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld сесії" } }
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld сесії"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld сесій"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld сесія"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld сесії"
+                }
+              }
             }
+          }
+        }
+      }
+    },
+    "common.state.off" : {
+      "comment" : "Accessibility value for a disabled setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вимкнено"
+          }
+        }
+      }
+    },
+    "common.state.on" : {
+      "comment" : "Accessibility value for an enabled setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увімкнено"
           }
         }
       }
@@ -268,1216 +332,885 @@
       "comment" : "VoiceOver label for the date picker in Focus History.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "History date" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дата історії" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History date"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата історії"
+          }
+        }
       }
     },
     "history.empty.description" : {
       "comment" : "Guidance shown when the selected history date has no focus sessions.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose another date or complete a focus session." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виберіть іншу дату або завершіть сесію фокусу." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose another date or complete a focus session."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть іншу дату або завершіть сесію фокусу."
+          }
+        }
       }
     },
     "history.empty.title" : {
       "comment" : "Title shown when the selected history date has no focus sessions.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus sessions" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає сесій фокусу" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No focus sessions"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає сесій фокусу"
+          }
+        }
       }
     },
     "history.row.accessibility" : {
       "comment" : "VoiceOver summary for a focus-history row. Placeholders are task, outcome details, and duration.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, %2$@, %3$@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, %2$@, %3$@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@"
+          }
+        }
       }
     },
     "history.row.cancelled" : {
       "comment" : "Outcome label for a cancelled focus session in history.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancelled" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Скасовано" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelled"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скасовано"
+          }
+        }
       }
     },
     "history.row.completed" : {
       "comment" : "Outcome label for a completed focus session in history.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завершено" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершено"
+          }
+        }
       }
     },
     "history.row.detail_with_category" : {
       "comment" : "History row detail. Placeholders are session outcome and category name.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · %2$@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$@ · %2$@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
       }
     },
     "history.row.unassigned" : {
       "comment" : "Title for a focus session that was not assigned to a task.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unassigned focus" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус без завдання" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unassigned focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фокус без завдання"
+          }
+        }
       }
     },
     "history.summary.focused" : {
       "comment" : "Label for focused time in the history summary.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focused" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У фокусі" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focused"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У фокусі"
+          }
+        }
       }
     },
     "history.title" : {
       "comment" : "Navigation title of the Focus History screen.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus History" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
-      }
-    },
-    "notification.break.body" : {
-      "comment" : "Notification message shown when a break finishes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Ready for another focus session?" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Готові до наступної сесії фокусу?" } }
-      }
-    },
-    "notification.focus.body" : {
-      "comment" : "Notification message shown when a focus session finishes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Great work. Time for a break." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Чудова робота. Час на перерву." } }
-      }
-    },
-    "notification.focus.title" : {
-      "comment" : "Title of the notification shown when focus finishes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus complete" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус завершено" } }
-      }
-    },
-    "notification.long_break.title" : {
-      "comment" : "Title of the notification shown when a long break finishes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break complete" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Довгу перерву завершено" } }
-      }
-    },
-    "notification.short_break.title" : {
-      "comment" : "Title of the notification shown when a short break finishes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Break complete" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Перерву завершено" } }
-      }
-    },
-    "settings.about.section" : {
-      "comment" : "Header for app information in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Про застосунок" } }
-      }
-    },
-    "settings.about.version" : {
-      "comment" : "Label for the app version in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Версія" } }
-      }
-    },
-    "settings.alert.unavailable" : {
-      "comment" : "Title shown when a Settings operation fails.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings unavailable" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Налаштування недоступні" } }
-      }
-    },
-    "settings.appearance.dark" : {
-      "comment" : "Dark appearance option.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Темна" } }
-      }
-    },
-    "settings.appearance.light" : {
-      "comment" : "Light appearance option.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Світла" } }
-      }
-    },
-    "settings.appearance.section" : {
-      "comment" : "Header for appearance preferences in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Appearance" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вигляд" } }
-      }
-    },
-    "settings.appearance.system" : {
-      "comment" : "Appearance option that follows the system setting.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Системна" } }
-      }
-    },
-    "settings.appearance.theme" : {
-      "comment" : "Label for the appearance theme picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Theme" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тема" } }
-      }
-    },
-    "settings.cycle.auto_start_breaks" : {
-      "comment" : "Toggle that automatically starts break sessions.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-start breaks" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Автозапуск перерв" } }
-      }
-    },
-    "settings.cycle.auto_start_focus" : {
-      "comment" : "Toggle that automatically starts focus sessions.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-start focus" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Автозапуск фокусу" } }
-      }
-    },
-    "settings.cycle.every_focus_sessions" : {
-      "comment" : "Frequency for scheduling a long break after a number of focus sessions.",
-      "extractionState" : "manual",
-      "localizations" : {
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "Every %lld focus session" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "Every %lld focus sessions" } }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus History"
           }
         },
         "uk" : {
-          "variations" : {
-            "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "Після кожної %lld сесії фокусу" } },
-              "few" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесій фокусу" } },
-              "many" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесій фокусу" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "Після кожних %lld сесії фокусу" } }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Історія фокусу"
           }
         }
       }
     },
-    "settings.cycle.section" : {
-      "comment" : "Header for focus-cycle preferences in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cycle" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Цикл" } }
-      }
-    },
-    "settings.data.clear" : {
-      "comment" : "Destructive action that begins clearing focus history.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear focus history" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію фокусу" } }
-      }
-    },
-    "settings.data.clear_confirmation.action" : {
-      "comment" : "Destructive confirmation action for clearing focus history.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear History" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію" } }
-      }
-    },
-    "settings.data.clear_confirmation.message" : {
-      "comment" : "Explanation shown before permanently deleting recorded sessions.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Записані сесії буде видалено назавжди. Ваші завдання й налаштування буде збережено." } }
-      }
-    },
-    "settings.data.clear_confirmation.title" : {
-      "comment" : "Title asking the user to confirm clearing focus history.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear focus history?" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Очистити історію фокусу?" } }
-      }
-    },
-    "settings.data.footer" : {
-      "comment" : "Reassurance below history deletion controls.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "An active or paused timer is never removed." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Активний або призупинений таймер ніколи не видаляється." } }
-      }
-    },
-    "settings.data.recorded_sessions" : {
-      "comment" : "Label for the number of recorded focus sessions.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recorded sessions" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Записані сесії" } }
-      }
-    },
-    "settings.data.section" : {
-      "comment" : "Header for stored-data controls in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Data" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дані" } }
-      }
-    },
-    "settings.duration.minutes" : {
-      "comment" : "A timer duration in minutes.",
+    "home.alert.timer_unavailable" : {
+      "comment" : "Title of an alert shown when a timer action fails.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer unavailable"
           }
         },
         "uk" : {
-          "variations" : {
-            "plural" : {
-              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
-              "few" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
-              "many" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } },
-              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер недоступний"
           }
         }
-      }
-    },
-    "settings.feedback.haptics" : {
-      "comment" : "Toggle for haptic feedback.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Haptics" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вібровідгук" } }
-      }
-    },
-    "settings.feedback.notifications" : {
-      "comment" : "Toggle for timer notifications.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сповіщення" } }
-      }
-    },
-    "settings.feedback.section" : {
-      "comment" : "Header for feedback preferences in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Feedback" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Відгук" } }
-      }
-    },
-    "settings.feedback.sounds" : {
-      "comment" : "Toggle for timer sounds.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sounds" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Звуки" } }
-      }
-    },
-    "settings.notifications.permission_required" : {
-      "comment" : "Guidance shown when notification permission is denied.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications for Swish in System Settings to receive timer alerts." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Увімкніть сповіщення для Swish у системних налаштуваннях, щоб отримувати сповіщення таймера." } }
-      }
-    },
-    "settings.timer.focus" : {
-      "comment" : "Label for the focus duration picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Фокус" } }
-      }
-    },
-    "settings.timer.footer" : {
-      "comment" : "Explanation below timer-duration preferences.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Duration changes apply to the next session, never one already in progress." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зміни тривалості застосовуються до наступної сесії, але не до поточної." } }
-      }
-    },
-    "settings.timer.long_break" : {
-      "comment" : "Label for the long-break duration and frequency pickers.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Довга перерва" } }
-      }
-    },
-    "settings.timer.section" : {
-      "comment" : "Header for timer-duration preferences in Settings.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Timer" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер" } }
-      }
-    },
-    "settings.timer.short_break" : {
-      "comment" : "Label for the short-break duration picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Short break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Коротка перерва" } }
-      }
-    },
-    "stats.action.focus_history" : {
-      "comment" : "Action that opens the focus-session history from Stats.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus history" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Історія фокусу" } }
-      }
-    },
-    "stats.categories.chart.accessibility" : {
-      "comment" : "VoiceOver label for the focus-time category chart.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time by category" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу за категоріями" } }
-      }
-    },
-    "stats.categories.empty.description" : {
-      "comment" : "Description shown when Stats has no category data.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed and cancelled focus sessions appear here." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тут з’являться завершені й скасовані сесії фокусу." } }
-      }
-    },
-    "stats.categories.empty.title" : {
-      "comment" : "Title shown when Stats has no category data.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus time yet" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Часу фокусу поки немає" } }
-      }
-    },
-    "stats.categories.title" : {
-      "comment" : "Heading for the category breakdown in Stats.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Top categories" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Найпопулярніші категорії" } }
-      }
-    },
-    "stats.chart.axis.period" : {
-      "comment" : "Accessibility dimension name for time periods in Stats charts.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Period" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Період" } }
-      }
-    },
-    "stats.chart.focus_time.accessibility" : {
-      "comment" : "VoiceOver label for the focus-time chart.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time chart" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Графік часу фокусу" } }
-      }
-    },
-    "stats.chart.sessions.accessibility" : {
-      "comment" : "VoiceOver label for the completed-sessions chart.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed sessions chart" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Графік завершених сесій" } }
-      }
-    },
-    "stats.comparison.change" : {
-      "comment" : "Percentage change against the preceding period. The first placeholder is an absolute percentage and the second names the period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld%% vs %2$@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld%% — %2$@" } }
-      }
-    },
-    "stats.comparison.new" : {
-      "comment" : "Comparison shown when the preceding period had no data. The placeholder names that period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New vs %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Новий результат — %@" } }
-      }
-    },
-    "stats.comparison.no_previous_data" : {
-      "comment" : "Comparison shown when no earlier data is available.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No previous data" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає попередніх даних" } }
-      }
-    },
-    "stats.comparison.period.day" : {
-      "comment" : "Name of the previous day used inside a comparison sentence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "yesterday" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з учора" } }
-      }
-    },
-    "stats.comparison.period.month" : {
-      "comment" : "Name of the previous month used inside a comparison sentence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "last month" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим місяцем" } }
-      }
-    },
-    "stats.comparison.period.week" : {
-      "comment" : "Name of the previous week used inside a comparison sentence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "last week" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим тижнем" } }
-      }
-    },
-    "stats.comparison.period.year" : {
-      "comment" : "Name of the previous year used inside a comparison sentence.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "last year" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "порівняно з минулим роком" } }
-      }
-    },
-    "stats.comparison.unchanged" : {
-      "comment" : "Comparison shown when a metric matches the preceding period. The placeholder names that period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No change vs %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без змін — %@" } }
-      }
-    },
-    "stats.empty.no_focus_recorded" : {
-      "comment" : "Message over the focus-time chart when it has no data.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No focus recorded" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу не записано" } }
-      }
-    },
-    "stats.period.day" : {
-      "comment" : "Day option in the Stats period picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Day" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "День" } }
-      }
-    },
-    "stats.period.month" : {
-      "comment" : "Month option in the Stats period picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Month" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Місяць" } }
-      }
-    },
-    "stats.period.picker" : {
-      "comment" : "VoiceOver label for the Stats period picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Period" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Період" } }
-      }
-    },
-    "stats.period.week" : {
-      "comment" : "Week option in the Stats period picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Week" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Тиждень" } }
-      }
-    },
-    "stats.period.year" : {
-      "comment" : "Year option in the Stats period picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Year" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Рік" } }
-      }
-    },
-    "stats.tasks.description.day" : {
-      "comment" : "Description below the completed-task count for the day period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed today" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані сьогодні" } }
-      }
-    },
-    "stats.tasks.description.month" : {
-      "comment" : "Description below the completed-task count for the month period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this month" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього місяця" } }
-      }
-    },
-    "stats.tasks.description.week" : {
-      "comment" : "Description below the completed-task count for the week period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this week" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього тижня" } }
-      }
-    },
-    "stats.tasks.description.year" : {
-      "comment" : "Description below the completed-task count for the year period.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks completed this year" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання, виконані цього року" } }
-      }
-    },
-    "tasks.action.add" : {
-      "comment" : "Action that opens the new-task editor, or its VoiceOver label.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Додати завдання" } }
-      }
-    },
-    "tasks.action.add_short" : {
-      "comment" : "Short confirmation action in the new-task editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Додати" } }
-      }
-    },
-    "tasks.action.archive" : {
-      "comment" : "Swipe action that archives a task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Archive" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Архівувати" } }
-      }
-    },
-    "tasks.action.create" : {
-      "comment" : "Action in the empty Tasks screen that creates a task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Створити завдання" } }
-      }
-    },
-    "tasks.action.edit" : {
-      "comment" : "Swipe action that edits a task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати" } }
-      }
-    },
-    "tasks.action.save" : {
-      "comment" : "Confirmation action in the task editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зберегти" } }
-      }
-    },
-    "tasks.action.save.accessibility" : {
-      "comment" : "VoiceOver label for saving an edited task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Зберегти завдання" } }
-      }
-    },
-    "tasks.alert.save_failed" : {
-      "comment" : "Title of an alert shown when a task cannot be saved.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Task could not be saved" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Не вдалося зберегти завдання" } }
-      }
-    },
-    "tasks.alert.unavailable" : {
-      "comment" : "Title of an alert shown when a Tasks action fails.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks unavailable" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання недоступні" } }
-      }
-    },
-    "tasks.editor.category" : {
-      "comment" : "Label for the category picker in the task editor.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Category" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Категорія" } }
-      }
-    },
-    "tasks.editor.date" : {
-      "comment" : "Label for the task due-date picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Date" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Дата" } }
-      }
-    },
-    "tasks.editor.due_date" : {
-      "comment" : "Toggle that enables a task due date.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Due date" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Термін виконання" } }
-      }
-    },
-    "tasks.editor.edit.title" : {
-      "comment" : "Navigation title of the edit-task screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit Task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати завдання" } }
-      }
-    },
-    "tasks.editor.focus_estimate" : {
-      "comment" : "Task estimate label. The placeholder is an already localized session count.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus estimate: %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Оцінка фокусу: %@" } }
-      }
-    },
-    "tasks.editor.new.title" : {
-      "comment" : "Navigation title of the new-task screen.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Нове завдання" } }
-      }
-    },
-    "tasks.editor.notes_placeholder" : {
-      "comment" : "Placeholder for optional task notes.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Optional details" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Необов’язкові деталі" } }
-      }
-    },
-    "tasks.editor.notes_section" : {
-      "comment" : "Heading of the task notes section.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Нотатки" } }
-      }
-    },
-    "tasks.editor.plan_section" : {
-      "comment" : "Heading of the task planning section.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Plan" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "План" } }
-      }
-    },
-    "tasks.editor.priority" : {
-      "comment" : "Label for the task priority picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Priority" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Пріоритет" } }
-      }
-    },
-    "tasks.editor.task_section" : {
-      "comment" : "Heading of the task title section.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання" } }
-      }
-    },
-    "tasks.editor.title_placeholder" : {
-      "comment" : "Placeholder for a task title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "What do you want to accomplish?" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Що ви хочете виконати?" } }
-      }
-    },
-    "tasks.empty.all.description" : {
-      "comment" : "Description shown when there are no active tasks.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Plan work in focus sessions, then track progress here." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Плануйте роботу сесіями фокусу й відстежуйте прогрес тут." } }
-      }
-    },
-    "tasks.empty.all.title" : {
-      "comment" : "Title shown when there are no active tasks.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No tasks yet" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдань поки немає" } }
-      }
-    },
-    "tasks.empty.category.description" : {
-      "comment" : "Description shown when a selected category contains no tasks.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose another category or create a task for this one." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виберіть іншу категорію або створіть завдання для цієї." } }
-      }
-    },
-    "tasks.empty.category.title" : {
-      "comment" : "Title shown when a selected category contains no tasks.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No tasks in this category" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У цій категорії немає завдань" } }
-      }
-    },
-    "tasks.filter.all" : {
-      "comment" : "Filter that shows tasks from every category.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Усі" } }
-      }
-    },
-    "tasks.priority.high" : {
-      "comment" : "High task priority option.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Important" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Важливий" } }
-      }
-    },
-    "tasks.priority.high.accessibility" : {
-      "comment" : "VoiceOver label for the high-priority flag.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "High priority" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Високий пріоритет" } }
-      }
-    },
-    "tasks.priority.low" : {
-      "comment" : "Low task priority option.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Низький" } }
-      }
-    },
-    "tasks.priority.normal" : {
-      "comment" : "Normal task priority option.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Normal" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Звичайний" } }
-      }
-    },
-    "tasks.row.complete.accessibility" : {
-      "comment" : "VoiceOver label for marking a task complete. The placeholder is the task title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mark %@ complete" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Позначити виконаним: %@" } }
-      }
-    },
-    "tasks.row.edit.accessibility" : {
-      "comment" : "VoiceOver label for editing a task. The placeholder is the task title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Редагувати: %@" } }
-      }
-    },
-    "tasks.row.reopen.accessibility" : {
-      "comment" : "VoiceOver label for reopening a task. The placeholder is the task title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reopen %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Відкрити знову: %@" } }
-      }
-    },
-    "tasks.row.start_focus.accessibility" : {
-      "comment" : "VoiceOver label for starting focus on a task. The placeholder is the task title.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start focus on %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Почати фокус: %@" } }
-      }
-    },
-    "tasks.row.start_focus.hint" : {
-      "comment" : "VoiceOver hint for starting a focus timer from a task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Starts a focus timer and opens Home" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Запускає таймер фокусу й відкриває вкладку «Головна»" } }
-      }
-    },
-    "tasks.row.timer_active.hint" : {
-      "comment" : "VoiceOver hint shown when another timer prevents starting focus.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Finish or cancel the current timer first" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Спочатку завершіть або скасуйте поточний таймер" } }
       }
     },
     "home.summary.focus_time" : {
       "comment" : "Label for today's accumulated focus time.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus time"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час фокусу"
+          }
+        }
       }
     },
     "home.summary.sessions" : {
       "comment" : "Label for today's completed focus-session count.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sessions" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сесії" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сесії"
+          }
+        }
       }
     },
     "home.summary.tasks_done" : {
       "comment" : "Label for today's completed task count.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tasks done" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виконано" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks done"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виконано"
+          }
+        }
       }
     },
     "home.summary.today" : {
       "comment" : "Heading for today's Home summary.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сьогодні" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сьогодні"
+          }
+        }
       }
     },
     "home.summary.view_all" : {
       "comment" : "Action that opens the full focus history.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "View all" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Переглянути все" } }
-      }
-    },
-    "home.task.choose" : {
-      "comment" : "VoiceOver label for opening the Home task picker when no task is selected.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose a task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вибрати завдання" } }
-      }
-    },
-    "home.task.choose_optional" : {
-      "comment" : "Home task-selector text when no task has been selected.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose a task (optional)" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Завдання (за бажанням)" } }
-      }
-    },
-    "home.task.progress.accessibility" : {
-      "comment" : "VoiceOver description of completed and estimated sessions for the current task.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed: %1$lld of %2$lld" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Виконано: %1$lld із %2$lld" } }
-      }
-    },
-    "home.task.working_on" : {
-      "comment" : "Caption above the task selected for a focus session.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Working on" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У роботі" } }
-      }
-    },
-    "home.task.working_on.accessibility" : {
-      "comment" : "VoiceOver label for the task selected on Home or attached to the active session.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Working on %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "У роботі: %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View all"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переглянути все"
+          }
+        }
       }
     },
     "home.task_picker.active_tasks" : {
       "comment" : "Heading above active tasks in the Home task picker.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Active tasks" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Активні завдання" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active tasks"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активні завдання"
+          }
+        }
       }
     },
     "home.task_picker.empty.description" : {
       "comment" : "Guidance shown when the Home task picker contains no active tasks.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a task from the Tasks tab first." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Спочатку створіть завдання на вкладці «Завдання»." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a task from the Tasks tab first."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спочатку створіть завдання на вкладці «Завдання»."
+          }
+        }
       }
     },
     "home.task_picker.empty.title" : {
       "comment" : "Title shown when the Home task picker contains no active tasks.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No active tasks" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає активних завдань" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No active tasks"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає активних завдань"
+          }
+        }
       }
     },
     "home.task_picker.hint" : {
       "comment" : "VoiceOver hint for the Home task selector.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Selects an optional task for the next focus session" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вибирає необов’язкове завдання для наступної сесії фокусу" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selects an optional task for the next focus session"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибирає необов’язкове завдання для наступної сесії фокусу"
+          }
+        }
       }
     },
     "home.task_picker.no_task" : {
       "comment" : "Option that leaves a focus session without an assigned task.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Без завдання" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без завдання"
+          }
+        }
       }
     },
     "home.task_picker.no_task.description" : {
       "comment" : "Explanation of the unassigned task-picker option.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Keep this focus session unassigned" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Не прив’язувати цю сесію фокусу до завдання" } }
-      }
-    },
-    "home.task_picker.select.accessibility" : {
-      "comment" : "VoiceOver label for selecting a task from the Home task picker.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select %@" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вибрати: %@" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keep this focus session unassigned"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не прив’язувати цю сесію фокусу до завдання"
+          }
+        }
       }
     },
     "home.task_picker.select_no_task" : {
       "comment" : "VoiceOver label for selecting the unassigned task-picker option.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select no task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вибрати варіант без завдання" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select no task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати варіант без завдання"
+          }
+        }
+      }
+    },
+    "home.task_picker.select.accessibility" : {
+      "comment" : "VoiceOver label for selecting a task from the Home task picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати: %@"
+          }
+        }
       }
     },
     "home.task_picker.title" : {
       "comment" : "Navigation title of the Home task picker.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose Task" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Вибрати завдання" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати завдання"
+          }
+        }
+      }
+    },
+    "home.task.choose" : {
+      "comment" : "VoiceOver label for opening the Home task picker when no task is selected.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вибрати завдання"
+          }
+        }
+      }
+    },
+    "home.task.choose_optional" : {
+      "comment" : "Home task-selector text when no task has been selected.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a task (optional)"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання (за бажанням)"
+          }
+        }
+      }
+    },
+    "home.task.progress.accessibility" : {
+      "comment" : "VoiceOver description of completed and estimated sessions for the current task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed: %1$lld of %2$lld"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виконано: %1$lld із %2$lld"
+          }
+        }
+      }
+    },
+    "home.task.working_on" : {
+      "comment" : "Caption above the task selected for a focus session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Working on"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У роботі"
+          }
+        }
+      }
+    },
+    "home.task.working_on.accessibility" : {
+      "comment" : "VoiceOver label for the task selected on Home or attached to the active session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Working on %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У роботі: %@"
+          }
+        }
       }
     },
     "home.timer.accessibility.focus" : {
       "comment" : "VoiceOver label for the focus timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pomodoro timer" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер помодоро" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomodoro timer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер помодоро"
+          }
+        }
       }
     },
     "home.timer.accessibility.long_break" : {
       "comment" : "VoiceOver label for the long-break timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break timer" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер довгої перерви" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long break timer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер довгої перерви"
+          }
+        }
       }
     },
     "home.timer.accessibility.short_break" : {
       "comment" : "VoiceOver label for the short-break timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Short break timer" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер короткої перерви" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short break timer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер короткої перерви"
+          }
+        }
       }
     },
     "home.timer.action.cancel" : {
       "comment" : "VoiceOver label for cancelling the active timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel timer" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Скасувати таймер" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel timer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скасувати таймер"
+          }
+        }
       }
     },
     "home.timer.action.pause" : {
       "comment" : "Action that pauses the active timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Пауза" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пауза"
+          }
+        }
       }
     },
     "home.timer.action.resume" : {
       "comment" : "Action that resumes a paused timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resume" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Продовжити" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продовжити"
+          }
+        }
       }
     },
     "home.timer.action.skip_break" : {
       "comment" : "VoiceOver label for skipping an active break.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Skip break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Пропустити перерву" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропустити перерву"
+          }
+        }
       }
     },
     "home.timer.action.start_break" : {
       "comment" : "Action that starts the selected break timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Почати перерву" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почати перерву"
+          }
+        }
       }
     },
     "home.timer.action.start_focus" : {
       "comment" : "Action that starts a focus timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start focus" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Почати фокус" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почати фокус"
+          }
+        }
       }
     },
     "home.timer.mode.focus" : {
       "comment" : "Title of the Pomodoro focus-timer mode.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pomodoro" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Помодоро" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomodoro"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помодоро"
+          }
+        }
       }
     },
     "home.timer.mode.long_break" : {
       "comment" : "Title of the long-break timer mode.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Long break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Довга перерва" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Довга перерва"
+          }
+        }
       }
     },
     "home.timer.mode.short_break" : {
       "comment" : "Title of the short-break timer mode.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Short break" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Коротка перерва" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коротка перерва"
+          }
+        }
       }
     },
     "home.timer.subtitle.break" : {
       "comment" : "Subtitle shown inside a break timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recharge" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час відпочити" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recharge"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час відпочити"
+          }
+        }
       }
     },
     "home.timer.subtitle.focus" : {
       "comment" : "Subtitle shown inside a focus timer.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus time" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Час фокусу" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus time"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час фокусу"
+          }
+        }
       }
     },
-    "time.compact.hours" : {
-      "comment" : "A compact whole-hour duration.",
+    "Mark %@ complete" : {
+
+    },
+    "notification.break.body" : {
+      "comment" : "Notification message shown when a break finishes.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldh" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%lld год" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ready for another focus session?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готові до наступної сесії фокусу?"
+          }
+        }
       }
     },
-    "time.compact.hours_minutes" : {
-      "comment" : "A compact duration containing hours and minutes.",
+    "notification.focus.body" : {
+      "comment" : "Notification message shown when a focus session finishes.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$lldh %2$lldm" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%1$lld год %2$lld хв" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Great work. Time for a break."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чудова робота. Час на перерву."
+          }
+        }
       }
     },
-    "time.compact.minutes" : {
-      "comment" : "A compact minute duration.",
+    "notification.focus.title" : {
+      "comment" : "Title of the notification shown when focus finishes.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lldm" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus complete"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фокус завершено"
+          }
+        }
       }
     },
-    "time.duration.minutes" : {
-      "comment" : "A timer's planned duration in whole minutes.",
+    "notification.long_break.title" : {
+      "comment" : "Title of the notification shown when a long break finishes.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld min" } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "%lld хв" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long break complete"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Довгу перерву завершено"
+          }
+        }
       }
     },
-    "timer.error.active_session_exists" : {
-      "comment" : "Error shown when starting a timer while another timer is active.",
+    "notification.short_break.title" : {
+      "comment" : "Title of the notification shown when a short break finishes.",
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "A timer is already running." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Таймер уже працює." } }
-      }
-    },
-    "timer.error.focus_cannot_be_skipped" : {
-      "comment" : "Error shown when attempting to skip a focus session.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus sessions cannot be skipped." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Сесії фокусу не можна пропускати." } }
-      }
-    },
-    "timer.error.invalid_transition" : {
-      "comment" : "Error shown when a timer action is unavailable in its current state.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "This timer action is not available right now." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Ця дія з таймером зараз недоступна." } }
-      }
-    },
-    "timer.error.no_active_session" : {
-      "comment" : "Error shown when a timer action requires an active session.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "There is no active timer." } },
-        "uk" : { "stringUnit" : { "state" : "translated", "value" : "Немає активного таймера." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Break complete"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перерву завершено"
+          }
+        }
       }
     },
     "onboarding.accessibility.page" : {
@@ -1804,216 +1537,1934 @@
         }
       }
     },
-    "Completed and cancelled focus sessions appear here." : {
+    "Reopen %@" : {
 
     },
-    "Completed sessions chart" : {
-
-    },
-    "Create a task" : {
-
-    },
-    "Cycle" : {
-
-    },
-    "Data" : {
-
-    },
-    "Date" : {
-
-    },
-    "Due date" : {
-
-    },
-    "Duration changes apply to the next session, never one already in progress." : {
-
-    },
-    "Edit" : {
-
-    },
-    "Edit %@" : {
-
-    },
-    "Edit Task" : {
-
-    },
-    "Every %lld focus sessions" : {
-
-    },
-    "Feedback" : {
-
-    },
-    "Finish or cancel the current timer first" : {
-
-    },
-    "Focus could not start" : {
-
-    },
-    "Focus estimate: %lld %@" : {
+    "settings.about.section" : {
+      "comment" : "Header for app information in Settings.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Focus estimate: %1$lld %2$@"
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Про застосунок"
           }
         }
       }
     },
-    "Focus history" : {
-
+    "settings.about.version" : {
+      "comment" : "Label for the app version in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версія"
+          }
+        }
+      }
     },
-    "Focus History" : {
-
+    "settings.alert.unavailable" : {
+      "comment" : "Title shown when a Settings operation fails.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings unavailable"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштування недоступні"
+          }
+        }
+      }
     },
-    "Focus time" : {
-
+    "settings.appearance.dark" : {
+      "comment" : "Dark appearance option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темна"
+          }
+        }
+      }
     },
-    "Focus time by category" : {
-
+    "settings.appearance.light" : {
+      "comment" : "Light appearance option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Світла"
+          }
+        }
+      }
     },
-    "Focus time chart" : {
-
+    "settings.appearance.section" : {
+      "comment" : "Header for appearance preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appearance"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вигляд"
+          }
+        }
+      }
     },
-    "Haptics" : {
-
+    "settings.appearance.system" : {
+      "comment" : "Appearance option that follows the system setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Системна"
+          }
+        }
+      }
     },
-    "High priority" : {
-
+    "settings.appearance.theme" : {
+      "comment" : "Label for the appearance theme picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        }
+      }
     },
-    "History date" : {
-
+    "settings.cycle.auto_start_breaks" : {
+      "comment" : "Toggle that automatically starts break sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-start breaks"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автозапуск перерв"
+          }
+        }
+      }
     },
-    "Important" : {
-
+    "settings.cycle.auto_start_focus" : {
+      "comment" : "Toggle that automatically starts focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-start focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автозапуск фокусу"
+          }
+        }
+      }
     },
-    "Long break" : {
-
+    "settings.cycle.every_focus_sessions" : {
+      "comment" : "Frequency for scheduling a long break after a number of focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %lld focus session"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %lld focus sessions"
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Після кожних %lld сесій фокусу"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Після кожних %lld сесій фокусу"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Після кожної %lld сесії фокусу"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Після кожних %lld сесії фокусу"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "Low" : {
-
+    "settings.cycle.section" : {
+      "comment" : "Header for focus-cycle preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cycle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цикл"
+          }
+        }
+      }
     },
-    "Mark %@ complete" : {
-
+    "settings.data.clear" : {
+      "comment" : "Destructive action that begins clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear focus history"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити історію фокусу"
+          }
+        }
+      }
     },
-    "New Task" : {
-
+    "settings.data.clear_confirmation.action" : {
+      "comment" : "Destructive confirmation action for clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear History"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити історію"
+          }
+        }
+      }
     },
-    "No category" : {
-
+    "settings.data.clear_confirmation.message" : {
+      "comment" : "Explanation shown before permanently deleting recorded sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записані сесії буде видалено назавжди. Ваші завдання й налаштування буде збережено."
+          }
+        }
+      }
     },
-    "No focus recorded" : {
-
+    "settings.data.clear_confirmation.title" : {
+      "comment" : "Title asking the user to confirm clearing focus history.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear focus history?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очистити історію фокусу?"
+          }
+        }
+      }
     },
-    "No focus sessions" : {
-
+    "settings.data.footer" : {
+      "comment" : "Reassurance below history deletion controls.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An active or paused timer is never removed."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Активний або призупинений таймер ніколи не видаляється."
+          }
+        }
+      }
     },
-    "No focus time yet" : {
-
+    "settings.data.recorded_sessions" : {
+      "comment" : "Label for the number of recorded focus sessions.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recorded sessions"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записані сесії"
+          }
+        }
+      }
     },
-    "None" : {
-
+    "settings.data.section" : {
+      "comment" : "Header for stored-data controls in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дані"
+          }
+        }
+      }
     },
-    "Normal" : {
-
+    "settings.duration.minutes" : {
+      "comment" : "A timer duration in minutes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld min"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld min"
+                }
+              }
+            }
+          }
+        },
+        "uk" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld хв"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld хв"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld хв"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld хв"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "Notes" : {
-
+    "settings.feedback.haptics" : {
+      "comment" : "Toggle for haptic feedback.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haptics"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вібровідгук"
+          }
+        }
+      }
     },
-    "Notifications" : {
-
+    "settings.feedback.notifications" : {
+      "comment" : "Toggle for timer notifications.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сповіщення"
+          }
+        }
+      }
     },
-    "Off" : {
-
+    "settings.feedback.section" : {
+      "comment" : "Header for feedback preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feedback"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відгук"
+          }
+        }
+      }
     },
-    "OK" : {
-
+    "settings.feedback.sounds" : {
+      "comment" : "Toggle for timer sounds.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sounds"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звуки"
+          }
+        }
+      }
     },
-    "On" : {
-
+    "settings.language.app_language" : {
+      "comment" : "Button that opens the app-specific language settings in iOS Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App language"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мова застосунку"
+          }
+        }
+      }
     },
-    "Optional details" : {
-
+    "settings.language.footer" : {
+      "comment" : "Explains where the app language is changed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a language in iOS Settings."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть мову в налаштуваннях iOS."
+          }
+        }
+      }
     },
-    "Period" : {
-
+    "settings.language.section" : {
+      "comment" : "Header for the app language setting.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мова"
+          }
+        }
+      }
     },
-    "Plan" : {
-
+    "settings.notifications.permission_required" : {
+      "comment" : "Guidance shown when notification permission is denied.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable notifications for Swish in System Settings to receive timer alerts."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увімкніть сповіщення для Swish у системних налаштуваннях, щоб отримувати сповіщення таймера."
+          }
+        }
+      }
     },
-    "Priority" : {
-
+    "settings.timer.focus" : {
+      "comment" : "Label for the focus duration picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фокус"
+          }
+        }
+      }
     },
-    "Recorded sessions" : {
-
+    "settings.timer.footer" : {
+      "comment" : "Explanation below timer-duration preferences.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duration changes apply to the next session, never one already in progress."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зміни тривалості застосовуються до наступної сесії, але не до поточної."
+          }
+        }
+      }
     },
-    "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept." : {
-
+    "settings.timer.long_break" : {
+      "comment" : "Label for the long-break duration and frequency pickers.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Long break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Довга перерва"
+          }
+        }
+      }
     },
-    "Reopen %@" : {
-
+    "settings.timer.section" : {
+      "comment" : "Header for timer-duration preferences in Settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер"
+          }
+        }
+      }
     },
-    "Save" : {
-
+    "settings.timer.short_break" : {
+      "comment" : "Label for the short-break duration picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Short break"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коротка перерва"
+          }
+        }
+      }
     },
-    "Save task" : {
-
+    "stats.action.focus_history" : {
+      "comment" : "Action that opens the focus-session history from Stats.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus history"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Історія фокусу"
+          }
+        }
+      }
     },
-    "Sessions" : {
-
+    "stats.categories.chart.accessibility" : {
+      "comment" : "VoiceOver label for the focus-time category chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus time by category"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час фокусу за категоріями"
+          }
+        }
+      }
     },
-    "Settings" : {
-
+    "stats.categories.empty.description" : {
+      "comment" : "Description shown when Stats has no category data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed and cancelled focus sessions appear here."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тут з’являться завершені й скасовані сесії фокусу."
+          }
+        }
+      }
     },
-    "Settings unavailable" : {
-
+    "stats.categories.empty.title" : {
+      "comment" : "Title shown when Stats has no category data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No focus time yet"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часу фокусу поки немає"
+          }
+        }
+      }
     },
-    "Sounds" : {
-
+    "stats.categories.title" : {
+      "comment" : "Heading for the category breakdown in Stats.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top categories"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Найпопулярніші категорії"
+          }
+        }
+      }
     },
-    "Start focus on %@" : {
-
+    "stats.chart.axis.period" : {
+      "comment" : "Accessibility dimension name for time periods in Stats charts.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Period"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Період"
+          }
+        }
+      }
     },
-    "Starts a focus timer and opens Home" : {
-
+    "stats.chart.focus_time.accessibility" : {
+      "comment" : "VoiceOver label for the focus-time chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus time chart"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графік часу фокусу"
+          }
+        }
+      }
     },
-    "Stats" : {
-
+    "stats.chart.sessions.accessibility" : {
+      "comment" : "VoiceOver label for the completed-sessions chart.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Completed sessions chart"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Графік завершених сесій"
+          }
+        }
+      }
     },
-    "Task" : {
-
+    "stats.comparison.change" : {
+      "comment" : "Percentage change against the preceding period. The first placeholder is an absolute percentage and the second names the period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld%% vs %2$@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld%% — %2$@"
+          }
+        }
+      }
     },
-    "Task could not be saved" : {
-
+    "stats.comparison.new" : {
+      "comment" : "Comparison shown when the preceding period had no data. The placeholder names that period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New vs %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новий результат — %@"
+          }
+        }
+      }
     },
-    "Tasks" : {
-
+    "stats.comparison.no_previous_data" : {
+      "comment" : "Comparison shown when no earlier data is available.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No previous data"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає попередніх даних"
+          }
+        }
+      }
     },
-    "Tasks completed during this %@" : {
-
+    "stats.comparison.period.day" : {
+      "comment" : "Name of the previous day used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "yesterday"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "порівняно з учора"
+          }
+        }
+      }
     },
-    "Tasks unavailable" : {
-
+    "stats.comparison.period.month" : {
+      "comment" : "Name of the previous month used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "last month"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "порівняно з минулим місяцем"
+          }
+        }
+      }
     },
-    "Theme" : {
-
+    "stats.comparison.period.week" : {
+      "comment" : "Name of the previous week used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "last week"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "порівняно з минулим тижнем"
+          }
+        }
+      }
     },
-    "This screen will be implemented in its own reviewed batch." : {
-
+    "stats.comparison.period.year" : {
+      "comment" : "Name of the previous year used inside a comparison sentence.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "last year"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "порівняно з минулим роком"
+          }
+        }
+      }
     },
-    "Timer" : {
-
+    "stats.comparison.unchanged" : {
+      "comment" : "Comparison shown when a metric matches the preceding period. The placeholder names that period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No change vs %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без змін — %@"
+          }
+        }
+      }
     },
-    "Today" : {
-
+    "stats.empty.no_focus_recorded" : {
+      "comment" : "Message over the focus-time chart when it has no data.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No focus recorded"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час фокусу не записано"
+          }
+        }
+      }
     },
-    "Top categories" : {
-
+    "stats.period.day" : {
+      "comment" : "Day option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Day"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "День"
+          }
+        }
+      }
     },
-    "Version" : {
-
+    "stats.period.month" : {
+      "comment" : "Month option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Month"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Місяць"
+          }
+        }
+      }
     },
-    "What do you want to accomplish?" : {
-
+    "stats.period.picker" : {
+      "comment" : "VoiceOver label for the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Period"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Період"
+          }
+        }
+      }
+    },
+    "stats.period.week" : {
+      "comment" : "Week option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Week"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тиждень"
+          }
+        }
+      }
+    },
+    "stats.period.year" : {
+      "comment" : "Year option in the Stats period picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Year"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рік"
+          }
+        }
+      }
+    },
+    "stats.tasks.description.day" : {
+      "comment" : "Description below the completed-task count for the day period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks completed today"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання, виконані сьогодні"
+          }
+        }
+      }
+    },
+    "stats.tasks.description.month" : {
+      "comment" : "Description below the completed-task count for the month period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks completed this month"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання, виконані цього місяця"
+          }
+        }
+      }
+    },
+    "stats.tasks.description.week" : {
+      "comment" : "Description below the completed-task count for the week period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks completed this week"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання, виконані цього тижня"
+          }
+        }
+      }
+    },
+    "stats.tasks.description.year" : {
+      "comment" : "Description below the completed-task count for the year period.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks completed this year"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання, виконані цього року"
+          }
+        }
+      }
+    },
+    "tasks.action.add" : {
+      "comment" : "Action that opens the new-task editor, or its VoiceOver label.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додати завдання"
+          }
+        }
+      }
+    },
+    "tasks.action.add_short" : {
+      "comment" : "Short confirmation action in the new-task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додати"
+          }
+        }
+      }
+    },
+    "tasks.action.archive" : {
+      "comment" : "Swipe action that archives a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Archive"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архівувати"
+          }
+        }
+      }
+    },
+    "tasks.action.create" : {
+      "comment" : "Action in the empty Tasks screen that creates a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create a task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити завдання"
+          }
+        }
+      }
+    },
+    "tasks.action.edit" : {
+      "comment" : "Swipe action that edits a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати"
+          }
+        }
+      }
+    },
+    "tasks.action.save" : {
+      "comment" : "Confirmation action in the task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти"
+          }
+        }
+      }
+    },
+    "tasks.action.save.accessibility" : {
+      "comment" : "VoiceOver label for saving an edited task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зберегти завдання"
+          }
+        }
+      }
+    },
+    "tasks.alert.save_failed" : {
+      "comment" : "Title of an alert shown when a task cannot be saved.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task could not be saved"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не вдалося зберегти завдання"
+          }
+        }
+      }
+    },
+    "tasks.alert.unavailable" : {
+      "comment" : "Title of an alert shown when a Tasks action fails.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks unavailable"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання недоступні"
+          }
+        }
+      }
+    },
+    "tasks.editor.category" : {
+      "comment" : "Label for the category picker in the task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Category"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категорія"
+          }
+        }
+      }
+    },
+    "tasks.editor.date" : {
+      "comment" : "Label for the task due-date picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
+          }
+        }
+      }
+    },
+    "tasks.editor.due_date" : {
+      "comment" : "Toggle that enables a task due date.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Due date"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Термін виконання"
+          }
+        }
+      }
+    },
+    "tasks.editor.edit.title" : {
+      "comment" : "Navigation title of the edit-task screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати завдання"
+          }
+        }
+      }
+    },
+    "tasks.editor.focus_estimate" : {
+      "comment" : "Task estimate label. The placeholder is an already localized session count.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus estimate: %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оцінка фокусу: %@"
+          }
+        }
+      }
+    },
+    "tasks.editor.new.title" : {
+      "comment" : "Navigation title of the new-task screen.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нове завдання"
+          }
+        }
+      }
+    },
+    "tasks.editor.notes_placeholder" : {
+      "comment" : "Placeholder for optional task notes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional details"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Необов’язкові деталі"
+          }
+        }
+      }
+    },
+    "tasks.editor.notes_section" : {
+      "comment" : "Heading of the task notes section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нотатки"
+          }
+        }
+      }
+    },
+    "tasks.editor.plan_section" : {
+      "comment" : "Heading of the task planning section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План"
+          }
+        }
+      }
+    },
+    "tasks.editor.priority" : {
+      "comment" : "Label for the task priority picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priority"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пріоритет"
+          }
+        }
+      }
+    },
+    "tasks.editor.task_section" : {
+      "comment" : "Heading of the task title section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Task"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдання"
+          }
+        }
+      }
+    },
+    "tasks.editor.title_placeholder" : {
+      "comment" : "Placeholder for a task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What do you want to accomplish?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Що ви хочете виконати?"
+          }
+        }
+      }
+    },
+    "tasks.empty.all.description" : {
+      "comment" : "Description shown when there are no active tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan work in focus sessions, then track progress here."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плануйте роботу сесіями фокусу й відстежуйте прогрес тут."
+          }
+        }
+      }
+    },
+    "tasks.empty.all.title" : {
+      "comment" : "Title shown when there are no active tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tasks yet"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завдань поки немає"
+          }
+        }
+      }
+    },
+    "tasks.empty.category.description" : {
+      "comment" : "Description shown when a selected category contains no tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose another category or create a task for this one."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Виберіть іншу категорію або створіть завдання для цієї."
+          }
+        }
+      }
+    },
+    "tasks.empty.category.title" : {
+      "comment" : "Title shown when a selected category contains no tasks.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tasks in this category"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У цій категорії немає завдань"
+          }
+        }
+      }
+    },
+    "tasks.filter.all" : {
+      "comment" : "Filter that shows tasks from every category.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усі"
+          }
+        }
+      }
+    },
+    "tasks.priority.high" : {
+      "comment" : "High task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Important"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Важливий"
+          }
+        }
+      }
+    },
+    "tasks.priority.high.accessibility" : {
+      "comment" : "VoiceOver label for the high-priority flag.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High priority"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Високий пріоритет"
+          }
+        }
+      }
+    },
+    "tasks.priority.low" : {
+      "comment" : "Low task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низький"
+          }
+        }
+      }
+    },
+    "tasks.priority.normal" : {
+      "comment" : "Normal task priority option.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Normal"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Звичайний"
+          }
+        }
+      }
+    },
+    "tasks.row.complete.accessibility" : {
+      "comment" : "VoiceOver label for marking a task complete. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mark %@ complete"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позначити виконаним: %@"
+          }
+        }
+      }
+    },
+    "tasks.row.edit.accessibility" : {
+      "comment" : "VoiceOver label for editing a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати: %@"
+          }
+        }
+      }
+    },
+    "tasks.row.reopen.accessibility" : {
+      "comment" : "VoiceOver label for reopening a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reopen %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрити знову: %@"
+          }
+        }
+      }
+    },
+    "tasks.row.start_focus.accessibility" : {
+      "comment" : "VoiceOver label for starting focus on a task. The placeholder is the task title.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start focus on %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Почати фокус: %@"
+          }
+        }
+      }
+    },
+    "tasks.row.start_focus.hint" : {
+      "comment" : "VoiceOver hint for starting a focus timer from a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starts a focus timer and opens Home"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запускає таймер фокусу й відкриває вкладку «Головна»"
+          }
+        }
+      }
+    },
+    "tasks.row.timer_active.hint" : {
+      "comment" : "VoiceOver hint shown when another timer prevents starting focus.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finish or cancel the current timer first"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спочатку завершіть або скасуйте поточний таймер"
+          }
+        }
+      }
+    },
+    "time.compact.hours" : {
+      "comment" : "A compact whole-hour duration.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldh"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld год"
+          }
+        }
+      }
+    },
+    "time.compact.hours_minutes" : {
+      "comment" : "A compact duration containing hours and minutes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lldh %2$lldm"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld год %2$lld хв"
+          }
+        }
+      }
+    },
+    "time.compact.minutes" : {
+      "comment" : "A compact minute duration.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldm"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld хв"
+          }
+        }
+      }
+    },
+    "time.duration.minutes" : {
+      "comment" : "A timer's planned duration in whole minutes.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld хв"
+          }
+        }
+      }
+    },
+    "timer.error.active_session_exists" : {
+      "comment" : "Error shown when starting a timer while another timer is active.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A timer is already running."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер уже працює."
+          }
+        }
+      }
+    },
+    "timer.error.focus_cannot_be_skipped" : {
+      "comment" : "Error shown when attempting to skip a focus session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Focus sessions cannot be skipped."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сесії фокусу не можна пропускати."
+          }
+        }
+      }
+    },
+    "timer.error.invalid_transition" : {
+      "comment" : "Error shown when a timer action is unavailable in its current state.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This timer action is not available right now."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ця дія з таймером зараз недоступна."
+          }
+        }
+      }
+    },
+    "timer.error.no_active_session" : {
+      "comment" : "Error shown when a timer action requires an active session.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There is no active timer."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає активного таймера."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

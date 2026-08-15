@@ -518,11 +518,40 @@ final class SwishUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Вигляд"].exists)
 
         app.swipeUp()
+        XCTAssertTrue(app.staticTexts["Мова"].waitForExistence(timeout: 2))
+        let languageButton = app.buttons["settings.language"]
+        XCTAssertTrue(languageButton.exists)
+        XCTAssertTrue(languageButton.label.contains("Мова застосунку"))
+        XCTAssertTrue(languageButton.label.contains("Українська"))
+        let languageScreenshot = XCTAttachment(screenshot: app.screenshot())
+        languageScreenshot.name = "Ukrainian Language Setting"
+        languageScreenshot.lifetime = .keepAlways
+        add(languageScreenshot)
+
+        app.swipeUp()
         XCTAssertTrue(app.staticTexts["Дані"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Записані сесії"].exists)
         XCTAssertTrue(app.buttons["Очистити історію фокусу"].exists)
         XCTAssertTrue(app.staticTexts["Про застосунок"].exists)
         XCTAssertTrue(app.staticTexts["Версія"].exists)
+    }
+
+    @MainActor
+    func testOpensAppLanguageSettings() throws {
+        let app = makeApp(showSettings: true)
+        let systemSettings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
+        app.launch()
+
+        app.swipeUp()
+        app.swipeUp()
+        let languageButton = app.buttons["settings.language"]
+        XCTAssertTrue(languageButton.waitForExistence(timeout: 2))
+        languageButton.tap()
+
+        XCTAssertTrue(
+            systemSettings.wait(for: .runningForeground, timeout: 3),
+            "The Language row should open Swish's page in iOS Settings"
+        )
     }
 
     @MainActor

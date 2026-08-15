@@ -4,6 +4,8 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(NotificationPermissionService.self) private var notificationPermissionService
+    @Environment(\.locale) private var locale
+    @Environment(\.openURL) private var openURL
     @Query private var sessions: [FocusSession]
 
     @State private var errorMessage: String?
@@ -21,6 +23,7 @@ struct SettingsView: View {
                 cycleSection
                 feedbackSection
                 appearanceSection
+                languageSection
                 dataSection
                 aboutSection
             }
@@ -179,6 +182,53 @@ struct SettingsView: View {
                 }
             }
             .accessibilityIdentifier("settings.appearance")
+        }
+    }
+
+    private var languageSection: some View {
+        Section {
+            Button {
+                guard let url = AppLanguagePresentation.settingsURL else { return }
+                openURL(url)
+            } label: {
+                HStack(spacing: 12) {
+                    Label(
+                        String(
+                            localized: "settings.language.app_language",
+                            defaultValue: "App language"
+                        ),
+                        systemImage: "globe"
+                    )
+
+                    Spacer()
+
+                    Text(
+                        verbatim: AppLanguagePresentation.currentLanguageName(
+                            locale: locale
+                        )
+                    )
+                    .foregroundStyle(.secondary)
+
+                    Image(systemName: "arrow.up.forward.app")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .accessibilityIdentifier("settings.language")
+        } header: {
+            Text(
+                String(
+                    localized: "settings.language.section",
+                    defaultValue: "Language"
+                )
+            )
+        } footer: {
+            Text(
+                String(
+                    localized: "settings.language.footer",
+                    defaultValue: "Choose a language in iOS Settings."
+                )
+            )
         }
     }
 
