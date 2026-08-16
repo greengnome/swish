@@ -18,7 +18,12 @@ struct TimerEngineLifecycleTests {
         #expect(session.endDate == harness.startDate.addingTimeInterval(1_500))
         #expect(harness.store.sessions.count == 1)
         #expect(harness.notifications.schedules == [
-            .init(id: session.id, kind: .focus, date: session.endDate!)
+            .init(
+                id: session.id,
+                kind: .focus,
+                date: session.endDate!,
+                soundEnabled: true
+            )
         ])
     }
 
@@ -42,6 +47,41 @@ struct TimerEngineLifecycleTests {
         try harness.engine.startFocus()
 
         #expect(harness.notifications.schedules.isEmpty)
+    }
+
+    @Test("Notification preference changes persist through the timer store")
+    func persistsNotificationPreference() throws {
+        let harness = TimerEngineHarness()
+
+        try harness.engine.setNotificationsEnabled(false)
+
+        #expect(!harness.settings.notificationsEnabled)
+        #expect(harness.store.saveCount == 1)
+    }
+
+    @Test("Disabled sounds schedule a silent notification")
+    func respectsDisabledSounds() throws {
+        let settings = PomodoroSettings(soundEnabled: false)
+        let harness = TimerEngineHarness(settings: settings)
+
+        try harness.engine.startFocus()
+
+        #expect(harness.notifications.schedules.first?.soundEnabled == false)
+    }
+
+    @Test("Haptic feedback follows the user preference")
+    func respectsHapticPreference() throws {
+        let enabledHarness = TimerEngineHarness()
+        try enabledHarness.engine.startFocus()
+        try enabledHarness.engine.pause()
+        #expect(enabledHarness.feedback.events == [.started, .paused])
+
+        let disabledHarness = TimerEngineHarness(
+            settings: PomodoroSettings(hapticsEnabled: false)
+        )
+        try disabledHarness.engine.startFocus()
+        try disabledHarness.engine.pause()
+        #expect(disabledHarness.feedback.events.isEmpty)
     }
 
     @Test("A second session cannot start while one is active")

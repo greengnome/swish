@@ -4,6 +4,7 @@ import SwiftUI
 struct ContentView: View {
     @Environment(TimerEngine.self) private var timerEngine
     @Environment(NotificationPermissionService.self) private var notificationPermissionService
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var selectedTab: AppTab
     @State private var startFocusError: String?
@@ -85,6 +86,14 @@ struct ContentView: View {
         } message: {
             Text(startFocusError ?? String(localized: .commonErrorTryAgain))
         }
+        .task {
+            await synchronizeNotificationPreference()
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                Task { await synchronizeNotificationPreference() }
+            }
+        }
     }
 
     private var startFocusErrorIsPresented: Binding<Bool> {
@@ -96,9 +105,7 @@ struct ContentView: View {
 
     private func startFocus(on task: FocusTask) {
         Task { @MainActor in
-            if timerEngine.settings.notificationsEnabled {
-                _ = try? await notificationPermissionService.requestAuthorizationIfNeeded()
-            }
+            await requestNotificationPermissionIfNeeded()
 
             do {
                 try timerEngine.startFocus(task: task)
@@ -106,6 +113,37 @@ struct ContentView: View {
             } catch {
                 startFocusError = error.localizedDescription
             }
+        }
+    }
+
+    private func requestNotificationPermissionIfNeeded() async {
+        guard timerEngine.settings.notificationsEnabled else { return }
+
+        do {
+            let isAuthorized = try await notificationPermissionService
+                .requestAuthorizationIfNeeded()
+            if !isAuthorized {
+                try timerEngine.setNotificationsEnabled(false)
+            }
+        } catch {
+            try? timerEngine.setNotificationsEnabled(false)
+            startFocusError = error.localizedDescription
+        }
+    }
+
+    private func synchronizeNotificationPreference() async {
+        await notificationPermissionService.refreshAuthorizationStatus()
+        guard
+            notificationPermissionService.isDenied,
+            timerEngine.settings.notificationsEnabled
+        else {
+            return
+        }
+
+        do {
+            try timerEngine.setNotificationsEnabled(false)
+        } catch {
+            startFocusError = error.localizedDescription
         }
     }
 }

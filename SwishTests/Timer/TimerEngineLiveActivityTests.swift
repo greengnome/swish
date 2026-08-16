@@ -6,7 +6,9 @@ import Testing
 struct TimerEngineLiveActivityTests {
     @Test("Starting, pausing, and resuming synchronize the same session")
     func synchronizesRunningLifecycle() throws {
-        let harness = TimerEngineHarness()
+        let harness = TimerEngineHarness(
+            settings: PomodoroSettings(showTaskTitlesOnLockScreen: true)
+        )
         let task = FocusTask(title: "Prepare release")
 
         let session = try harness.engine.startFocus(task: task)

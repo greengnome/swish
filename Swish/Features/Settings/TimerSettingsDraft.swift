@@ -15,6 +15,7 @@ struct TimerSettingsDraft: Equatable {
     var soundEnabled: Bool
     var hapticsEnabled: Bool
     var notificationsEnabled: Bool
+    var showTaskTitlesOnLockScreen: Bool
 
     init(settings: PomodoroSettings) {
         focusMinutes = Self.minutes(from: settings.focusDuration)
@@ -26,6 +27,7 @@ struct TimerSettingsDraft: Equatable {
         soundEnabled = settings.soundEnabled
         hapticsEnabled = settings.hapticsEnabled
         notificationsEnabled = settings.notificationsEnabled
+        showTaskTitlesOnLockScreen = settings.showTaskTitlesOnLockScreen
     }
 
     func apply(to settings: PomodoroSettings) {
@@ -38,6 +40,7 @@ struct TimerSettingsDraft: Equatable {
         settings.soundEnabled = soundEnabled
         settings.hapticsEnabled = hapticsEnabled
         settings.notificationsEnabled = notificationsEnabled
+        settings.showTaskTitlesOnLockScreen = showTaskTitlesOnLockScreen
     }
 
     private static func minutes(from duration: TimeInterval) -> Int {

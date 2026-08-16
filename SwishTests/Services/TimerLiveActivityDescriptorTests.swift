@@ -19,7 +19,12 @@ struct TimerLiveActivityDescriptorTests {
             task: task
         )
 
-        let descriptor = try #require(TimerLiveActivityDescriptor(session: session))
+        let descriptor = try #require(
+            TimerLiveActivityDescriptor(
+                session: session,
+                showTaskTitle: true
+            )
+        )
 
         #expect(descriptor.attributes.sessionID == id)
         #expect(descriptor.attributes.kind == .focus)
@@ -27,6 +32,22 @@ struct TimerLiveActivityDescriptorTests {
         #expect(descriptor.attributes.plannedDuration == 1_500)
         #expect(descriptor.attributes.taskTitle == "Prepare release")
         #expect(descriptor.contentState.phase == .running(endDate: endDate))
+    }
+
+    @Test("Task titles are private by default")
+    func redactsTaskTitleByDefault() throws {
+        let session = FocusSession(
+            kind: .focus,
+            plannedDuration: 1_500,
+            endDate: Date(timeIntervalSince1970: 2_500),
+            task: FocusTask(title: "Confidential plan")
+        )
+
+        let descriptor = try #require(
+            TimerLiveActivityDescriptor(session: session)
+        )
+
+        #expect(descriptor.attributes.taskTitle == nil)
     }
 
     @Test("Every session kind maps to a stable Live Activity kind", arguments: [

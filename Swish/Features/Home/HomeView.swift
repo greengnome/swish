@@ -73,7 +73,6 @@ struct HomeView: View {
             }
         }
         .task {
-            await notificationPermissionService.refreshAuthorizationStatus()
             refreshTimer()
         }
         .onChange(of: scenePhase) {
@@ -172,6 +171,7 @@ struct HomeView: View {
                 startSelectedMode()
             }
         } catch {
+            try? timerEngine.setNotificationsEnabled(false)
             errorMessage = error.localizedDescription
         }
     }
@@ -181,9 +181,7 @@ struct HomeView: View {
         let task = selectedTask
 
         Task { @MainActor in
-            if timerEngine.settings.notificationsEnabled {
-                _ = try? await notificationPermissionService.requestAuthorizationIfNeeded()
-            }
+            await requestNotificationPermissionIfNeeded()
 
             do {
                 switch kind {
@@ -197,6 +195,24 @@ struct HomeView: View {
             } catch {
                 errorMessage = error.localizedDescription
             }
+        }
+    }
+
+    private func requestNotificationPermissionIfNeeded() async {
+        guard timerEngine.settings.notificationsEnabled else { return }
+
+        do {
+            let isAuthorized = try await notificationPermissionService
+                .requestAuthorizationIfNeeded()
+            if !isAuthorized {
+                try timerEngine.setNotificationsEnabled(false)
+                errorMessage = String(
+                    localized: "settings.notifications.permission_required",
+                    defaultValue: "Enable notifications for Swish in System Settings to receive timer alerts."
+                )
+            }
+        } catch {
+            errorMessage = error.localizedDescription
         }
     }
 

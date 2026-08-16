@@ -8,6 +8,7 @@ struct TasksView: View {
 
     @State private var selectedFilter = TaskListFilter.all
     @State private var editorDestination: TaskEditorDestination?
+    @State private var isArchivedTasksPresented = false
     @State private var errorMessage: String?
 
     let canStartFocus: Bool
@@ -42,6 +43,21 @@ struct TasksView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        isArchivedTasksPresented = true
+                    } label: {
+                        Label(
+                            String(
+                                localized: "tasks.archived.title",
+                                defaultValue: "Archived Tasks"
+                            ),
+                            systemImage: "archivebox"
+                        )
+                    }
+                    .accessibilityIdentifier("tasks.archived")
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
                         editorDestination = .create
                     } label: {
                         Label {
@@ -59,6 +75,11 @@ struct TasksView: View {
                 task: destination.task,
                 categories: activeCategories
             )
+        }
+        .sheet(isPresented: $isArchivedTasksPresented) {
+            NavigationStack {
+                ArchivedTasksView()
+            }
         }
         .alert(
             String(localized: .tasksAlertUnavailable),

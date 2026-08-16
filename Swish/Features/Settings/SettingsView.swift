@@ -1,15 +1,18 @@
 import SwiftData
 import SwiftUI
+import UIKit
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(NotificationPermissionService.self) private var notificationPermissionService
     @Environment(\.locale) private var locale
     @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
     @Query private var sessions: [FocusSession]
 
     @State private var errorMessage: String?
     @State private var isClearHistoryConfirmationPresented = false
+    @State private var isNotificationSettingsAlertPresented = false
     @Bindable private var settings: PomodoroSettings
 
     init(settings: PomodoroSettings) {
@@ -22,6 +25,7 @@ struct SettingsView: View {
                 timerSection
                 cycleSection
                 feedbackSection
+                privacySection
                 appearanceSection
                 languageSection
                 dataSection
@@ -42,6 +46,33 @@ struct SettingsView: View {
             Button(String(localized: .commonActionOk), role: .cancel) {}
         } message: {
             Text(errorMessage ?? String(localized: .commonErrorTryAgain))
+        }
+        .alert(
+            String(
+                localized: "settings.notifications.permission_required.title",
+                defaultValue: "Notifications are off"
+            ),
+            isPresented: $isNotificationSettingsAlertPresented
+        ) {
+            Button(
+                String(
+                    localized: "settings.notifications.open_settings",
+                    defaultValue: "Open Settings"
+                )
+            ) {
+                guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                openURL(url)
+            }
+            Button(String(localized: .commonActionCancel), role: .cancel) {}
+        } message: {
+            Text(
+                String(
+                    localized: "settings.notifications.permission_required",
+                    defaultValue: "Enable notifications for Swish in System Settings to receive timer alerts."
+                )
+            )
         }
         .confirmationDialog(
             String(localized: "settings.data.clear_confirmation.title", defaultValue: "Clear focus history?"),
@@ -65,6 +96,14 @@ struct SettingsView: View {
                     defaultValue: "Recorded sessions will be permanently deleted. Your tasks and preferences will be kept."
                 )
             )
+        }
+        .task {
+            await synchronizeNotificationPreference()
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                Task { await synchronizeNotificationPreference() }
+            }
         }
     }
 
@@ -164,7 +203,73 @@ struct SettingsView: View {
 
     private var aboutSection: some View {
         Section(String(localized: "settings.about.section", defaultValue: "About")) {
+            if let privacyPolicyURL = AppExternalLinks.privacyPolicyURL {
+                Link(destination: privacyPolicyURL) {
+                    externalLinkLabel(
+                        String(
+                            localized: "settings.about.privacy_policy",
+                            defaultValue: "Privacy Policy"
+                        )
+                    )
+                }
+                .accessibilityIdentifier("settings.privacyPolicy")
+            }
+
+            if let supportURL = AppExternalLinks.supportURL {
+                Link(destination: supportURL) {
+                    externalLinkLabel(
+                        String(
+                            localized: "settings.about.support",
+                            defaultValue: "Support"
+                        )
+                    )
+                }
+                .accessibilityIdentifier("settings.support")
+            }
+
             LabeledContent(String(localized: "settings.about.version", defaultValue: "Version"), value: appVersion)
+        }
+    }
+
+    private func externalLinkLabel(_ title: String) -> some View {
+        HStack {
+            Text(verbatim: title)
+            Spacer()
+            Image(systemName: "arrow.up.right")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private var privacySection: some View {
+        Section {
+            Toggle(
+                String(
+                    localized: "settings.privacy.show_task_titles",
+                    defaultValue: "Show task names on Lock Screen"
+                ),
+                isOn: settingBinding(\.showTaskTitlesOnLockScreen)
+            )
+            .accessibilityIdentifier("settings.showTaskTitlesOnLockScreen")
+            .accessibilityValue(
+                SettingsPresentation.toggleState(
+                    isOn: settings.showTaskTitlesOnLockScreen
+                )
+            )
+        } header: {
+            Text(
+                String(
+                    localized: "settings.privacy.section",
+                    defaultValue: "Privacy"
+                )
+            )
+        } footer: {
+            Text(
+                String(
+                    localized: "settings.privacy.footer",
+                    defaultValue: "When off, Live Activities show the timer without your task name."
+                )
+            )
         }
     }
 
@@ -360,10 +465,7 @@ struct SettingsView: View {
                 if !isAuthorized {
                     settings.notificationsEnabled = false
                     persistSettings()
-                    errorMessage = String(
-                        localized: "settings.notifications.permission_required",
-                        defaultValue: "Enable notifications for Swish in System Settings to receive timer alerts."
-                    )
+                    isNotificationSettingsAlertPresented = true
                 }
             } catch {
                 settings.notificationsEnabled = false
@@ -371,6 +473,19 @@ struct SettingsView: View {
                 errorMessage = error.localizedDescription
             }
         }
+    }
+
+    private func synchronizeNotificationPreference() async {
+        await notificationPermissionService.refreshAuthorizationStatus()
+        guard
+            notificationPermissionService.isDenied,
+            settings.notificationsEnabled
+        else {
+            return
+        }
+
+        settings.notificationsEnabled = false
+        persistSettings()
     }
 
     private func clearHistory() {

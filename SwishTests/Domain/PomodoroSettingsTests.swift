@@ -13,6 +13,10 @@ struct PomodoroSettingsTests {
         #expect(settings.longBreakEvery == 4)
         #expect(!settings.autoStartBreaks)
         #expect(!settings.autoStartFocus)
+        #expect(settings.soundEnabled)
+        #expect(settings.hapticsEnabled)
+        #expect(settings.notificationsEnabled)
+        #expect(!settings.showTaskTitlesOnLockScreen)
     }
 
     @Test("Duration lookup uses the selected session kind", arguments: [

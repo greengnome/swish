@@ -16,4 +16,15 @@ nonisolated enum TimerLiveActivityPresentation {
         let elapsedTime = plannedDuration - max(0, remainingTime)
         return min(1, max(0, elapsedTime / plannedDuration))
     }
+
+    static func expirationDate(
+        for state: TimerLiveActivityAttributes.ContentState
+    ) -> Date? {
+        switch state.phase {
+        case let .running(endDate):
+            endDate
+        case .paused:
+            nil
+        }
+    }
 }

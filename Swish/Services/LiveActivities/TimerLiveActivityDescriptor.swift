@@ -5,7 +5,7 @@ nonisolated struct TimerLiveActivityDescriptor: Equatable, Sendable {
     let contentState: TimerLiveActivityAttributes.ContentState
 
     @MainActor
-    init?(session: FocusSession) {
+    init?(session: FocusSession, showTaskTitle: Bool = false) {
         let contentState: TimerLiveActivityAttributes.ContentState
 
         switch session.state {
@@ -27,7 +27,7 @@ nonisolated struct TimerLiveActivityDescriptor: Equatable, Sendable {
             kind: .init(sessionKind: session.kind),
             startedAt: session.startedAt,
             plannedDuration: session.plannedDuration,
-            taskTitle: session.task?.title
+            taskTitle: showTaskTitle ? session.task?.title : nil
         )
         self.contentState = contentState
     }

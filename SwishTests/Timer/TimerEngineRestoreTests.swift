@@ -54,7 +54,12 @@ struct TimerEngineRestoreTests {
         #expect(harness.engine.currentSession === session)
         #expect(harness.engine.remainingTime == 1_400)
         #expect(harness.notifications.schedules == [
-            .init(id: session.id, kind: .focus, date: end)
+            .init(
+                id: session.id,
+                kind: .focus,
+                date: end,
+                soundEnabled: true
+            )
         ])
     }
 }

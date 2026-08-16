@@ -25,6 +25,10 @@ final class NotificationPermissionService {
         }
     }
 
+    var isDenied: Bool {
+        authorizationStatus == .denied
+    }
+
     func refreshAuthorizationStatus() async {
         authorizationStatus = await center.authorizationStatus()
     }

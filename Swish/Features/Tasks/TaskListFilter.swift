@@ -24,6 +24,12 @@ enum TaskListPresentation {
             .sorted(by: comesBefore)
     }
 
+    static func archivedTasks(from tasks: [FocusTask]) -> [FocusTask] {
+        tasks
+            .filter(\.isArchived)
+            .sorted(by: comesBefore)
+    }
+
     nonisolated private static func comesBefore(
         _ lhs: FocusTask,
         _ rhs: FocusTask

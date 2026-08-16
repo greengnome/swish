@@ -1,0 +1,6 @@
+.DS_Store
+.codex/
+DerivedData/
+*.xcresult
+*.xcarchive
+Swish.xcodeproj/xcuserdata/
