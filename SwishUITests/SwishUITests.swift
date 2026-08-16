@@ -567,21 +567,20 @@ final class SwishUITests: XCTestCase {
         tapSwitch(sounds)
         XCTAssertTrue(waitForValue("Off", of: sounds))
 
-        app.swipeUp()
+        let appearance = app.descendants(matching: .any)["settings.appearance"]
         XCTAssertTrue(
-            app.descendants(matching: .any)["settings.appearance"]
-                .waitForExistence(timeout: 2)
+            scrollToElement(appearance, in: app),
+            "Appearance settings should be reachable by scrolling"
         )
         XCTAssertEqual(
             app.switches["settings.showTaskTitlesOnLockScreen"].value as? String,
             "Off"
         )
 
-        app.swipeUp()
-        app.swipeUp()
+        let support = app.descendants(matching: .any)["settings.support"]
         XCTAssertTrue(
-            app.descendants(matching: .any)["settings.support"]
-                .waitForExistence(timeout: 2)
+            scrollToElement(support, in: app),
+            "Support settings should be reachable by scrolling"
         )
     }
 
@@ -607,23 +606,33 @@ final class SwishUITests: XCTestCase {
         XCTAssertEqual(autoStartBreaks.label, "Автозапуск перерв")
         XCTAssertEqual(autoStartBreaks.value as? String, "Вимкнено")
 
-        app.swipeUp()
-        XCTAssertTrue(app.staticTexts["Відгук"].waitForExistence(timeout: 2))
+        XCTAssertTrue(
+            scrollToElement(app.staticTexts["Відгук"], in: app),
+            "Розділ відгуку має бути доступним після прокручування"
+        )
         XCTAssertEqual(app.switches["settings.sound"].label, "Звуки сповіщень")
         XCTAssertEqual(app.switches["settings.haptics"].label, "Вібровідгук")
         XCTAssertEqual(app.switches["settings.notifications"].label, "Сповіщення")
-        XCTAssertTrue(app.staticTexts["Вигляд"].exists)
 
-        XCTAssertTrue(app.staticTexts["Конфіденційність"].exists)
+        XCTAssertTrue(
+            scrollToElement(app.staticTexts["Конфіденційність"], in: app),
+            "Розділ конфіденційності має бути доступним після прокручування"
+        )
         XCTAssertEqual(
             app.switches["settings.showTaskTitlesOnLockScreen"].label,
             "Показувати назви завдань на екрані блокування"
         )
+        XCTAssertTrue(
+            scrollToElement(app.staticTexts["Вигляд"], in: app),
+            "Розділ вигляду має бути доступним після прокручування"
+        )
 
-        app.swipeUp()
-        XCTAssertTrue(app.staticTexts["Мова"].waitForExistence(timeout: 2))
         let languageButton = app.buttons["settings.language"]
-        XCTAssertTrue(languageButton.exists)
+        XCTAssertTrue(
+            scrollToElement(languageButton, in: app),
+            "Налаштування мови має бути доступним після прокручування"
+        )
+        XCTAssertTrue(app.staticTexts["Мова"].exists)
         XCTAssertTrue(languageButton.label.contains("Мова застосунку"))
         XCTAssertTrue(languageButton.label.contains("Українська"))
         let languageScreenshot = XCTAttachment(screenshot: app.screenshot())
@@ -631,11 +640,16 @@ final class SwishUITests: XCTestCase {
         languageScreenshot.lifetime = .keepAlways
         add(languageScreenshot)
 
-        app.swipeUp()
-        XCTAssertTrue(app.staticTexts["Дані"].waitForExistence(timeout: 2))
+        XCTAssertTrue(
+            scrollToElement(app.staticTexts["Дані"], in: app),
+            "Розділ даних має бути доступним після прокручування"
+        )
         XCTAssertTrue(app.staticTexts["Записані сесії"].exists)
         XCTAssertTrue(app.buttons["Очистити історію фокусу"].exists)
-        XCTAssertTrue(app.staticTexts["Про застосунок"].exists)
+        XCTAssertTrue(
+            scrollToElement(app.staticTexts["Про застосунок"], in: app),
+            "Розділ про застосунок має бути доступним після прокручування"
+        )
         XCTAssertTrue(app.staticTexts["Версія"].exists)
     }
 
@@ -645,10 +659,11 @@ final class SwishUITests: XCTestCase {
         let systemSettings = XCUIApplication(bundleIdentifier: "com.apple.Preferences")
         app.launch()
 
-        app.swipeUp()
-        app.swipeUp()
         let languageButton = app.buttons["settings.language"]
-        XCTAssertTrue(languageButton.waitForExistence(timeout: 2))
+        XCTAssertTrue(
+            scrollToElement(languageButton, in: app),
+            "The Language row should be reachable by scrolling"
+        )
         languageButton.tap()
 
         XCTAssertTrue(
@@ -675,10 +690,11 @@ final class SwishUITests: XCTestCase {
                 .waitForExistence(timeout: 2)
         )
 
-        app.swipeUp()
-        app.swipeUp()
         let clearHistory = app.buttons["settings.clearHistory"]
-        XCTAssertTrue(clearHistory.waitForExistence(timeout: 2))
+        XCTAssertTrue(
+            scrollToElement(clearHistory, in: app),
+            "Clear History should be reachable by scrolling"
+        )
         XCTAssertTrue(clearHistory.isEnabled)
         clearHistory.tap()
 
@@ -739,6 +755,21 @@ final class SwishUITests: XCTestCase {
         element.coordinate(
             withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)
         ).tap()
+    }
+
+    private func scrollToElement(
+        _ element: XCUIElement,
+        in app: XCUIApplication,
+        maxSwipes: Int = 5
+    ) -> Bool {
+        for attempt in 0...maxSwipes {
+            if element.exists && element.isHittable {
+                return true
+            }
+            guard attempt < maxSwipes else { break }
+            app.swipeUp()
+        }
+        return false
     }
 
     private func makeApp(
