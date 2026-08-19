@@ -236,30 +236,49 @@ final class SwishUITests: XCTestCase {
             springboard.wait(for: .runningForeground, timeout: 3),
             "Starting a timer should leave a running Live Activity visible outside Swish."
         )
-        Thread.sleep(forTimeInterval: 2)
-
-        let compactScreenshot = XCTAttachment(
-            screenshot: XCUIScreen.main.screenshot()
-        )
-        compactScreenshot.name = "Running focus Live Activity — compact"
-        compactScreenshot.lifetime = .keepAlways
-        add(compactScreenshot)
-
-        springboard.coordinate(
-            withNormalizedOffset: CGVector(dx: 0.5, dy: 0.04)
-        ).press(forDuration: 1)
+        let activityContainer = springboard.descendants(matching: .any)
+            .matching(
+                NSPredicate(
+                    format: "identifier CONTAINS %@",
+                    "WidgetRenderer-Activities"
+                )
+            )
+            .firstMatch
 
         XCTAssertTrue(
-            springboard.staticTexts["Focus"].waitForExistence(timeout: 3),
+            activityContainer.waitForExistence(timeout: 10),
+            "The Live Activity container should become available in SpringBoard."
+        )
+
+        addScreenshot(named: "Running focus Live Activity — compact")
+
+        activityContainer.press(forDuration: 1)
+
+        let expandedTitle = springboard.staticTexts["Focus"]
+        var didRevealExpandedActivity = expandedTitle.waitForExistence(timeout: 10)
+        if !didRevealExpandedActivity {
+            addScreenshot(named: "Running focus Live Activity — first expansion attempt")
+
+            // SpringBoard's hosted activity renderer can briefly expose its
+            // container before its accessibility content is ready. Collapse
+            // it and make one fresh expansion attempt before failing.
+            springboard.coordinate(
+                withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3)
+            ).tap()
+            XCTAssertTrue(
+                activityContainer.waitForExistence(timeout: 5),
+                "The Live Activity should remain available for a retry."
+            )
+            activityContainer.press(forDuration: 1)
+            didRevealExpandedActivity = expandedTitle.waitForExistence(timeout: 10)
+        }
+
+        XCTAssertTrue(
+            didRevealExpandedActivity,
             "Long-pressing the timer should reveal the expanded Live Activity."
         )
 
-        let expandedScreenshot = XCTAttachment(
-            screenshot: XCUIScreen.main.screenshot()
-        )
-        expandedScreenshot.name = "Running focus Live Activity — expanded"
-        expandedScreenshot.lifetime = .keepAlways
-        add(expandedScreenshot)
+        addScreenshot(named: "Running focus Live Activity — expanded")
     }
 
     @MainActor
@@ -806,6 +825,13 @@ final class SwishUITests: XCTestCase {
             object: element
         )
         return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed
+    }
+
+    private func addScreenshot(named name: String) {
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 
     private func waitForEnabled(
