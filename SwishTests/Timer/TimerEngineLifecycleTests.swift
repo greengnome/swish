@@ -69,6 +69,19 @@ struct TimerEngineLifecycleTests {
         #expect(harness.notifications.schedules.first?.soundEnabled == false)
     }
 
+    @Test("Natural completion keeps the due notification available for delivery")
+    func completionDoesNotCancelDueNotification() throws {
+        let settings = PomodoroSettings(focusDuration: 60)
+        let harness = TimerEngineHarness(settings: settings)
+        let session = try harness.engine.startFocus()
+        harness.clock.advance(by: 60)
+
+        try harness.engine.refresh()
+
+        #expect(session.state == .completed)
+        #expect(!harness.notifications.cancellations.contains(session.id))
+    }
+
     @Test("Haptic feedback follows the user preference")
     func respectsHapticPreference() throws {
         let enabledHarness = TimerEngineHarness()

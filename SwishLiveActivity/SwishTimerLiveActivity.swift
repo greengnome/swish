@@ -6,8 +6,6 @@ struct SwishTimerLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TimerLiveActivityAttributes.self) { context in
             TimerLockScreenView(context: context)
-                .activityBackgroundTint(.swishActivityBackground)
-                .activitySystemActionForegroundColor(.swishCoral)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
@@ -26,6 +24,7 @@ struct SwishTimerLiveActivity: Widget {
                             taskTitle: context.attributes.taskTitle,
                             state: context.state
                         )
+                        .foregroundStyle(.secondary)
                         TimerProgressView(context: context)
                     }
                 }
@@ -47,7 +46,13 @@ struct SwishTimerLiveActivity: Widget {
 }
 
 private struct TimerLockScreenView: View {
+    @Environment(\.colorScheme) private var colorScheme
+
     let context: ActivityViewContext<TimerLiveActivityAttributes>
+
+    private var theme: TimerLiveActivityTheme {
+        colorScheme == .dark ? .dark : .light
+    }
 
     var body: some View {
         VStack(spacing: 14) {
@@ -69,6 +74,7 @@ private struct TimerLockScreenView: View {
                         taskTitle: context.attributes.taskTitle,
                         state: context.state
                     )
+                    .foregroundStyle(Color(theme.secondaryText))
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -80,7 +86,10 @@ private struct TimerLockScreenView: View {
 
             TimerProgressView(context: context)
         }
+        .foregroundStyle(Color(theme.primaryText))
         .padding(16)
+        .activityBackgroundTint(Color(theme.background))
+        .activitySystemActionForegroundColor(.swishCoral)
     }
 }
 
@@ -111,7 +120,6 @@ private struct TimerTaskLabel: View {
             }
         }
         .font(.caption)
-        .foregroundStyle(.secondary)
     }
 }
 
@@ -205,14 +213,17 @@ private extension TimerLiveActivityAttributes.Kind {
 }
 
 private extension Color {
+    init(_ components: TimerLiveActivityColorComponents) {
+        self.init(
+            red: components.red,
+            green: components.green,
+            blue: components.blue
+        )
+    }
+
     static let swishCoral = Color(red: 1, green: 0.36, blue: 0.29)
     static let swishGreen = Color(red: 0.31, green: 0.75, blue: 0.45)
     static let swishBlue = Color(red: 0.27, green: 0.55, blue: 0.96)
-    static let swishActivityBackground = Color(
-        red: 0.985,
-        green: 0.975,
-        blue: 0.96
-    )
 }
 
 private extension TimerLiveActivityAttributes {

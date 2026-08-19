@@ -22,7 +22,7 @@ struct AppModelContainerTests {
         context.insert(task)
         context.insert(session)
         context.insert(PomodoroSettings())
-        context.insert(PomodoroCycleState())
+        context.insert(PomodoroCycleState(preferredFocusTask: task))
         try context.save()
 
         #expect(try context.fetch(FetchDescriptor<FocusCategory>()).count == 1)
@@ -30,5 +30,9 @@ struct AppModelContainerTests {
         #expect(try context.fetch(FetchDescriptor<FocusSession>()).count == 1)
         #expect(try context.fetch(FetchDescriptor<PomodoroSettings>()).count == 1)
         #expect(try context.fetch(FetchDescriptor<PomodoroCycleState>()).count == 1)
+        #expect(
+            try context.fetch(FetchDescriptor<PomodoroCycleState>())
+                .first?.preferredFocusTask === task
+        )
     }
 }

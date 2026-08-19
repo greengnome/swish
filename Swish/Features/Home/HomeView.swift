@@ -41,9 +41,6 @@ struct HomeView: View {
                             onCancel: cancelSession,
                             onSkipBreak: skipBreak
                         )
-                        .onChange(of: context.date) {
-                            refreshTimer()
-                        }
                     }
 
                     TodaySummaryView(
@@ -73,7 +70,14 @@ struct HomeView: View {
             }
         }
         .task {
-            refreshTimer()
+            selectedTaskID = timerEngine.cycleState.preferredFocusTask?.id
+            await monitorTimer()
+        }
+        .onChange(of: selectedTaskID) {
+            persistSelectedTask()
+        }
+        .onChange(of: timerEngine.cycleState.preferredFocusTask?.id) {
+            selectedTaskID = timerEngine.cycleState.preferredFocusTask?.id
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
@@ -171,7 +175,6 @@ struct HomeView: View {
                 startSelectedMode()
             }
         } catch {
-            try? timerEngine.setNotificationsEnabled(false)
             errorMessage = error.localizedDescription
         }
     }
@@ -240,6 +243,28 @@ struct HomeView: View {
             }
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    private func persistSelectedTask() {
+        do {
+            try timerEngine.selectFocusTask(selectedTask)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+    private func monitorTimer() async {
+        refreshTimer()
+
+        while !Task.isCancelled {
+            do {
+                try await Task.sleep(for: .seconds(1))
+            } catch {
+                return
+            }
+
+            refreshTimer()
         }
     }
 }

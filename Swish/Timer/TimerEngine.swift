@@ -84,7 +84,7 @@ final class TimerEngine {
 
     @discardableResult
     func startFocus(task: FocusTask? = nil) throws -> FocusSession {
-        try start(kind: .focus, task: task)
+        try start(kind: .focus, task: task, updatesPreferredFocusTask: true)
     }
 
     @discardableResult
@@ -196,6 +196,18 @@ final class TimerEngine {
         try store.save()
     }
 
+    func selectFocusTask(_ task: FocusTask?) throws {
+        let previousTask = cycleState.preferredFocusTask
+        cycleState.preferredFocusTask = task
+
+        do {
+            try store.save()
+        } catch {
+            cycleState.preferredFocusTask = previousTask
+            throw error
+        }
+    }
+
     func setNotificationsEnabled(_ isEnabled: Bool) throws {
         let previousValue = settings.notificationsEnabled
         settings.notificationsEnabled = isEnabled
@@ -210,6 +222,9 @@ final class TimerEngine {
 
     func restore() throws {
         currentSession = try store.fetchActiveSession()
+        if clearUnavailablePreferredFocusTask() {
+            try store.save()
+        }
         guard let session = currentSession else {
             synchronizeLiveActivity()
             return
@@ -217,7 +232,7 @@ final class TimerEngine {
 
         if session.state == .running {
             if remainingTime(at: dateProvider.now) <= 0 {
-                try finishCurrentSession(at: dateProvider.now, autoStart: false)
+                try finishCurrentSession(at: dateProvider.now)
                 return
             } else if let endDate = session.endDate {
                 scheduleSessionEndIfEnabled(
@@ -253,7 +268,8 @@ final class TimerEngine {
     @discardableResult
     private func start(
         kind: SessionKind,
-        task: FocusTask? = nil
+        task: FocusTask? = nil,
+        updatesPreferredFocusTask: Bool = false
     ) throws -> FocusSession {
         try synchronizeCompletionIfNeeded()
         guard !hasActiveSession else {
@@ -261,6 +277,10 @@ final class TimerEngine {
         }
 
         resolveSkippedRecommendationIfNeeded(starting: kind)
+
+        if updatesPreferredFocusTask {
+            cycleState.preferredFocusTask = task
+        }
 
         let now = dateProvider.now
         let duration = settings.duration(for: kind)
@@ -310,8 +330,14 @@ final class TimerEngine {
         let completionDate = session.endDate ?? date
         closePause(on: session, at: date)
         session.actualActiveDuration = session.plannedDuration
-        makeTerminal(session, state: .completed, at: completionDate)
+        makeTerminal(
+            session,
+            state: .completed,
+            at: completionDate,
+            cancelNotification: false
+        )
         advanceCycle(after: session)
+        clearUnavailablePreferredFocusTask()
         try store.save()
         synchronizeLiveActivity()
         playFeedback(.completed)
@@ -320,7 +346,7 @@ final class TimerEngine {
 
         switch cycleState.nextSuggestedKind {
         case .focus where settings.autoStartFocus:
-            try start(kind: .focus)
+            try start(kind: .focus, task: preferredFocusTaskForNextSession)
         case .shortBreak where settings.autoStartBreaks:
             try start(kind: .shortBreak)
         case .longBreak where settings.autoStartBreaks:
@@ -333,14 +359,17 @@ final class TimerEngine {
     private func makeTerminal(
         _ session: FocusSession,
         state: SessionState,
-        at date: Date
+        at date: Date,
+        cancelNotification: Bool = true
     ) {
         session.state = state
         session.finishedAt = date
         session.endDate = nil
         session.pausedAt = nil
         session.pausedRemainingTime = nil
-        notifications.cancelSessionEnd(id: session.id)
+        if cancelNotification {
+            notifications.cancelSessionEnd(id: session.id)
+        }
     }
 
     private func scheduleSessionEndIfEnabled(
@@ -371,6 +400,34 @@ final class TimerEngine {
     private func playFeedback(_ event: TimerFeedbackEvent) {
         guard settings.hapticsEnabled else { return }
         feedback.play(event)
+    }
+
+    private var preferredFocusTaskForNextSession: FocusTask? {
+        guard
+            let task = cycleState.preferredFocusTask,
+            !task.isArchived,
+            !task.isCompleted,
+            task.completedPomodoros < task.estimatedPomodoros
+        else {
+            return nil
+        }
+
+        return task
+    }
+
+    @discardableResult
+    private func clearUnavailablePreferredFocusTask() -> Bool {
+        guard let task = cycleState.preferredFocusTask else { return false }
+        guard
+            task.isArchived
+                || task.isCompleted
+                || task.completedPomodoros >= task.estimatedPomodoros
+        else {
+            return false
+        }
+
+        cycleState.preferredFocusTask = nil
+        return true
     }
 
     private func closePause(on session: FocusSession, at date: Date) {

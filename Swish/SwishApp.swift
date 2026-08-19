@@ -11,6 +11,8 @@ import SwiftUI
 @main
 @MainActor
 struct SwishApp: App {
+    @UIApplicationDelegateAdaptor(AppNotificationDelegate.self)
+    private var appDelegate
     private let dependencies: AppDependencies?
     @State private var onboardingStore: OnboardingStore
 

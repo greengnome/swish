@@ -3,6 +3,19 @@ import Testing
 @testable import Swish
 
 struct TimerLiveActivityPresentationTests {
+    @Test(
+        "Lock Screen text keeps accessible contrast in every appearance",
+        arguments: TimerLiveActivityTheme.allCases
+    )
+    func lockScreenContrast(theme: TimerLiveActivityTheme) {
+        #expect(
+            theme.primaryText.contrastRatio(with: theme.background) >= 4.5
+        )
+        #expect(
+            theme.secondaryText.contrastRatio(with: theme.background) >= 4.5
+        )
+    }
+
     @Test("Paused countdown rounds up and clamps invalid values", arguments: [
         (TimeInterval(625), "10:25"),
         (TimeInterval(59.1), "01:00"),

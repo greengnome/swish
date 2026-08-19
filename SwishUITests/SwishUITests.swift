@@ -189,14 +189,24 @@ final class SwishUITests: XCTestCase {
         let app = makeApp()
         app.launch()
 
-        XCTAssertTrue(app.buttons["Start focus"].waitForExistence(timeout: 3))
-        app.buttons["Start focus"].tap()
+        let startButton = app.buttons["Start focus"]
+        XCTAssertTrue(startButton.waitForExistence(timeout: 3))
+        let controlHeight = startButton.frame.height
+        startButton.tap()
 
-        XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 2))
-        app.buttons["Pause"].tap()
+        let pauseButton = app.buttons["Pause"]
+        XCTAssertTrue(pauseButton.waitForExistence(timeout: 2))
+        XCTAssertEqual(pauseButton.frame.height, controlHeight, accuracy: 1)
 
-        XCTAssertTrue(app.buttons["Resume"].waitForExistence(timeout: 2))
-        app.buttons["Resume"].tap()
+        let cancelButton = app.buttons["home.timer.cancel"]
+        XCTAssertTrue(cancelButton.exists)
+        XCTAssertEqual(cancelButton.frame.height, controlHeight, accuracy: 1)
+        pauseButton.tap()
+
+        let resumeButton = app.buttons["Resume"]
+        XCTAssertTrue(resumeButton.waitForExistence(timeout: 2))
+        XCTAssertEqual(resumeButton.frame.height, controlHeight, accuracy: 1)
+        resumeButton.tap()
 
         XCTAssertTrue(app.buttons["Pause"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.buttons["Cancel timer"].exists)

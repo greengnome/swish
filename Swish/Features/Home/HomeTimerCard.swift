@@ -1,6 +1,11 @@
 import SwiftUI
 
 struct HomeTimerCard: View {
+    private enum ControlMetrics {
+        static let height: CGFloat = 52
+        static let primaryWidth: CGFloat = 160
+    }
+
     let kind: SessionKind
     let state: SessionState?
     let remainingTime: TimeInterval
@@ -77,11 +82,17 @@ struct HomeTimerCard: View {
                         Image(systemName: "xmark")
                             .font(.caption.weight(.bold))
                             .foregroundStyle(.red)
-                            .frame(width: 38, height: 38)
+                            .frame(
+                                width: ControlMetrics.height,
+                                height: ControlMetrics.height
+                            )
                             .background(.red.opacity(0.1), in: Circle())
                     }
                     .buttonStyle(.plain)
-                    .frame(width: 44, height: 44)
+                    .frame(
+                        width: ControlMetrics.height,
+                        height: ControlMetrics.height
+                    )
                     .contentShape(Circle())
                     .accessibilityLabel(Text(.homeTimerActionCancel))
                     .accessibilityIdentifier("home.timer.cancel")
@@ -94,21 +105,33 @@ struct HomeTimerCard: View {
                         Image(systemName: primarySystemImage)
                     }
                     .font(.headline)
-                    .frame(minWidth: isActive ? 120 : 180)
-                    .padding(.vertical, 8)
+                    .frame(
+                        width: ControlMetrics.primaryWidth,
+                        height: ControlMetrics.height
+                    )
                 }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .tint(SwishTheme.accent)
+                .buttonStyle(.plain)
+                .foregroundStyle(.white)
+                .background(SwishTheme.accent, in: Capsule())
+                .contentShape(Capsule())
                 .accessibilityIdentifier("home.timer.primary")
 
                 if isActive && kind != .focus {
                     Button(action: onSkipBreak) {
                         Image(systemName: "forward.end.fill")
-                            .frame(width: 48, height: 48)
+                            .frame(
+                                width: ControlMetrics.height,
+                                height: ControlMetrics.height
+                            )
                     }
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.circle)
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.primary)
+                    .background(.thinMaterial, in: Circle())
+                    .overlay {
+                        Circle()
+                            .stroke(.secondary.opacity(0.25), lineWidth: 1)
+                    }
+                    .contentShape(Circle())
                     .accessibilityLabel(Text(.homeTimerActionSkipBreak))
                     .accessibilityIdentifier("home.timer.skip")
                 }
