@@ -20,6 +20,7 @@ final class FocusTask {
     var sortOrder: Int
     var isArchived: Bool
     var category: FocusCategory?
+    @Relationship(deleteRule: .nullify) var timerRoutine: TimerRoutine?
 
     @Relationship(deleteRule: .nullify, inverse: \FocusSession.task)
     var sessions: [FocusSession]
@@ -47,6 +48,7 @@ final class FocusTask {
         completedAt: Date? = nil,
         dueDate: Date? = nil,
         category: FocusCategory? = nil,
+        timerRoutine: TimerRoutine? = nil,
         priority: TaskPriority = .normal,
         estimatedPomodoros: Int = 1,
         sortOrder: Int = 0,
@@ -59,6 +61,7 @@ final class FocusTask {
         self.completedAt = completedAt
         self.dueDate = dueDate
         self.category = category
+        self.timerRoutine = timerRoutine
         self.priorityRawValue = priority.rawValue
         self.estimatedPomodoros = max(1, estimatedPomodoros)
         self.sortOrder = sortOrder
