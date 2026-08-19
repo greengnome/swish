@@ -4,6 +4,26 @@ import Testing
 
 @MainActor
 struct TimerEngineRestoreTests {
+    @Test("Restore clears a persisted task whose estimate is already complete")
+    func clearsExhaustedPreferredTask() throws {
+        let task = FocusTask(title: "Ship Swish", estimatedPomodoros: 1)
+        task.sessions = [
+            FocusSession(
+                kind: .focus,
+                state: .completed,
+                plannedDuration: 60,
+                task: task
+            )
+        ]
+        let cycle = PomodoroCycleState(preferredFocusTask: task)
+        let harness = TimerEngineHarness(cycle: cycle)
+
+        try harness.engine.restore()
+
+        #expect(harness.cycle.preferredFocusTask == nil)
+        #expect(harness.store.saveCount == 1)
+    }
+
     @Test("Restoring an overdue session finalizes it and applies auto-start")
     func finalizesOverdueSessionAndAutoStarts() throws {
         let start = Date(timeIntervalSince1970: 20_000)

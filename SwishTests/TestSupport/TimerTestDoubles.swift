@@ -24,6 +24,12 @@ final class InMemoryTimerSessionStore: TimerSessionStore {
 
     func insert(_ session: FocusSession) {
         sessions.append(session)
+        if
+            let task = session.task,
+            !task.sessions.contains(where: { $0.id == session.id })
+        {
+            task.sessions.append(session)
+        }
     }
 
     func fetchActiveSession() throws -> FocusSession? {

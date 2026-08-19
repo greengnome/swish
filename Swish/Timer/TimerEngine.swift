@@ -222,6 +222,9 @@ final class TimerEngine {
 
     func restore() throws {
         currentSession = try store.fetchActiveSession()
+        if clearUnavailablePreferredFocusTask() {
+            try store.save()
+        }
         guard let session = currentSession else {
             synchronizeLiveActivity()
             return
@@ -334,6 +337,7 @@ final class TimerEngine {
             cancelNotification: false
         )
         advanceCycle(after: session)
+        clearUnavailablePreferredFocusTask()
         try store.save()
         synchronizeLiveActivity()
         playFeedback(.completed)
@@ -402,12 +406,28 @@ final class TimerEngine {
         guard
             let task = cycleState.preferredFocusTask,
             !task.isArchived,
-            !task.isCompleted
+            !task.isCompleted,
+            task.completedPomodoros < task.estimatedPomodoros
         else {
             return nil
         }
 
         return task
+    }
+
+    @discardableResult
+    private func clearUnavailablePreferredFocusTask() -> Bool {
+        guard let task = cycleState.preferredFocusTask else { return false }
+        guard
+            task.isArchived
+                || task.isCompleted
+                || task.completedPomodoros >= task.estimatedPomodoros
+        else {
+            return false
+        }
+
+        cycleState.preferredFocusTask = nil
+        return true
     }
 
     private func closePause(on session: FocusSession, at date: Date) {
