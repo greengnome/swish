@@ -83,4 +83,47 @@ struct TimerEngineCycleTests {
         #expect(harness.engine.currentSession?.kind == .shortBreak)
         #expect(harness.engine.currentSession?.state == .running)
     }
+
+    @Test("Auto-start focus creates a focus session after a break")
+    func autoStartsFocus() throws {
+        let settings = PomodoroSettings(
+            shortBreakDuration: 60,
+            autoStartFocus: true
+        )
+        let cycle = PomodoroCycleState(nextSuggestedKind: .shortBreak)
+        let harness = TimerEngineHarness(settings: settings, cycle: cycle)
+        try harness.engine.startShortBreak()
+        harness.clock.advance(by: 60)
+
+        try harness.engine.refresh()
+
+        #expect(harness.store.sessions.count == 2)
+        #expect(harness.engine.currentSession?.kind == .focus)
+        #expect(harness.engine.currentSession?.state == .running)
+    }
+
+    @Test("Auto-started focus retains the selected task across a break")
+    func autoStartedFocusRetainsTask() throws {
+        let task = FocusTask(title: "Ship Swish")
+        let settings = PomodoroSettings(
+            focusDuration: 60,
+            shortBreakDuration: 60,
+            autoStartBreaks: true,
+            autoStartFocus: true
+        )
+        let harness = TimerEngineHarness(settings: settings)
+        try harness.engine.selectFocusTask(task)
+        try harness.engine.startFocus(task: task)
+
+        harness.clock.advance(by: 60)
+        try harness.engine.refresh()
+        #expect(harness.engine.currentSession?.kind == .shortBreak)
+
+        harness.clock.advance(by: 60)
+        try harness.engine.refresh()
+
+        #expect(harness.engine.currentSession?.kind == .focus)
+        #expect(harness.engine.currentSession?.task === task)
+        #expect(harness.cycle.preferredFocusTask === task)
+    }
 }

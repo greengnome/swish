@@ -4,8 +4,8 @@ import Testing
 
 @MainActor
 struct TimerEngineRestoreTests {
-    @Test("Restoring an overdue session finalizes it exactly once")
-    func finalizesOverdueSession() throws {
+    @Test("Restoring an overdue session finalizes it and applies auto-start")
+    func finalizesOverdueSessionAndAutoStarts() throws {
         let start = Date(timeIntervalSince1970: 20_000)
         let session = FocusSession(
             kind: .focus,
@@ -27,11 +27,14 @@ struct TimerEngineRestoreTests {
 
         #expect(session.state == .completed)
         #expect(session.finishedAt == start.addingTimeInterval(60))
-        #expect(harness.store.sessions.count == 1)
+        #expect(harness.store.sessions.count == 2)
         #expect(harness.cycle.completedFocusesInCycle == 1)
+        #expect(harness.engine.currentSession?.kind == .shortBreak)
+        #expect(harness.engine.currentSession?.state == .running)
 
         try harness.engine.restore()
         #expect(harness.cycle.completedFocusesInCycle == 1)
+        #expect(harness.store.sessions.count == 2)
     }
 
     @Test("Restoring a running session reschedules its notification")
