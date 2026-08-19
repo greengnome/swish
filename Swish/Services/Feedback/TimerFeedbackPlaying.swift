@@ -16,20 +16,40 @@ protocol TimerFeedbackPlaying: AnyObject {
 
 @MainActor
 final class SystemTimerFeedbackPlayer: TimerFeedbackPlaying {
+    private let lightImpactGenerator = UIImpactFeedbackGenerator(style: .light)
+    private let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
+    private let notificationGenerator = UINotificationFeedbackGenerator()
+
+    init() {
+        prepareGenerators()
+    }
+
     func play(_ event: TimerFeedbackEvent) {
 #if targetEnvironment(simulator)
         return
 #else
         switch event {
         case .started, .resumed:
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            lightImpactGenerator.prepare()
+            lightImpactGenerator.impactOccurred()
         case .paused:
-            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            mediumImpactGenerator.prepare()
+            mediumImpactGenerator.impactOccurred()
         case .completed:
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            notificationGenerator.prepare()
+            notificationGenerator.notificationOccurred(.success)
         case .cancelled, .skipped:
-            UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            notificationGenerator.prepare()
+            notificationGenerator.notificationOccurred(.warning)
         }
+#endif
+    }
+
+    private func prepareGenerators() {
+#if !targetEnvironment(simulator)
+        lightImpactGenerator.prepare()
+        mediumImpactGenerator.prepare()
+        notificationGenerator.prepare()
 #endif
     }
 }
