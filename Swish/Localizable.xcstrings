@@ -3204,6 +3204,114 @@
         }
       }
     },
+    "tasks.editor.routine.app_defaults" : {
+      "comment" : "Option that makes a task use the global timer settings.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Defaults"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштування застосунку"
+          }
+        }
+      }
+    },
+    "tasks.editor.routine.create" : {
+      "comment" : "Action for creating a reusable timer routine from the task editor.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Custom Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити власний режим"
+          }
+        }
+      }
+    },
+    "tasks.editor.routine.edit" : {
+      "comment" : "Action for editing the timer routine selected by a task.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати режим"
+          }
+        }
+      }
+    },
+    "tasks.editor.routine.footer" : {
+      "comment" : "Explanation below the task timer-routine controls.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Defaults follow Settings. Custom routines can be reused by other tasks."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштування застосунку відповідають розділу «Налаштування». Власні режими можна використовувати для інших завдань."
+          }
+        }
+      }
+    },
+    "tasks.editor.routine.picker" : {
+      "comment" : "Label for selecting a task timer routine.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        }
+      }
+    },
+    "tasks.editor.routine.section" : {
+      "comment" : "Heading of the task timer-routine section.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим таймера"
+          }
+        }
+      }
+    },
     "tasks.editor.task_section" : {
       "comment" : "Heading of the task title section.",
       "extractionState" : "manual",
@@ -3398,6 +3506,78 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Звичайний"
+          }
+        }
+      }
+    },
+    "tasks.routine.editor.edit.title" : {
+      "comment" : "Navigation title for editing a reusable timer routine.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Timer Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редагувати режим таймера"
+          }
+        }
+      }
+    },
+    "tasks.routine.editor.name" : {
+      "comment" : "Heading for a timer routine name.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Назва"
+          }
+        }
+      }
+    },
+    "tasks.routine.editor.name_placeholder" : {
+      "comment" : "Example placeholder for naming a timer routine.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "e.g. Deep Work"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "напр. Глибока робота"
+          }
+        }
+      }
+    },
+    "tasks.routine.editor.new.title" : {
+      "comment" : "Navigation title for creating a reusable timer routine.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Timer Routine"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новий режим таймера"
           }
         }
       }
