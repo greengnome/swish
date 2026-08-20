@@ -19,12 +19,28 @@ struct TimerEngineLiveActivityTests {
 
         #expect(harness.liveActivities.events.count == 3)
         #expect(activeDescriptor(in: harness.liveActivities.events[0])?.attributes.sessionID == session.id)
-        #expect(activeDescriptor(in: harness.liveActivities.events[0])?.attributes.taskTitle == "Prepare release")
+        #expect(activeDescriptor(in: harness.liveActivities.events[0])?.contentState.taskTitle == "Prepare release")
         #expect(activeDescriptor(in: harness.liveActivities.events[1])?.contentState.phase == .paused(remainingTime: 1_400))
         #expect(
             activeDescriptor(in: harness.liveActivities.events[2])?.contentState.phase
                 == .running(endDate: harness.clock.now.addingTimeInterval(1_400))
         )
+    }
+
+    @Test("Changing task-title privacy refreshes a running Live Activity")
+    func refreshesTaskTitlePrivacy() throws {
+        let harness = TimerEngineHarness()
+        try harness.engine.startFocus(
+            task: FocusTask(title: "Confidential plan")
+        )
+
+        try harness.engine.setShowTaskTitlesOnLockScreen(true)
+        try harness.engine.setShowTaskTitlesOnLockScreen(false)
+
+        #expect(harness.liveActivities.events.count == 3)
+        #expect(activeDescriptor(in: harness.liveActivities.events[0])?.contentState.taskTitle == nil)
+        #expect(activeDescriptor(in: harness.liveActivities.events[1])?.contentState.taskTitle == "Confidential plan")
+        #expect(activeDescriptor(in: harness.liveActivities.events[2])?.contentState.taskTitle == nil)
     }
 
     @Test("Cancelling or skipping ends the active Live Activity")

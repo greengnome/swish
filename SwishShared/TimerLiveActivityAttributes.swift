@@ -9,6 +9,7 @@ nonisolated struct TimerLiveActivityAttributes: ActivityAttributes, Hashable, Se
         }
 
         let phase: Phase
+        let taskTitle: String?
 
         var isPaused: Bool {
             if case .paused = phase {
@@ -38,5 +39,4 @@ nonisolated struct TimerLiveActivityAttributes: ActivityAttributes, Hashable, Se
     let kind: Kind
     let startedAt: Date
     let plannedDuration: TimeInterval
-    let taskTitle: String?
 }

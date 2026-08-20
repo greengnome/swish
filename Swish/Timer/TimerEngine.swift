@@ -208,6 +208,17 @@ final class TimerEngine {
         }
     }
 
+    func previewDuration(
+        for kind: SessionKind,
+        task: FocusTask? = nil
+    ) -> TimeInterval {
+        if kind == .focus {
+            return resolvedRoutine(for: task).duration(for: kind)
+        }
+
+        return activeRoutine.duration(for: kind)
+    }
+
     func setNotificationsEnabled(_ isEnabled: Bool) throws {
         let previousValue = settings.notificationsEnabled
         settings.notificationsEnabled = isEnabled
@@ -218,6 +229,20 @@ final class TimerEngine {
             settings.notificationsEnabled = previousValue
             throw error
         }
+    }
+
+    func setShowTaskTitlesOnLockScreen(_ isEnabled: Bool) throws {
+        let previousValue = settings.showTaskTitlesOnLockScreen
+        settings.showTaskTitlesOnLockScreen = isEnabled
+
+        do {
+            try store.save()
+        } catch {
+            settings.showTaskTitlesOnLockScreen = previousValue
+            throw error
+        }
+
+        synchronizeLiveActivity()
     }
 
     func restore() throws {

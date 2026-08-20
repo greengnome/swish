@@ -29,10 +29,12 @@ struct TimerLiveActivityPresentationTests {
     func mapsExpirationDate() {
         let endDate = Date(timeIntervalSince1970: 10_000)
         let running = TimerLiveActivityAttributes.ContentState(
-            phase: .running(endDate: endDate)
+            phase: .running(endDate: endDate),
+            taskTitle: nil
         )
         let paused = TimerLiveActivityAttributes.ContentState(
-            phase: .paused(remainingTime: 100)
+            phase: .paused(remainingTime: 100),
+            taskTitle: nil
         )
 
         #expect(
