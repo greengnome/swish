@@ -282,8 +282,14 @@ final class TimerEngine {
             cycleState.preferredFocusTask = task
         }
 
+        if kind == .focus {
+            cycleState.routineSnapshot = resolvedRoutine(for: task)
+        } else if cycleState.routineSnapshot == nil {
+            cycleState.routineSnapshot = TimerRoutineSnapshot(settings: settings)
+        }
+
         let now = dateProvider.now
-        let duration = settings.duration(for: kind)
+        let duration = activeRoutine.duration(for: kind)
         let session = FocusSession(
             kind: kind,
             startedAt: now,
@@ -327,6 +333,7 @@ final class TimerEngine {
             return
         }
 
+        let completedRoutine = activeRoutine
         let completionDate = session.endDate ?? date
         closePause(on: session, at: date)
         session.actualActiveDuration = session.plannedDuration
@@ -345,11 +352,11 @@ final class TimerEngine {
         guard autoStart else { return }
 
         switch cycleState.nextSuggestedKind {
-        case .focus where settings.autoStartFocus:
+        case .focus where completedRoutine.autoStartFocus:
             try start(kind: .focus, task: preferredFocusTaskForNextSession)
-        case .shortBreak where settings.autoStartBreaks:
+        case .shortBreak where completedRoutine.autoStartBreaks:
             try start(kind: .shortBreak)
-        case .longBreak where settings.autoStartBreaks:
+        case .longBreak where completedRoutine.autoStartBreaks:
             try start(kind: .longBreak)
         default:
             break
@@ -402,6 +409,15 @@ final class TimerEngine {
         feedback.play(event)
     }
 
+    private var activeRoutine: TimerRoutineSnapshot {
+        cycleState.routineSnapshot ?? TimerRoutineSnapshot(settings: settings)
+    }
+
+    private func resolvedRoutine(for task: FocusTask?) -> TimerRoutineSnapshot {
+        task?.timerRoutine.map(TimerRoutineSnapshot.init(routine:))
+            ?? TimerRoutineSnapshot(settings: settings)
+    }
+
     private var preferredFocusTaskForNextSession: FocusTask? {
         guard
             let task = cycleState.preferredFocusTask,
@@ -452,7 +468,7 @@ final class TimerEngine {
         case .focus where session.state == .completed:
             cycleState.completedFocusesInCycle += 1
             cycleState.nextSuggestedKind =
-                cycleState.completedFocusesInCycle >= settings.longBreakEvery
+                cycleState.completedFocusesInCycle >= activeRoutine.longBreakEvery
                 ? .longBreak
                 : .shortBreak
         case .shortBreak:

@@ -27,8 +27,22 @@ struct TasksLocalizationTests {
         ("tasks.editor.notes_section", "Notes", "Нотатки"),
         ("tasks.editor.plan_section", "Plan", "План"),
         ("tasks.editor.priority", "Priority", "Пріоритет"),
+        ("tasks.editor.routine.app_defaults", "App Defaults", "Налаштування застосунку"),
+        ("tasks.editor.routine.create", "Create Custom Routine", "Створити власний режим"),
+        ("tasks.editor.routine.edit", "Edit Routine", "Редагувати режим"),
+        (
+            "tasks.editor.routine.footer",
+            "App Defaults follow Settings. Custom routines can be reused by other tasks.",
+            "Налаштування застосунку відповідають розділу «Налаштування». Власні режими можна використовувати для інших завдань."
+        ),
+        ("tasks.editor.routine.picker", "Routine", "Режим"),
+        ("tasks.editor.routine.section", "Timer Routine", "Режим таймера"),
         ("tasks.editor.task_section", "Task", "Завдання"),
         ("tasks.editor.title_placeholder", "What do you want to accomplish?", "Що ви хочете виконати?"),
+        ("tasks.routine.editor.edit.title", "Edit Timer Routine", "Редагувати режим таймера"),
+        ("tasks.routine.editor.name", "Name", "Назва"),
+        ("tasks.routine.editor.name_placeholder", "e.g. Deep Work", "напр. Глибока робота"),
+        ("tasks.routine.editor.new.title", "New Timer Routine", "Новий режим таймера"),
         (
             "tasks.empty.all.description",
             "Plan work in focus sessions, then track progress here.",

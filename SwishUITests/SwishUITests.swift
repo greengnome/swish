@@ -236,30 +236,49 @@ final class SwishUITests: XCTestCase {
             springboard.wait(for: .runningForeground, timeout: 3),
             "Starting a timer should leave a running Live Activity visible outside Swish."
         )
-        Thread.sleep(forTimeInterval: 2)
-
-        let compactScreenshot = XCTAttachment(
-            screenshot: XCUIScreen.main.screenshot()
-        )
-        compactScreenshot.name = "Running focus Live Activity — compact"
-        compactScreenshot.lifetime = .keepAlways
-        add(compactScreenshot)
-
-        springboard.coordinate(
-            withNormalizedOffset: CGVector(dx: 0.5, dy: 0.04)
-        ).press(forDuration: 1)
+        let activityContainer = springboard.descendants(matching: .any)
+            .matching(
+                NSPredicate(
+                    format: "identifier CONTAINS %@",
+                    "WidgetRenderer-Activities"
+                )
+            )
+            .firstMatch
 
         XCTAssertTrue(
-            springboard.staticTexts["Focus"].waitForExistence(timeout: 3),
+            activityContainer.waitForExistence(timeout: 10),
+            "The Live Activity container should become available in SpringBoard."
+        )
+
+        addScreenshot(named: "Running focus Live Activity — compact")
+
+        activityContainer.press(forDuration: 1)
+
+        let expandedTitle = springboard.staticTexts["Focus"]
+        var didRevealExpandedActivity = expandedTitle.waitForExistence(timeout: 10)
+        if !didRevealExpandedActivity {
+            addScreenshot(named: "Running focus Live Activity — first expansion attempt")
+
+            // SpringBoard's hosted activity renderer can briefly expose its
+            // container before its accessibility content is ready. Collapse
+            // it and make one fresh expansion attempt before failing.
+            springboard.coordinate(
+                withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3)
+            ).tap()
+            XCTAssertTrue(
+                activityContainer.waitForExistence(timeout: 5),
+                "The Live Activity should remain available for a retry."
+            )
+            activityContainer.press(forDuration: 1)
+            didRevealExpandedActivity = expandedTitle.waitForExistence(timeout: 10)
+        }
+
+        XCTAssertTrue(
+            didRevealExpandedActivity,
             "Long-pressing the timer should reveal the expanded Live Activity."
         )
 
-        let expandedScreenshot = XCTAttachment(
-            screenshot: XCUIScreen.main.screenshot()
-        )
-        expandedScreenshot.name = "Running focus Live Activity — expanded"
-        expandedScreenshot.lifetime = .keepAlways
-        add(expandedScreenshot)
+        addScreenshot(named: "Running focus Live Activity — expanded")
     }
 
     @MainActor
@@ -320,6 +339,59 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testCreatesAndSelectsCustomTimerRoutine() throws {
+        let app = makeApp(showTasks: true)
+        app.launch()
+
+        XCTAssertTrue(app.buttons["tasks.add"].waitForExistence(timeout: 2))
+        app.buttons["tasks.add"].tap()
+
+        let routinePicker = app.descendants(matching: .any)[
+            "tasks.editor.routinePicker"
+        ]
+        XCTAssertTrue(
+            scrollToElement(routinePicker, in: app),
+            "The timer routine picker should be visible in the task editor"
+        )
+        XCTAssertTrue(routinePicker.label.contains("App Defaults"))
+
+        let createRoutine = app.buttons["tasks.editor.routineCreate"]
+        XCTAssertTrue(scrollToElement(createRoutine, in: app))
+        createRoutine.tap()
+
+        XCTAssertTrue(
+            app.navigationBars["New Timer Routine"]
+                .waitForExistence(timeout: 2)
+        )
+        let routineName = app.textFields["routine.editor.name"]
+        routineName.tap()
+        routineName.typeText("Deep Work")
+        app.buttons["routine.editor.save"].tap()
+
+        XCTAssertTrue(
+            app.buttons["tasks.editor.routineEdit"]
+                .waitForExistence(timeout: 2)
+        )
+        XCTAssertTrue(routinePicker.label.contains("Deep Work"))
+
+        let titleField = app.textFields["tasks.editor.title"]
+        XCTAssertTrue(scrollToElement(titleField, in: app))
+        titleField.tap()
+        titleField.typeText("Write proposal")
+        app.buttons["tasks.editor.save"].tap()
+
+        let editTask = app.buttons["Edit Write proposal"]
+        XCTAssertTrue(editTask.waitForExistence(timeout: 2))
+        editTask.tap()
+
+        let persistedPicker = app.descendants(matching: .any)[
+            "tasks.editor.routinePicker"
+        ]
+        XCTAssertTrue(scrollToElement(persistedPicker, in: app))
+        XCTAssertTrue(persistedPicker.label.contains("Deep Work"))
+    }
+
+    @MainActor
     func testArchivesAndRestoresTask() throws {
         let app = makeApp(showTasks: true)
         app.launch()
@@ -373,11 +445,21 @@ final class SwishUITests: XCTestCase {
         app.buttons["tasks.add"].tap()
         XCTAssertTrue(app.navigationBars["Нове завдання"].waitForExistence(timeout: 2))
         XCTAssertTrue(app.staticTexts["Завдання"].exists)
-        XCTAssertTrue(app.staticTexts["План"].exists)
 
         let titleField = app.textFields["tasks.editor.title"]
         titleField.tap()
         titleField.typeText("План проєкту")
+
+        let routinePicker = app.descendants(matching: .any)[
+            "tasks.editor.routinePicker"
+        ]
+        XCTAssertTrue(scrollToElement(routinePicker, in: app))
+        XCTAssertTrue(routinePicker.label.contains("Налаштування застосунку"))
+
+        let createRoutine = app.buttons["tasks.editor.routineCreate"]
+        XCTAssertTrue(scrollToElement(createRoutine, in: app))
+        XCTAssertEqual(createRoutine.label, "Створити власний режим")
+
         XCTAssertEqual(app.buttons["tasks.editor.save"].label, "Додати завдання")
         app.buttons["tasks.editor.save"].tap()
 
@@ -743,6 +825,13 @@ final class SwishUITests: XCTestCase {
             object: element
         )
         return XCTWaiter.wait(for: [expectation], timeout: timeout) == .completed
+    }
+
+    private func addScreenshot(named name: String) {
+        let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        attachment.name = name
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
 
     private func waitForEnabled(

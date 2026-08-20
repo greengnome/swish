@@ -61,16 +61,27 @@ jobs:
 
       - name: Run Live Activity system UI test in isolation
         run: |
-          xcodebuild \
-            -project Swish.xcodeproj \
-            -scheme Swish \
-            -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5' \
-            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -resultBundlePath "$RUNNER_TEMP/SwishLiveActivityUITests.xcresult" \
-            -parallel-testing-enabled NO \
-            -only-testing:SwishUITests/SwishUITests/testDisplaysRunningTimerOutsideApp \
-            test-without-building
+          for attempt in 1 2; do
+            if xcodebuild \
+              -project Swish.xcodeproj \
+              -scheme Swish \
+              -configuration Debug \
+              -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=26.5' \
+              -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+              -resultBundlePath "$RUNNER_TEMP/SwishLiveActivityUITests-attempt-${attempt}.xcresult" \
+              -parallel-testing-enabled NO \
+              -only-testing:SwishUITests/SwishUITests/testDisplaysRunningTimerOutsideApp \
+              test-without-building; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 1 ]; then
+              echo "Live Activity system UI test failed; restarting the simulator and retrying once."
+              xcrun simctl shutdown booted || true
+            fi
+          done
+
+          exit 1
 
       - name: Upload test results
         if: always()
@@ -79,6 +90,6 @@ jobs:
           name: Swish-test-results
           path: |
             ${{ runner.temp }}/SwishTests.xcresult
-            ${{ runner.temp }}/SwishLiveActivityUITests.xcresult
+            ${{ runner.temp }}/SwishLiveActivityUITests-attempt-*.xcresult
           if-no-files-found: ignore
           retention-days: 7

@@ -4,6 +4,7 @@ enum AppModelContainer {
     static let schema = Schema([
         FocusCategory.self,
         FocusTask.self,
+        TimerRoutine.self,
         FocusSession.self,
         PomodoroSettings.self,
         PomodoroCycleState.self,
