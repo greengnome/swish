@@ -231,6 +231,20 @@ final class TimerEngine {
         }
     }
 
+    func setShowTaskTitlesOnLockScreen(_ isEnabled: Bool) throws {
+        let previousValue = settings.showTaskTitlesOnLockScreen
+        settings.showTaskTitlesOnLockScreen = isEnabled
+
+        do {
+            try store.save()
+        } catch {
+            settings.showTaskTitlesOnLockScreen = previousValue
+            throw error
+        }
+
+        synchronizeLiveActivity()
+    }
+
     func restore() throws {
         currentSession = try store.fetchActiveSession()
         if clearUnavailablePreferredFocusTask() {

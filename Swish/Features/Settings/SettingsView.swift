@@ -3,6 +3,7 @@ import SwiftUI
 import UIKit
 
 struct SettingsView: View {
+    @Environment(TimerEngine.self) private var timerEngine
     @Environment(\.modelContext) private var modelContext
     @Environment(NotificationPermissionService.self) private var notificationPermissionService
     @Environment(\.locale) private var locale
@@ -248,7 +249,7 @@ struct SettingsView: View {
                     localized: "settings.privacy.show_task_titles",
                     defaultValue: "Show task names on Lock Screen"
                 ),
-                isOn: settingBinding(\.showTaskTitlesOnLockScreen)
+                isOn: showTaskTitlesOnLockScreenBinding
             )
             .accessibilityIdentifier("settings.showTaskTitlesOnLockScreen")
             .accessibilityValue(
@@ -442,6 +443,19 @@ struct SettingsView: View {
                 persistSettings()
                 if isEnabled {
                     requestNotificationPermission()
+                }
+            }
+        )
+    }
+
+    private var showTaskTitlesOnLockScreenBinding: Binding<Bool> {
+        Binding(
+            get: { settings.showTaskTitlesOnLockScreen },
+            set: { isEnabled in
+                do {
+                    try timerEngine.setShowTaskTitlesOnLockScreen(isEnabled)
+                } catch {
+                    errorMessage = error.localizedDescription
                 }
             }
         )

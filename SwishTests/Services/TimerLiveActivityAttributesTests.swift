@@ -9,8 +9,7 @@ struct TimerLiveActivityAttributesTests {
             sessionID: UUID(),
             kind: .focus,
             startedAt: Date(timeIntervalSince1970: 1_000),
-            plannedDuration: 1_500,
-            taskTitle: "Prepare release"
+            plannedDuration: 1_500
         )
 
         let encoded = try JSONEncoder().encode(attributes)
@@ -24,10 +23,12 @@ struct TimerLiveActivityAttributesTests {
 
     @Test("Content state survives the ActivityKit encoding boundary", arguments: [
         TimerLiveActivityAttributes.ContentState(
-            phase: .running(endDate: Date(timeIntervalSince1970: 2_000))
+            phase: .running(endDate: Date(timeIntervalSince1970: 2_000)),
+            taskTitle: "Prepare release"
         ),
         TimerLiveActivityAttributes.ContentState(
-            phase: .paused(remainingTime: 625)
+            phase: .paused(remainingTime: 625),
+            taskTitle: nil
         ),
     ])
     func contentStateCodableRoundTrip(
@@ -45,7 +46,8 @@ struct TimerLiveActivityAttributesTests {
     @Test("Running content counts down and clamps at zero")
     func runningRemainingTime() {
         let state = TimerLiveActivityAttributes.ContentState(
-            phase: .running(endDate: Date(timeIntervalSince1970: 1_100))
+            phase: .running(endDate: Date(timeIntervalSince1970: 1_100)),
+            taskTitle: nil
         )
 
         #expect(!state.isPaused)
@@ -56,10 +58,12 @@ struct TimerLiveActivityAttributesTests {
     @Test("Paused content freezes and normalizes remaining time")
     func pausedRemainingTime() {
         let paused = TimerLiveActivityAttributes.ContentState(
-            phase: .paused(remainingTime: 300)
+            phase: .paused(remainingTime: 300),
+            taskTitle: nil
         )
         let invalid = TimerLiveActivityAttributes.ContentState(
-            phase: .paused(remainingTime: -1)
+            phase: .paused(remainingTime: -1),
+            taskTitle: nil
         )
 
         #expect(paused.isPaused)

@@ -11,12 +11,16 @@ nonisolated struct TimerLiveActivityDescriptor: Equatable, Sendable {
         switch session.state {
         case .running:
             guard let endDate = session.endDate else { return nil }
-            contentState = .init(phase: .running(endDate: endDate))
+            contentState = .init(
+                phase: .running(endDate: endDate),
+                taskTitle: showTaskTitle ? session.task?.title : nil
+            )
         case .paused:
             contentState = .init(
                 phase: .paused(
                     remainingTime: max(0, session.pausedRemainingTime ?? 0)
-                )
+                ),
+                taskTitle: showTaskTitle ? session.task?.title : nil
             )
         case .completed, .cancelled, .skipped:
             return nil
@@ -26,8 +30,7 @@ nonisolated struct TimerLiveActivityDescriptor: Equatable, Sendable {
             sessionID: session.id,
             kind: .init(sessionKind: session.kind),
             startedAt: session.startedAt,
-            plannedDuration: session.plannedDuration,
-            taskTitle: showTaskTitle ? session.task?.title : nil
+            plannedDuration: session.plannedDuration
         )
         self.contentState = contentState
     }

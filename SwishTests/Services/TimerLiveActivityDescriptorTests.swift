@@ -30,7 +30,7 @@ struct TimerLiveActivityDescriptorTests {
         #expect(descriptor.attributes.kind == .focus)
         #expect(descriptor.attributes.startedAt == startedAt)
         #expect(descriptor.attributes.plannedDuration == 1_500)
-        #expect(descriptor.attributes.taskTitle == "Prepare release")
+        #expect(descriptor.contentState.taskTitle == "Prepare release")
         #expect(descriptor.contentState.phase == .running(endDate: endDate))
     }
 
@@ -47,7 +47,7 @@ struct TimerLiveActivityDescriptorTests {
             TimerLiveActivityDescriptor(session: session)
         )
 
-        #expect(descriptor.attributes.taskTitle == nil)
+        #expect(descriptor.contentState.taskTitle == nil)
     }
 
     @Test("Every session kind maps to a stable Live Activity kind", arguments: [
@@ -81,7 +81,7 @@ struct TimerLiveActivityDescriptorTests {
 
         let descriptor = try #require(TimerLiveActivityDescriptor(session: session))
 
-        #expect(descriptor.attributes.taskTitle == nil)
+        #expect(descriptor.contentState.taskTitle == nil)
         #expect(descriptor.contentState.phase == .paused(remainingTime: 125))
     }
 

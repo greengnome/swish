@@ -21,7 +21,7 @@ struct SwishTimerLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.bottom) {
                     VStack(alignment: .leading, spacing: 8) {
                         TimerTaskLabel(
-                            taskTitle: context.attributes.taskTitle,
+                            taskTitle: context.state.taskTitle,
                             state: context.state
                         )
                         .foregroundStyle(.secondary)
@@ -71,7 +71,7 @@ private struct TimerLockScreenView: View {
                         .font(.headline)
 
                     TimerTaskLabel(
-                        taskTitle: context.attributes.taskTitle,
+                        taskTitle: context.state.taskTitle,
                         state: context.state
                     )
                     .foregroundStyle(Color(theme.secondaryText))
@@ -231,17 +231,18 @@ private extension TimerLiveActivityAttributes {
         sessionID: UUID(),
         kind: .focus,
         startedAt: .now,
-        plannedDuration: 1_500,
-        taskTitle: "Prepare release"
+        plannedDuration: 1_500
     )
 }
 
 private extension TimerLiveActivityAttributes.ContentState {
     static let previewRunning = TimerLiveActivityAttributes.ContentState(
-        phase: .running(endDate: .now.addingTimeInterval(1_245))
+        phase: .running(endDate: .now.addingTimeInterval(1_245)),
+        taskTitle: "Prepare release"
     )
     static let previewPaused = TimerLiveActivityAttributes.ContentState(
-        phase: .paused(remainingTime: 625)
+        phase: .paused(remainingTime: 625),
+        taskTitle: "Prepare release"
     )
 }
 
