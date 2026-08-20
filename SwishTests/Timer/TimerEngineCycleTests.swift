@@ -193,6 +193,29 @@ struct TimerEngineCycleTests {
         #expect(harness.engine.currentSession?.plannedDuration == 30)
     }
 
+    @Test("A selected task routine controls the idle focus preview")
+    func taskRoutineControlsIdlePreview() {
+        let task = FocusTask(
+            title: "Write chapter",
+            timerRoutine: TimerRoutine(
+                name: "Writing",
+                focusDuration: 30 * 60
+            )
+        )
+        let harness = TimerEngineHarness(
+            settings: PomodoroSettings(focusDuration: 25 * 60)
+        )
+
+        #expect(
+            harness.engine.previewDuration(for: .focus, task: task)
+                == 30 * 60
+        )
+        #expect(
+            harness.engine.previewDuration(for: .focus)
+                == 25 * 60
+        )
+    }
+
     @Test("Changing app defaults does not alter the active cycle")
     func appDefaultsAreSnapshottedForCycle() throws {
         let settings = PomodoroSettings(

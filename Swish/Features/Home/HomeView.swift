@@ -128,7 +128,10 @@ struct HomeView: View {
         if timerEngine.hasActiveSession {
             return timerEngine.currentSession?.plannedDuration ?? 0
         }
-        return timerEngine.settings.duration(for: selectedKind)
+        return timerEngine.previewDuration(
+            for: selectedKind,
+            task: selectedKind == .focus ? selectedTask : nil
+        )
     }
 
     private var errorIsPresented: Binding<Bool> {
