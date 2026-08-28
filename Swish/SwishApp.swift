@@ -14,11 +14,21 @@ struct SwishApp: App {
     @UIApplicationDelegateAdaptor(AppNotificationDelegate.self)
     private var appDelegate
     private let dependencies: AppDependencies?
+    private let splashMinimumDisplayDuration: Duration
     @State private var onboardingStore: OnboardingStore
+    @State private var isShowingSplash: Bool
 
     init() {
+        let arguments = ProcessInfo.processInfo.arguments
+        splashMinimumDisplayDuration = SplashPresentation.minimumDisplayDuration(
+            arguments: arguments
+        )
+        _isShowingSplash = State(
+            initialValue: SplashPresentation.shouldShow(arguments: arguments)
+        )
+
         do {
-            let isUITesting = ProcessInfo.processInfo.arguments.contains("--ui-testing")
+            let isUITesting = arguments.contains("--ui-testing")
             let dependencies = try AppDependencies.live(
                 inMemory: isUITesting,
                 notificationsEnabled: !isUITesting
@@ -33,23 +43,45 @@ struct SwishApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if let dependencies {
-                Group {
-                    if onboardingStore.hasCompletedOnboarding {
-                        ContentView()
-                    } else {
-                        WelcomeView(onContinue: onboardingStore.complete)
-                    }
+            ZStack {
+                appContent
+
+                if isShowingSplash {
+                    SplashView(
+                        minimumDisplayDuration: splashMinimumDisplayDuration,
+                        onFinished: dismissSplash
+                    )
+                    .transition(.opacity)
+                    .zIndex(1)
                 }
-                .environment(dependencies.timerEngine)
-                .environment(dependencies.notificationPermissionService)
-                .preferredColorScheme(
-                    dependencies.timerEngine.settings.appearance.preferredColorScheme
-                )
-                .modelContainer(dependencies.modelContainer)
-            } else {
-                StartupFailureView()
             }
+        }
+    }
+
+    @ViewBuilder
+    private var appContent: some View {
+        if let dependencies {
+            Group {
+                if onboardingStore.hasCompletedOnboarding {
+                    ContentView()
+                } else {
+                    WelcomeView(onContinue: onboardingStore.complete)
+                }
+            }
+            .environment(dependencies.timerEngine)
+            .environment(dependencies.notificationPermissionService)
+            .preferredColorScheme(
+                dependencies.timerEngine.settings.appearance.preferredColorScheme
+            )
+            .modelContainer(dependencies.modelContainer)
+        } else {
+            StartupFailureView()
+        }
+    }
+
+    private func dismissSplash() {
+        withAnimation(.easeOut(duration: 0.22)) {
+            isShowingSplash = false
         }
     }
 }
