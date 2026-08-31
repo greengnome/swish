@@ -24,6 +24,29 @@ final class SwishUITests: XCTestCase {
     }
 
     @MainActor
+    func testTransitionsFromSplashToOnboarding() throws {
+        let app = XCUIApplication()
+        app.launchArguments = [
+            "--ui-testing",
+            "--ui-testing-show-splash",
+            "--ui-testing-reset-onboarding",
+            "-AppleLanguages",
+            "(en)",
+            "-AppleLocale",
+            "en_US"
+        ]
+        app.launch()
+
+        let splash = app.descendants(matching: .any)["startup.splash"]
+        XCTAssertTrue(splash.waitForExistence(timeout: 1))
+        XCTAssertTrue(splash.waitForNonExistence(timeout: 7))
+        XCTAssertTrue(
+            app.staticTexts["onboarding.focus.title"]
+                .waitForExistence(timeout: 2)
+        )
+    }
+
+    @MainActor
     func testCompletesOnboardingOnlyOnce() throws {
         let app = XCUIApplication()
         app.launchArguments = [
